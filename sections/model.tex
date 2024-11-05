@@ -1,0 +1,197 @@
+\section{Reduced physics model and controller development}{\label{sec:model}}
+
+\subsection{System identification}{\label{subssec:sysid}}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/SPARC_ifo_model_comparison.pdf}
+ \caption{System identification of electron density dynamics with respect to gas 
+ input in atoms/s. Here, measured refers to the output of the synthetic interferometer diagnostic ran
+ over time dependent SOLPS output\cite{Lore_2023}. Gas is added instantaneously as a source in SOLPS simulation at the shown location in Fig.\ref{fig:sparc_interferometer}.}
+ \label{fig:ifo_model_comparison}
+\end{figure}
+
+We applied our controller development workflow to a toy model of electron density control in SPARC. We utilized a time-dependent SOLPS simulation of SPARC (see \cite{Lore2024} for SOLPS setup details) where a varying gas puff of $\mathrm{D}_2$ was applied and evolution of the \ac{SOL} was saved. The electron density was measured using H1 chord of the interferometer (Fig.\ref{fig:interferometer}). Fig. \ref{fig:ifo_model_comparison} shows the measured interferometer signal for the gas flow input sent in to SOLPS.
+
+A state-space model is used to identify the system dynamics from the simulated data. A state-space model is defined as:
+
+\begin{equation}
+    \begin{split}
+        \vec{x}_{k+1} &= A \vec{x}_{k} + B \vec{u}_{k} \\
+        \vec{y}_k &= C \vec{x}_k + D \vec{u}_k
+    \end{split}
+\label{eq:ss}
+\end{equation}
+
+where $\vec{u}_{k}$ is a vector of inputs (actuators) to the plant at time step k,  $\vec{x}_{k}$ is the internal state vector whose length is equal to the order of the system, and $\vec{y}_{k}$ is the vctor of plant outputs. The matrices $A$, $B$, $C$, and $D$ define the evolution of these vectors for each time step. We first attemped linear second and third order models to fit the measured response data but saw considerable residual (cyan and green traces in Fig. \ref{fig:ifo_model_comparison}).
+
+Then, we attempted fit with fixed input non-linearity to the model such that the input has different strength when being increased vs when being decreased. This is characterized by the following function applied to the input of the plant:
+
+\begin{equation}
+    \begin{split}
+        u_{non-linear, k} &= u_k + u_{corr, k} \\
+        u_{corr, k} &= 
+        \begin{cases}
+            u_{corr, k-1} + (u_k - u_{k-1}) * p_{nl} ,& \text{if } u_k \geq u_{k-1}\\
+            u_{corr, k-1},              & \text{otherwise}
+        \end{cases}
+\end{split}
+\end{equation}
+
+where $p_{nl}$ is the non-linearity parameter used in the fitting process. This non-linearity effectively scales the gas output only when the gas flow is increasing. With this non-linearity, second and third order models were attempted, with both fitting converging to same value of $p_{nl}=-0.24$ and with greatly reduced residuals as can be seen in yellow and magenta curves in Fig. \ref{fig:ifo_model_comparison}
+
+\subsection{Controllers}{\label{subssec:controllers}}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/PVLC_algorithm.pdf}
+ \caption{Schematic describing the \ac{PVLC} algorithm.}
+ \label{fig:pvlc}
+\end{figure}
+
+For dealing with the actuator latency we developed two model-based control strategies. The first strategy is \ac{PVLC} algorithm (Schematic in Fig. \ref{fig:pvlc}). In this algorithm, the past commands to the plants are stored and marked as either "reached" or "on way" to the plant. The past stored measurements from the plant and the reached commands are used to estimate the current state vector $\vec{x}_k$ by applying linear least squares technique. If Eq.\ref{eq:ss} are stacked for the past h-steps, such that past h commands are given by $\vec{U}$ and past h measurements are given by $\vec{Y}$:
+
+\begin{equation}
+    \vec{Y}  = \begin{bmatrix}
+                y_{k-(h-1)} \\
+                y_{k-(h-2)} \\
+                ... \\
+                y_{k-1} \\
+                y_{k}
+              \end{bmatrix}
+    ,\quad
+    \vec{U}  = \begin{bmatrix}
+                u_{k-(h-1)} \\
+                u_{k-(h-2)} \\
+                ... \\
+                u_{k-1} \\
+                u_{k}
+              \end{bmatrix}
+\end{equation}
+
+Then Eq.\ref{eq:ss} translate into:
+
+\begin{equation}
+    \begin{split}
+        \vec{Y} &= \mathcal{L} \vec{x}_{k-(h-1)} + \mathcal{M} \vec{U} \\
+        \vec{x}_{k+1} &= \mathcal{N} \vec{x}_{k-(h-1)} + \mathcal{O} \vec{U}
+\end{split}
+\end{equation}
+
+where:
+
+\begin{equation}
+    \mathcal{L} = \begin{bmatrix}
+                  C \\
+                  CA \\
+                  % CA^2 \\
+                  ... \\
+                  CA^{h-2} \\
+                  CA^{h-1}
+                 \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+        \mathcal{M} = \begin{bmatrix}
+                  D           
+                    & 0           
+                        % & 0           
+                            & ... 
+                                % & 0     
+                                %     & 0     
+                                        & 0   
+                                            & 0   
+                                                & 0   \\
+                  CB          & D           
+                        % & 0           
+                            & ... 
+                                % & 0     
+                                %     & 0     
+                                        & 0   
+                                            & 0   
+                                                & 0   \\
+                  % CAB         & CB          & D           & ... & 0     & 0     & 0   & 0   &     \\
+                  ...         
+                    & ...         
+                        % & ...         
+                            & ... 
+                                % & ...   
+                                %     & ...   
+                                        & ... 
+                                            & ... 
+                                                & ... \\
+                  % C A^{h-4} B & C A^{h-5} B  & C A^{h-6} B  & ... & CAB   & CB    & D   & 0   & 0   \\
+                  C A^{h-3} B 
+                    & C A^{h-4} B 
+                        % & C A^{h-5} B 
+                            & ... 
+                                % & CA^2B 
+                                %     & CAB   
+                                        & CB  
+                                            & D   
+                                                & 0   \\
+                  C A^{h-2} B 
+                    & C A^{h-3} B 
+                        % & C A^{h-4} B 
+                            & ... 
+                                % & CA^3B 
+                                %     & CA^2B 
+                                        & CAB 
+                                            & CB  
+                                                & D   \\
+                 \end{bmatrix}
+\end{equation}
+    
+\begin{equation}
+    \mathcal{N} = A^{h}
+\end{equation}
+    
+\begin{equation}
+    \mathcal{O} = \begin{bmatrix} A^{h-1} B & A^{h-2} B & A^{h-3} B & ... & A^2 B & AB & B \end{bmatrix}
+\end{equation}
+
+The matrices $\mathcal{L}$, $\mathcal{M}$, $\mathcal{N}$, and $\mathcal{O}$ can be calculated for the fixed history size of $h$ and the pseudo-inverse of $\mathcal{L}$ can be calculated in offline and the following relationship can be used for fast linear state tracking:
+
+\begin{equation}
+    \begin{split}
+\vec{x}_{k+1} &= \mathcal{N} \mathcal{L}^{-1} (\vec{Y} - \mathcal{M} \vec{U}) + \mathcal{O} \vec{U}\\
+              &= \mathcal{N} \mathcal{L}^{-1} \vec{Y} + (\mathcal{O} - \mathcal{N} \mathcal{L}^{-1} \mathcal{M})\vec{U} \\
+              &= \mathcal{T}_{Y2x} \vec{Y} + \mathcal{T}_{U2x} \vec{U}
+    \end{split}
+\label{eq:state_tracking}
+\end{equation}
+
+Eq.\ref{eq:state_tracking} can be implemented in control system by storing the matrices $\mathcal{T}_{Y2x}$ and $\mathcal{T}_{U2x}$ and just doing matrix multiplcation in realtime. Once the initial state vector for next step $\vec{x}_{k+1}$ has been identified, the commands that are on the way to the plant can be used to evolve the plant model into future by latency time $t_{lat}$. The future estimated output is then checked against the future desired target value and fed to a typical linear controller such as a PID controller. This way, a predicted future variable is used for linear control to counteract the latency.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/MPC_algorithm.pdf}
+ \caption{Schematic describing the \ac{MPC} algorithm.}
+ \label{fig:mpc}
+\end{figure}
+
+While \ac{PVLC} provides a fast linear deterministic method for control, there is no room to utilize prior knowledge about dynamic non-linearity of the actuator in the model evolution. Further, in case of multiple actuators, if the actuators have different latencies, PVLC method can not extended to that case. For such cases, it would be better to perform realtime cost function minimization to do \ac{MPC} for a defined horizon time steps $N_{horizon}$ as shown in Fig.\ref{fig:mpc}.
+
+In \ac{MPC}, once the feedback from state tracking meachanism is received, the model is evolved into future for the time corresponding to the smallest latency of any of the actuators used. If the actuators have different latencies, this would mean that the model will be left with partially known future commands. The evolved state, partially known future commands, and future target values are used to minimize a cost function which takes into account any modeled non-linearites. The generated optimized future commands are then used in feedforward for $N_{MPC}$ steps. $N_{MPC}$ is typically 10-100 times the normal cycle of the control system to allow sufficient time for cost minimization. The cost optimization is done with less time resolution $\Delta t_{MPC}$ between steps, with linear interpolation to translate back to actual time resolution of the control system $t_{PCS}$, to improve speed and avoid over-fiting.
+
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/ne_control_comparison.pdf}
+ \caption{Simulated closed-loop test PI controller, \ac{PVLC}, and \ac{MPC} with the non-linear plant model.}
+ \label{fig:mpc_test}
+\end{figure}
+
+\subsection{Closed loop simulations}{\label{subssec:closed-loop_sims}}
+
+We modeled the gas injection system with a latency of $t_{lat}$ = 0.183~s and a dribbling time constant of $\tau_d$ = 0.15~s. These numbers are chosen to demonstrate the detrimental effect of latency and long pipelines on causal linear controllers and exploring how to solve it. The measured latency of 0.183~s (see Sec.\ref{subsec:gas_injection}) includes the effects of the long distance (several meters) from the gas valve to the pressure monitor PCM240TOR in DIII-D, whereas the gas inlet is only $\sim10$~cm away from the typical separatrix location (see Fig.\ref{fig:interferometer}). So, we expect actual latency to be much shorter, which is consistent with experimental observations of timescales for plasma response to gas puffing. We chose to reduce the dribbling decay rate from 0.45~s to 0.15~s in our simulation to allow for shorter closed-loop simulations while still capturing the limitations caused by long pipe gas valves which are proposed in future large devices like ITER\cite{holtkap_2007_fed}. 
+
+For closed-loop simulations, to model the reality effectively, we used the non-linear third order fit (magenta curve in Fig.\ref{fig:ifo_model_comparison}) to the system for the plant model. But to leave room for possible differences in system identification in real use case, we used second order linear fit model (cyan curve in Fig.\ref{fig:ifo_model_comparison}) in the predictive controllers. Additionally, excess noise (solid black curve in Fig.\ref{fig:mpc_test})was added at the plant output in the simulations which grow as 1/f noise below 30 Hz. This adds a drift in the plant over time which would take it away from identified system model used in controllers.
+
+We tuned a linear PI controller to best control this system and came up with values of $K_p=1.5$ and $K_i=5.0$ (controller transfer function in s-domain being $K_p + K_i/s$). The yellow (dash-dot) trace in Fig.\ref{fig:mpc_test} shows the operation of this linear filter in a closed loop with the system. The latency and the dribble effect make this controller ineffective and causes oscillations. We also modeled the case in which no latency was assumed, and this alone improves the performance of this controller (cyan, solid trace in Fig. \ref{fig:mpc_test}).
+
+Next, we tried \ac{PVLC} which used $h=30$ history steps for state tracking and the same PI controller as used earlier. This controller (green dotted curve in, Fig. \ref{fig:mpc_test}) effectively cancels the latency effect and performs similar to the case of PI controller without latency (cyan, solid trace).
+
+Next, we tested \ac{MPC} with $h=30$, $N_{MPC} = 50$, $N_{horizon}=500$, $t_s=0.001$ s, and $\Delta t_{MPC}=0.05$ s. The pink (dashed) trace in Fig.\ref{fig:mpc_test} shows the operation of this controller in a closed loop with the system. We can see that this controller is more proactive for upcoming changes in target and can partially counter the dribble effect by changing the gas actuation accordingly.
+
+Note that in this closed loop simulation test, we first allowed the system to reach the step level of about $4\times10^{20}~\mathrm{m}^{-3}$ with constant feedforward gas input and turned on the controller at 4.8~s. The simulation was run at a sampling rate of 1~kHz using our software package functions in the Julia\cite{bezanson_2017} programming language. The target curve for control was chosen to challenge the controllers more and see dynamic response to changes in target. Note that while \ac{MPC} can prepare for an upcoming change in target, they can not predict future noise and thus any noise drift accumulated during latency time of gas actuation still persists.

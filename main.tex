@@ -1,0 +1,90 @@
+\documentclass[final,5p,times]{elsarticle}  % Uncomment for final style formatting
+%\documentclass[review,times]{elsarticle}  % Uncomment for review/manuscript style formatting
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{lineno,hyperref}
+\usepackage{diagbox}
+\usepackage{xcolor}
+\modulolinenumbers[5]
+
+\journal{Nuclear Materials and Energy}
+
+% \bibliographystyle{elsarticle-num}  %% `Elsevier LaTeX' style
+% \bibliographystyle{elsarticle-num_etal}  % author lists shortened
+% \bibliographystyle{elsarticle-num_etal_no_doi}  % author lists shortened and DOI hidden
+\bibliographystyle{elsarticle-num_etal_title_no_extra_url.bst} % first author et al, title with link, no extra url
+
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+
+\usepackage{acro}
+\input{acronyms}
+\providecommand{\acroifusedTF}{\acifused}
+
+% New command for citation reminder
+\newcommand{\needcite}{\textbf{ [NEEDCITE]}}
+
+% Recoloring links for figures and citations makes the draft easier to read than having the colored boxes around things. Won't matter in the final; the published version always is cleaned up. But this is nice for the manuscript.
+\hypersetup{colorlinks,linkcolor={red!50!black},citecolor={green!50!black}, urlcolor={blue!50!black}}
+
+\input{institutions}
+
+\begin{document}
+
+\title{Model-based plasma control development using a time-dependent scrape-off layer model for managing actuator latency}
+\author[ORAU]{Anchal Gupta\corref{mycorrespondingauthor}}
+\cortext[mycorrespondingauthor]{Corresponding author}
+\ead{guptaa@fusion.gat.com}
+
+\author[GA]{David Eldon}
+
+\author[GA]{Himank Anand}
+
+\author[GA]{Alicia Dautt-Silva}
+
+\author[ORNL]{Sebastian De Pascuale}
+
+\author[ORNL]{Jeremy Lore}
+
+\author[GA]{Orso Meneghini}
+
+\author[ORNL]{Jae-Sun Park}
+
+\address[ORAU]{\ORAU}
+\address[GA]{\GA}
+\address[ORNL]{\ORNL}
+
+\date{\today}
+
+\input{abstract}
+
+\acresetall  % Reset acronyms after the abstract. This has unexpected behavior for acronyms that aren't used later.
+
+\maketitle
+
+\input{sections/introduction}
+
+\input{sections/infrastructure}
+
+\input{sections/model}
+
+\input{sections/discussion}
+
+\input{sections/contributions}
+
+\input{sections/declaration_of_competing_interest}
+
+\input{sections/acknowledgements}
+
+\input{sections/disclaimer}
+
+\bibliography{refs}
+
+\end{document}

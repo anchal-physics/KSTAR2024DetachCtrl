@@ -1,0 +1,62 @@
+\section{Interface with IMAS data model}{\label{sec:infrastructure}} 
+IMAS is a standardized physics data model\cite{Imbeaux_2015} for a description of tokamak diagnostics, plasma state, and actuators. The main purpose of IMAS was to create such a standard data model so that various devices, simulation efforts, and physics models can interact with each other in a common way. Our software package is built on top of an \ac{IDS} defined on the IMAS data model in the package \texttt{IMASdd}\cite{meneghini2023}. \texttt{IMASdd} independently implements IMAS data model definitions without depending on the official IMAS code. A similar capability has been used within OMFIT\cite{meneghini_2015_nf} for several years. Thus, at the base module level, our package can import device states and definitions saved as IMAS data models by any other IMAS-compatible software.
+
+For our use case of developing a heat flux controller, we needed to use a \ac{SOL} simulation software. For this purpose, we chose to use version 3.0.8 of the SOLPS-ITER code (hereafter reffered as SOLPS). SOLPS solves a coupled set of fluid plasma transport equations, with kinetic neutral transport and plasma-surface interactions. Here we use the SOLPS code in a time-dependent manner\cite{Lore_2023}, instead of the usual manner of using the time-advance only to obtain steady-state solutions. In this mode, the plasma state information is stored at user-specified frequencies, including additional data required for controller development, such as 2D data. To obtain time-dependent data in IMAS format, our package includes \texttt{SOLPS2imas} module which is a parser to read native SOLPS output into IMAS IDS thus completing the connection of SOLPS to the IMAS project. However, our software provides easy access to utilize any time-dependent 2D \ac{SOL} model as long as it outputs data in IMAS data schema.
+
+Another module, \texttt{IMASggd} consists of various tools for manipulating grid subsets with set theory-based tools like unions, intersections, boundaries, etc. to generate a new subset.
+This makes it easy and intuitive to generate a new grid subset which might not be defined in SOLPS input files based on abstract notions rather than minute details of grid cell locations or indices.
+There are also generic tools for interpolating data present in \ac{GGD} format and visualizing such data as 2D heatmaps or time series plots. These tools are important in the development of synthetic diagnostics that can utilize plasma properties represented in 2D space and effective 2D visualization for understanding the results from simulations and cross-validation. Fig. \ref{fig:interferometer} shows electron density data present in SOLPS simulation for DIII-D, interpolated and extrapolated on a grid over the device poloidal cross-section.
+Our software is completely device agnostic. Fig. \ref{fig:sparc_interferometer} shows the same plot for SOLPS simulation for SPARC\cite{Lore2024}. 
+Our software is structured in a modular way so that these tools can be used standalone for developing other utilities or capabilities of interaction with other simulation software that use the IMAS data model.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/SynthDiag.png}
+ \caption{Example calculation and visualization of the interferometer for measuring line averaged electron density. Gas port locations for GASA and GASD are also shown. PCM240TOR is the vacuum vessel pressure gauge used for gas injection calibration.}
+ \label{fig:interferometer}
+\end{figure}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/SPARC_SynthDiag.png}
+ \caption{Interferometer layout and electron density in SPARC\cite{Lore2024} case}
+ \label{fig:sparc_interferometer}
+\end{figure}
+
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/SPARC_n_e_core_profile.pdf}
+ \caption{Core profile extrapolation using magnetic equilibrium data from edge profile data from SOLPS simulation of SPARC\cite{Lore2024}.}
+ \label{fig:core_profile}
+\end{figure}
+
+\subsection{Core profile extrapolation}
+Since SOLPS provides data only in \ac{SOL} and for some parts of the core region (depending on how much of the core domain has been gridded), we needed to extrapolate the edge profile data into the core region to complete the data availability in the 2D space where synthetic diagnostics will operate. We first interpolated the edge profile data along the midplane and calculated the gradient at the core boundary of SOLPS data. For our initial tests where SOLPS data was for L-mode plasmas, we extrapolated the edge profile data along values of $\rho$ (toroidal magnetic flux normalized to value at last closed flux surface) in the core region such that the gradient matches at the SOLPS boundary and the gradient becomes zero at $\rho=0$ providing a typical L-mode profile for electron density. Fig. \ref{fig:core_profile} shows the core profile extrapolation performed at midplane. This profile is then used to calculate the core electron density along all the closed flux surfaces. For the far-SOL region where SOLPS does not assume plasma, the electron density is simply extended smoothly in 2D cubic spline manner upto the device walls.
+
+This is a simple approach taken for initial testing purposes and more complicated extrapolation functions would be required for more realistic analysis of core data, especially for H-mode plasmas. It should also be pointed out that the shape of the core profile extrapolation does not take into account time domain dynamics that might be playing a crucial role in transport in the core region and should be modeled with guiding physics for more accurate system dynamic estimation.
+
+\subsection{Synthetic diagnostics}
+We have currently implemented two synthetic diagnostics to read data from the plasma state based on SOLPS simulation. These are present in a separate module called \texttt{FusionSyntheticDiagnostics.jl}. The first synthetic diagnostic is a synthetic interferometer which is defined through an IMAS compatible \texttt{JSON} file format in the form of a line-of-sight description of the laser and its wavelength. Fig. \ref{fig:sparc_interferometer} shows the placement of these interferometer chords. The line-integrated electron density is calculated using a fast numerical integration technique over the interpolated space and given as the output of the interferometer. The synthetic diagnostic also emulates the real phase measurement that the real interferometer would have measured based on the wavelength of the laser used, which is used to improve accuracy of an optional noise model. Adding realistic noise to closed-loop simulations allows for more stringent tests of controller performance and robustness. The noise can be loaded as a power spectral density description and would generate a random version of the noise on each different call, making it a useful tool in Monte Carlo simulations. Another benefit of this diagnostic in the design phase is to optimize the line of sight of the interferometer to get the best response for the control purpose.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=\linewidth]{figures/GasInjection.pdf}
+ \caption{Gas injection model with a latency of 0.183s and second order low pass filter with a time constant of 50 ms and damping factor of 0.5. For GASA, no dribble effect was measured while for GASD, due to a longer pipeline, a dribble decay constant of 0.45s is observed.}
+ \label{fig:gas_injection}
+\end{figure} 
+
+Additionally, we have implemented synthetic embedded Langmuir probes that can be loaded as IMAS compatible \texttt{JSON} files. IMAS data model does not yet store applied voltage to Langmuir probes, but if it is provided, this model can simulate the sheath physics\cite{Conde2011, stangeby2000plasma} at the probe tips to calculate the current measured given that plasma potential is known at the probe location through other sources of simulation or physics models.
+Otherwise, as a ``magic'' diagnostic, it simply returns the local plasma electron density, electron temperature, and ion temperature. A known noise model can be used to inject simulated noise at the output of this diagnostic as well.
+
+\subsection{Gas Injection Model}{\label{subsec:gas_injection}}
+For our use case of heat flux control using impurity gas puffing, we developed a synthetic actuator model of gas injection. The model is fitted to gas calibration test data from shot \# 193599 of DIII-D for GASA port and \# 192607 for GASD port. A response curve for the command voltage (in V) to gas flow rate (in Pa m$^3$ s$^{-1}$) is stored in the dedicated location in IMAS IDS. The response curve is created by fitting accumulated gas in vessel volume (pressure measured by vacuum vessel pressure gauge PCM240TOR) to the integral of the commonly used nonlinear model of gas flow, $\Gamma$ (in Pa m$^3$ s$^{-1}$) given by Eq.\ref{eq:gas_injection}:
+
+\begin{equation}
+ \label{eq:gas_injection}
+ \Gamma = p_1 \left(\sqrt{p_2^2 x^2 + 1} - 1\right)
+\end{equation}
+
+where $p_1$ is in Pa m$^3$ s$^{-1}$, $p_2$ is in V$^{-1}$, and $x$ is the gas command sent in V. By comparing the rise-time of vacuum vessel pressure in comparison to the time of sent command, we found that there is a latency of 0.183~s. Additionally, we model the response of the piezoelectric valve as measured by the pressure transducer at valve output as a second-order low pass filter with a time constant of 50~ms and damping constant of 0.5 (underdamped) which leads to small oscillations when gas command suddenly steps up.
+
+ While GASA port works as per design\cite{bates_1984_rsi}, the GASD port has additional pipe length between the valve and the vessel which acts as a reservoir for gas which continues to ``dribble'' out after the valve is shut off. We model this effect as a simple exponential decay with a time constant of 0.45~s whenever the gas flow is falling faster than this rate. Thus our gas injection model simulates the non-linear response of the gas ports close to reality. Fig. \ref{fig:gas_injection} shows an example of the gas flow rate for a sample of sent command voltage values.
