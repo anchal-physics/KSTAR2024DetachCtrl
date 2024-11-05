@@ -7,7 +7,7 @@
 \usepackage{xcolor}
 \modulolinenumbers[5]
 
-\journal{Nuclear Materials and Energy}
+\journal{}
 
 % \bibliographystyle{elsarticle-num}  %% `Elsevier LaTeX' style
 % \bibliographystyle{elsarticle-num_etal}  % author lists shortened
@@ -31,6 +31,9 @@
 % New command for citation reminder
 \newcommand{\needcite}{\textbf{ [NEEDCITE]}}
 
+% New command for possible changes in wording
+\newcommand{\maybe}[1]{\textcolor{red}{(or #1)}}
+
 % Recoloring links for figures and citations makes the draft easier to read than having the colored boxes around things. Won't matter in the final; the published version always is cleaned up. But this is nice for the manuscript.
 \hypersetup{colorlinks,linkcolor={red!50!black},citecolor={green!50!black}, urlcolor={blue!50!black}}
 
@@ -38,28 +41,26 @@
 
 \begin{document}
 
-\title{Model-based plasma control development using a time-dependent scrape-off layer model for managing actuator latency}
+\title{Detachment control in KSTAR with Tungsten divertor}
 \author[ORAU]{Anchal Gupta\corref{mycorrespondingauthor}}
 \cortext[mycorrespondingauthor]{Corresponding author}
 \ead{guptaa@fusion.gat.com}
 
 \author[GA]{David Eldon}
 
-\author[GA]{Himank Anand}
+\author[ORAU]{KyuBeen Kwon}
 
-\author[GA]{Alicia Dautt-Silva}
+\author[GA]{Anthony Leonard}
 
-\author[ORNL]{Sebastian De Pascuale}
+\author[LLNL]{Xueqiao Xu}
 
-\author[ORNL]{Jeremy Lore}
+\author[LLNL]{Menglong Zhao}
 
-\author[GA]{Orso Meneghini}
-
-\author[ORNL]{Jae-Sun Park}
+\author[LLNL]{Ben Zhu}
 
 \address[ORAU]{\ORAU}
 \address[GA]{\GA}
-\address[ORNL]{\ORNL}
+\address[LLNL]{\LLNL}
 
 \date{\today}
 
@@ -70,12 +71,6 @@
 \maketitle
 
 \input{sections/introduction}
-
-\input{sections/infrastructure}
-
-\input{sections/model}
-
-\input{sections/discussion}
 
 \input{sections/contributions}
 
