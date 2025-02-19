@@ -16,16 +16,17 @@ Before we attempted detachment control experiments, we took two system identific
 \end{equation}
 \input{code/Afrac_SysID_values.tex}
 
-The fit resulted in identified model with \AfracL, \AfracTau, and \AfracL. The fit is shown in Fig.\ref{fig:sysid_afrac}b. Note that only the part of time series data that was used in fit is shown for the fitted curve. This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment. It can be seen that \Afrac did not start at the value of 1.0 as should be the case for fully attached plasma initially. This was due to miscalibrated factor in PCS setting. We corrected this factor (by reducing it by factor of 2) after the system identification shot to ensure that the \Afrac starts at 1.0 so that controller target values make sense. This means that the identified response is highed by a factor of 2 and thus we reduced the value of fitted K by factor of 2 for tuning the controller gains.
+The fit resulted in identified model with \AfracK, \AfracTau, and \AfracL. The fit is shown in Fig.\ref{fig:sysid_afrac}b. Note that only the part of time series data that was used in fit is shown for the fitted curve. This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment. It can be seen that \Afrac did not start at the value of 1.0 as should be the case for fully attached plasma initially. This was due to miscalibrated factor in PCS setting. We corrected this factor (by reducing it by factor of 2) after the system identification shot to ensure that the \Afrac starts at 1.0 so that controller target values make sense. This means that the identified response is high by a factor of 2 and thus we reduced the value of fitted K by factor of 2 for tuning the controller gains.
+
+\input{code/Afrac_CLTF_values.tex}
 
 \begin{figure}[!ht]
  \centering
  \includegraphics[width=\linewidth]{figures/Afrac_LoopStability.pdf}
- \caption{Closed loop transfer function analysis of the system with chosen PI controller with gains: K$_p$=-10, T$_i$=253 ms, and pre-smoothing $\tau_s$=50ms.}
+ \caption{Closed loop transfer function analysis of the system  using \Afrac output with chosen PI controller with gains:\AfracKp, \AfracTi, and \Afracstau.}
  \label{fig:cltf_afrac}
 \end{figure}
 
-\input{code/Afrac_CLTF_values.tex}
 
 The controller gains were chosen by visualing close loop transfer function of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}. Here, the frequency domain response of the plant model ($G(f)$) and PI controller are plotted together. When connected in series, this forms the open loop transfer function of the system ($O(f)$). The frequency where open loop gain becomes 1.0 is called \ac{UGF}). Phase margin is defined as the additional phase delay at \ac{UGF} that would make the system unstable by taking it to -180$^\circ$. Additionally, we also define delay margin as the additional actuation delay that would make \ac{UGF} unstable. The closed loop response is then calculated by solving the loop algebra in laplace domain:
 
@@ -48,6 +49,17 @@ Because of the large delay, we chose to not use derivative gain. The goal of tun
  \label{fig:sysid_sm}
 \end{figure*}
 
+\input{code/SM_SysID_values.tex}
+
 Unfortunately, the surrogate model was not confgured properly in this system identification shot due to technical errors, so we repeated a system identification but this time we decided to keep the nitrogen valve in constant open position, to look for any deviation in the behavior. The data from this second system identification shot is shown in Fig.\ref{fig:sysid_sm}. Despite all the limitations of DivControlNN as listed earlier, we still saw a good correlation in the DivControlNN heat flux output at outer divertor with the injected gas as seen in Fig.\ref{fig:sysid_sm}b. This is validated by estimated \Afrac in Fig.\ref{fig:sysid_sm}d showing that increase in detachment level as the predicted output heat flux decreases. The strike point was maintained within the realtime Langmuir Prone array (Fig.\ref{fig:sysid_sm}a) validating the output of \Afrac. Note that we did not yet calibrate the DivControlNN model with any experimental data, so we treat the output as arbitrary units and later attempted to control the detachment with estimated changes to this aribitrary output.
 
-We again fitted this system with a first order system with delay as described in Eq.\ref{eq:sysid}. Here as well, the fitting shown was performed during the experiment in the inter-shot interval and has not been modified or optimized later. The time domain in which fitting curve is shown is the data where the system was fitted. 
+\input{code/SM_CLTF_values.tex}
+
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[width=\linewidth]{figures/SM_LoopStability.pdf}
+ \caption{Closed loop transfer function analysis of the system using DivControlNN heat flux at outer divertor output with chosen PI controller with gains: \SMKp, \SMTi, and \SMstau.}
+ \label{fig:cltf_sm}
+\end{figure}
+
+We again fitted this system with a first order system with delay as described in Eq.\ref{eq:sysid}. The fit resulted in identified model with \SMK, \SMTau, and \SML. The fit is shown in Fig.\ref{fig:sysid_sm}b. Here as well, the fitting shown was performed during the experiment in the inter-shot interval and has not been modified or optimized later. The time domain in which fitting curve is shown is the data where the system was fitted. Admittedly, this fit was not very good and we did not believe the lag value to be accurate. There is no physical reason for why the lag in the system would be higher when we use DivControlNN output as compared to \Afrac. So for the purpose of tuning the controller, we arbitrarly set the system lag value to 100 ms. The controller gains were chosen by visualing close loop transfer function of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_sm} and following the same procedure as we described for \Afrac controller tuning. The resulting controller settings were: \SMKp, \SMTi, and \SMstau{} creating controller given by Eq.\ref{eq:PI}. Here, we estimated to achieve a \ac{UGF} of \SMUGF, phase margin of \SMPhaseMargin, and delay margin of \SMDelayMargin. This controller was also very aggressive, but we decided to go ahead with this controller choice given the limitations of the system identification fit and lack of time for further analysis in between the alloted run time to our experiment.
