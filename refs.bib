@@ -1,34 +1,15 @@
-@article{Imbeaux_2015,
-doi = {10.1088/0029-5515/55/12/123006},
-url = {https://dx.doi.org/10.1088/0029-5515/55/12/123006},
-year = {2015},
-month = {oct},
-publisher = {IOP Publishing},
+@article{Bates_1984_RSI,
+author = {S. C. Bates and K. H. Burrell},
+journal = {Rev. Sci. Instrum.},
 volume = {55},
-number = {12},
-pages = {123006},
-author = {F. Imbeaux and S.D. Pinches and J.B. Lister and Y. Buravand and T. Casper and B. Duval and B. Guillerminet and M. Hosokawa and W. Houlberg and P. Huynh and S.H. Kim and G. Manduchi and M. Owsiak and B. Palak and M. Plociennik and G. Rouault and O. Sauter and P. Strand},
-title = {Design and first applications of the ITER integrated modelling \& amp; analysis suite},
-journal = {Nuclear Fusion},
-abstract = {The ITER Integrated Modelling \& amp; Analysis Suite (IMAS) will support both plasma operation and research activities on the ITER tokamak experiment. The IMAS will be accessible to all ITER members as a key tool for the scientific exploitation of ITER. The backbone of the IMAS infrastructure is a standardized, machine-generic data model that represents simulated and experimental data with identical structures. The other outcomes of the IMAS design and prototyping phase are a set of tools to access data and design integrated modelling workflows, as well as first plasma simulators workflows and components implemented with various degrees of modularity.}
+pages = {934},
+year = {1984},
+doi = {10.1063/1.1137845},
+url = {https://doi.org/10.1063/1.1137845},
+title = {Fast gas injection system for plasma physics experiments}
 }
 
-@article{Lore_2023,
-doi = {10.1088/1741-4326/acbe0e},
-url = {https://dx.doi.org/10.1088/1741-4326/acbe0e},
-year = {2023},
-month = {mar},
-publisher = {IOP Publishing},
-volume = {63},
-number = {4},
-pages = {046015},
-author = {J.D. Lore and S. De Pascuale and P. Laiu and B. Russo and J.-S. Park and J.M. Park and S.L. Brunton and J.N. Kutz and A.A. Kaptanoglu},
-title = {Time-dependent SOLPS-ITER simulations of the tokamak plasma boundary for model predictive control using SINDy*},
-journal = {Nuclear Fusion},
-abstract = {Time-dependent SOLPS-ITER simulations have been used to identify reduced models with the sparse identification of nonlinear dynamics (SINDy) method and develop model-predictive control of the boundary plasma state using main ion gas puff actuation. A series of gas actuation sequences are input into SOLPS-ITER to produce a dynamic response in upstream and divertor plasma quantities. The SINDy method is applied to identify reduced linear and nonlinear models for the electron density at the outboard midplane  and the electron temperature at the outer divertor . Note that  is not necessarily the peak value of T  e  along the divertor. The identified reduced models are interpretable by construction (i.e. not black box), and have the form of coupled ordinary differential equations. Despite significant noise in , the reduced models can be used to predict the response over a range of actuation levels to a maximum deviation of 0.5% in  and 5%–10% in  for the cases considered. Model retraining using time history data triggered by a preset error threshold is also demonstrated. A model predictive control strategy for nonlinear models is developed and used to perform feedback control of a SOLPS-ITER simulation to produce a setpoint trajectory in  using the integrated plasma simulator framework. The developed techniques are general and can be applied to time-dependent data from other boundary simulations or experimental data. Ongoing work is extending the approach to model identification and control for divertor detachment, which will present transient nonlinear behavior from impurity seeding, including realistic latency and synthetic diagnostic signals derived from the full SOLPS-ITER output.}
-}
-
-@article{bezanson_2017,
+@article{Bezanson_2017_SR,
 author = {Bezanson, Jeff and Edelman, Alan and Karpinski, Stefan and Shah, Viral B.},
 title = {Julia: A Fresh Approach to Numerical Computing},
 journal = {SIAM Review},
@@ -42,7 +23,33 @@ eprint = {https://doi.org/10.1137/141000671},
 abstract = { Bridging cultures that have often been distant, Julia combines expertise from the diverse fields of computer science and computational science to create a new approach to numerical computing. Julia is designed to be easy and fast and questions notions generally held to be “laws of nature" by practitioners of numerical computing: \beginlist \item High-level dynamic programs have to be slow. \item One must prototype in one language and then rewrite in another language for speed or deployment. \item There are parts of a system appropriate for the programmer, and other parts that are best left untouched as they have been built by the experts. \endlist We introduce the Julia programming language and its design---a dance between specialization and abstraction. Specialization allows for custom treatment. Multiple dispatch, a technique from computer science, picks the right algorithm for the right circumstance. Abstraction, which is what good computation is really about, recognizes what remains the same after differences are stripped away. Abstractions in mathematics are captured as code through another technique from computer science, generic programming. Julia shows that one can achieve machine performance without sacrificing human convenience. }
 }
 
-@article{Creely_2020,
+@article{Bonnin_2016_PFR,
+  title={Presentation of the New SOLPS-ITER Code Package for Tokamak Plasma Edge Modelling},
+  author={Xavier Bonnin and Wouter DEKEYSER and Richard PITTS and David COSTER and Serguey VOSKOBOYNIKOV and Sven WIESEN},
+  journal={Plasma and Fusion Research},
+  volume={11},
+  number={ },
+  pages={1403102-1403102},
+  year={2016},
+  doi={10.1585/pfr.11.1403102},
+  url={https://doi.org/10.1585/pfr.11.1403102}
+}
+
+@article{Brunton_2016_NAS,
+author = {Steven L. Brunton  and Joshua L. Proctor  and J. Nathan Kutz },
+title = {Discovering governing equations from data by sparse identification of nonlinear dynamical systems},
+journal = {Proceedings of the National Academy of Sciences},
+volume = {113},
+number = {15},
+pages = {3932-3937},
+year = {2016},
+doi = {10.1073/pnas.1517384113},
+URL = {https://www.pnas.org/doi/abs/10.1073/pnas.1517384113},
+eprint = {https://www.pnas.org/doi/pdf/10.1073/pnas.1517384113},
+abstract = {Extracting governing equations from data is a central challenge in many diverse areas of science and engineering. Data are abundant whereas models often remain elusive, as in climate science, neuroscience, ecology, finance, and epidemiology, to name only a few examples. In this work, we combine sparsity-promoting techniques and machine learning with nonlinear dynamical systems to discover governing equations from noisy measurement data. The only assumption about the structure of the model is that there are only a few important terms that govern the dynamics, so that the equations are sparse in the space of possible functions; this assumption holds for many physical systems in an appropriate basis. In particular, we use sparse regression to determine the fewest terms in the dynamic governing equations required to accurately represent the data. This results in parsimonious models that balance accuracy with model complexity to avoid overfitting. We demonstrate the algorithm on a wide range of problems, from simple canonical systems, including linear and nonlinear oscillators and the chaotic Lorenz system, to the fluid vortex shedding behind an obstacle. The fluid example illustrates the ability of this method to discover the underlying dynamics of a system that took experts in the community nearly 30 years to resolve. We also show that this method generalizes to parameterized systems and systems that are time-varying or have external forcing.}
+}
+
+@article{Creely_2020_JPP,
 title={Overview of the SPARC tokamak},
 volume={86},
 doi={10.1017/S0022377820001257},
@@ -54,21 +61,47 @@ year={2020},
 pages={865860502},
 }
 
-@article{pitts_2019_nme,
-title = {Physics basis for the first ITER tungsten divertor},
+@article{Eldon_2019_NME,
+title = {Advances in radiated power control at DIII-D},
 journal = {Nuclear Materials and Energy},
-volume = {20},
-pages = {100696},
+volume = {18},
+pages = {285-290},
 year = {2019},
 issn = {2352-1791},
-doi = {https://doi.org/10.1016/j.nme.2019.100696},
-url = {https://www.sciencedirect.com/science/article/pii/S2352179119300237},
-author = {R.A. Pitts and X. Bonnin and F. Escourbiac and H. Frerichs and J.P. Gunn and T. Hirai and A.S. Kukushkin and E. Kaveeva and M.A. Miller and D. Moulton and V. Rozhansky and I. Senichenkov and E. Sytova and O. Schmitz and P.C. Stangeby and G. {De Temmerman} and I. Veselova and S. Wiesen},
-keywords = {ITER, Tungsten, Divertor, Heat fluxes, SOLPS},
-abstract = {On the eve of component procurement, this paper discusses the present physics basis for the first ITER tungsten (W) divertor, beginning with a reminder of the key elements defining the overall design, and outlining relevant aspects of the Research Plan accompanying the new “staged approach” to ITER nuclear operations which fixes the overall divertor lifetime constraint. The principal focus is on the main design driver, steady state power fluxes in the DT phases, obtained from simulations using the 2-D SOLPS-4.3 and SOLPS-ITER plasma boundary codes, assuming the use of the low Z seeding impurities nitrogen (N) and neon (Ne). A new perspective on the simulation database is adopted, concentrating purely on the divertor physics aspects rather than on the core-edge integration, which has been studied extensively in the course of the divertor design evolution and is published elsewhere. Emphasis is placed on factors which may increase the peak steady state loads: divertor target shaping for component misalignment protection, the influence of fluid drifts, and the consequences of narrow scrape-off layer heat flux channels. All tend to push the divertor into an operating space at higher sub-divertor neutral pressure in order to remain at power flux densities acceptable for the target material. However, a revised criterion for the maximum tolerable loads based on avoidance of W recrystallization, sets an upper limit potentially ∼50% higher than the previously accepted value of ∼10 MW m−2, a consequence both of the choice of material and the finalized component design. Although the simulation database is currently restricted to the 2-D toroidally symmetric situation, considerable progress is now also being made using the EMC3-Eirene 3-D code suite for the assessment of power loading in the presence of magnetic perturbations for ELM control. Some new results for low input power corresponding to the early H-mode operation phases are reported, showing that even if realistic plasma screening is taken into account, significant asymmetric divertor heat fluxes may arise far from the unperturbed strike point. The issue of tolerable limits for transient heat pulses is an open and key question. A new scaling for ELM power deposition has shown that whilst there may be more latitude for operation at higher current without ELM control, the ultimate limit is likely to be set more by material fatigue under large numbers of sub-threshold melting events.}
+doi = {https://doi.org/10.1016/j.nme.2019.01.010},
+url = {https://www.sciencedirect.com/science/article/pii/S2352179118301777},
+author = {D. Eldon and E. Kolemen and D.A. Humphreys and A.W. Hyatt and A.E. Järvinen and A.W. Leonard and A.G. McLean and A.L. Moser and T.W. Petrie and M.L. Walker},
+keywords = {Plasma control, Radiation, Tokamak, Fusion, Divertor},
+abstract = {Feedback control of radiated power from the lower divertor Prad, div, L has been implemented in the DIII-D Plasma Control System (PCS). A realtime sensor for Prad, div, L has been constructed from 12 foil bolometer channels which agrees with standard post-shot analysis to within 20%. Results with the 12-channel sensor are compared to initial proof-of-concept tests with a single channel as a proxy for Prad, div, L, showing that the upgraded sensor is necessary to overcome limitations of the proxy channel strategy in DIII-D. Using N2 seeding under feedback control, Prad, div, L has been increased by up to 150% above unseeded levels, and a radiated power fraction frad of 80% has been demonstrated, although feedback controlled gas flow is steadier at frad = 55%. Spatial coverage is broad enough to enable Prad control during the strike point sweeps which are commonly used to generate pseudo-2D divertor Thomson measurements in DIII-D divertor experiments. Use of this control reveals challenges that may affect next step devices, which will require actively controlled extrinsic impurity seeding in order to manage heat loads. When operating at high frad, changes in pedestal Te (caused by ELMs in these experiments but could come from other disturbances) resulted in large perturbations to Prad which were destabilizing to the feedback controller.}
 }
 
-@article{holtkap_2007_fed,
+@article{Eldon_2022_PPCF,
+	doi = {10.1088/1361-6587/ac6ff9},
+  url = {https://doi.org/10.1088/1361-6587/ac6ff9},
+	year = 2022,
+	publisher = {{IOP} Publishing},
+	volume = {64},
+	number = {7},
+	pages = {075002},
+	author = {D Eldon and H Anand and J-G Bak and J Barr and S-H Hahn and J H Jeong and H-S Kim and H H Lee and A W Leonard and B Sammuli and G W Shin and H Q Wang},
+	title = {Enhancement of detachment control with simplified real-time modelling on the {KSTAR} tokamak},
+	journal = {Plasma Physics and Controlled Fusion}
+}
+
+@article{Eldon_2023_NME,
+title = {Integration of high confinement, high poloidal beta plasma with dual radiated power and detachment controls for divertor protection and ELM suppression},
+journal = {Nuclear Materials and Energy},
+volume = {34},
+pages = {101332},
+year = {2023},
+issn = {2352-1791},
+doi = {https://doi.org/10.1016/j.nme.2022.101332},
+url = {https://doi.org/10.1016/j.nme.2022.101332},
+author = {D. Eldon and H.Q. Wang and L. Wang and S. Ding and A.M. Garofalo and X.Z. Gong and A.G. McLean and F. Scotti and J.G. Watkins and D. Weisberg},
+keywords = {Detachment, Control, Core-edge integration}
+}
+
+@article{Holtkamp_2007_FED,
 title = {An overview of the ITER project},
 journal = {Fusion Engineering and Design},
 volume = {82},
@@ -83,20 +116,22 @@ author = {N. Holtkamp},
 keywords = {ITER, Reactor, Technology, Safety}
 }
 
-@article{eldon_2023_nme,
-title = {Integration of high confinement, high poloidal beta plasma with dual radiated power and detachment controls for divertor protection and ELM suppression},
-journal = {Nuclear Materials and Energy},
-volume = {34},
-pages = {101332},
-year = {2023},
-issn = {2352-1791},
-doi = {https://doi.org/10.1016/j.nme.2022.101332},
-url = {https://doi.org/10.1016/j.nme.2022.101332},
-author = {D. Eldon and H.Q. Wang and L. Wang and S. Ding and A.M. Garofalo and X.Z. Gong and A.G. McLean and F. Scotti and J.G. Watkins and D. Weisberg},
-keywords = {Detachment, Control, Core-edge integration}
+@article{Imbeaux_2015_NF,
+doi = {10.1088/0029-5515/55/12/123006},
+url = {https://dx.doi.org/10.1088/0029-5515/55/12/123006},
+year = {2015},
+month = {oct},
+publisher = {IOP Publishing},
+volume = {55},
+number = {12},
+pages = {123006},
+author = {F. Imbeaux and S.D. Pinches and J.B. Lister and Y. Buravand and T. Casper and B. Duval and B. Guillerminet and M. Hosokawa and W. Houlberg and P. Huynh and S.H. Kim and G. Manduchi and M. Owsiak and B. Palak and M. Plociennik and G. Rouault and O. Sauter and P. Strand},
+title = {Design and first applications of the ITER integrated modelling \& amp; analysis suite},
+journal = {Nuclear Fusion},
+abstract = {The ITER Integrated Modelling \& amp; Analysis Suite (IMAS) will support both plasma operation and research activities on the ITER tokamak experiment. The IMAS will be accessible to all ITER members as a key tool for the scientific exploitation of ITER. The backbone of the IMAS infrastructure is a standardized, machine-generic data model that represents simulated and experimental data with identical structures. The other outcomes of the IMAS design and prototyping phase are a set of tools to access data and design integrated modelling workflows, as well as first plasma simulators workflows and components implemented with various degrees of modularity.}
 }
 
-@article{kallenbach_2010_ppcf,
+@article{Kallenbach_2010_PPCF,
 author = {A Kallenbach and R Dux and J C Fuchs and R Fischer and B Geiger and L Giannone and A Herrmann and T Lunt and V Mertens and R McDermott and R Neu and T Pütterich and S Rathgeber and V Rohde and K Schmid and J Schweinzer and W Treutterer and
 \mbox{ASDEX Upgrade Team}},
 journal = {Plasma Phys. Control. Fusion},
@@ -108,7 +143,7 @@ url = {https://doi.org/10.1088/0741-3335/52/5/055002},
 title = {Divertor power load feedback with nitrogen seeding in \mbox{ASDEX} Upgrade}
 }
 
-@article{kallenbach_2012_nf,
+@article{Kallenbach_2012_NF,
 author = {A. Kallenbach and M. Bernert and T. Eich and J. C. Fuchs and L. Giannone and A. Herrmann and J. Schweinzer and W. Treutterer and \mbox{the ASDEX Upgrade Team}},
 journal = {Nucl. Fusion},
 volume = {52},
@@ -119,178 +154,7 @@ url = {https://doi.org/10.1088/0029-5515/52/12/122003},
 title = {Optimized tokamak power exhaust with double radiative feedback in \mbox{ASDEX} \mbox{Upgrade}}
 }
 
-@article{ravensbergen_2021_nc,
-author = {T. Ravensbergen and M. van Berkel and A. Perek and C. Galperti and B. P. Duval and O. Février and R. J. R. van Kampen and F. Felici and J. T. Lammers and C. Theiler and J. Schoukens and B. Linehan and M. Komm and S. Henderson and D. Brida and M. R. de Baar },
-journal = {Nature Communications},
-volume = {12},
-pages = {1105},
-year = {2021},
-doi = {https://doi.org/10.1038/s41467-021-21268-3},
-url = {https://doi.org/10.1038/s41467-021-21268-3},
-title = {Real-time feedback control of the impurity emission front in tokamak divertor plasmas}
-}
-
-@article{eldon_2022_ppcf,
-	doi = {10.1088/1361-6587/ac6ff9},
-  url = {https://doi.org/10.1088/1361-6587/ac6ff9},
-	year = 2022,
-	publisher = {{IOP} Publishing},
-	volume = {64},
-	number = {7},
-	pages = {075002},
-	author = {D Eldon and H Anand and J-G Bak and J Barr and S-H Hahn and J H Jeong and H-S Kim and H H Lee and A W Leonard and B Sammuli and G W Shin and H Q Wang},
-	title = {Enhancement of detachment control with simplified real-time modelling on the {KSTAR} tokamak},
-	journal = {Plasma Physics and Controlled Fusion}
-}
-
-@article{bonnin_2016_pfr,
-  title={Presentation of the New SOLPS-ITER Code Package for Tokamak Plasma Edge Modelling},
-  author={Xavier Bonnin and Wouter DEKEYSER and Richard PITTS and David COSTER and Serguey VOSKOBOYNIKOV and Sven WIESEN},
-  journal={Plasma and Fusion Research},
-  volume={11},
-  number={ },
-  pages={1403102-1403102},
-  year={2016},
-  doi={10.1585/pfr.11.1403102},
-  url={https://doi.org/10.1585/pfr.11.1403102}
-}
-
-@article{meneghini_2015_nf,
-author = {O. Meneghini and S.P. Smith and L.L. Lao and O. Izacard and Q. Ren and J.M. Park and J. Candy and Z. Wang and C.J. Luna and V.A. Izzo},
-journal = {Nuclear Fusion},
-volume = {55},
-pages = {083008},
-year = {2015},
-doi = {10.1088/0029-5515/55/8/083008},
-url = {https://doi.org/10.1088/0029-5515/55/8/083008},
-title = {Integrated modeling applications for tokamak experiments with \mbox{OMFIT}}
-}
-
-@article{bates_1984_rsi,
-author = {S. C. Bates and K. H. Burrell},
-journal = {Rev. Sci. Instrum.},
-volume = {55},
-pages = {934},
-year = {1984},
-doi = {10.1063/1.1137845},
-url = {https://doi.org/10.1063/1.1137845},
-title = {Fast gas injection system for plasma physics experiments}
-}
-
-@inproceedings{Conde2011,
-  title={An introduction to Langmuir probe diagnostics of plasmas},
-  author={Luis Conde},
-  year={2011},
-  url={https://api.semanticscholar.org/CorpusID:53622081}
-}
-
-@book{stangeby2000plasma,
-  title={The Plasma Boundary of Magnetic Fusion Devices},
-  author={Stangeby, P.C.},
-  isbn={9780750305594},
-  lccn={00037018},
-  series={Series in Plasma Physics and Fluid Dynamics},
-  url={https://books.google.com/books?id=qOliQgAACAAJ},
-  year={2000},
-  publisher={Taylor \& Francis}
-}
-
-@inproceedings{meneghini2023,
-  title={FUsion Synthesis Engine: A next generation framework for integrated design of fusion pilot plants},
-   author = {Meneghini, O. and Slendebroek, T. and Lyons, B. C. and McLaughlin, K. and McClenaghan, J. and Stagner, L. and Harvey, J. and Neiser, T. F. and Ghiozzi, A. and Dose, G. and Guterl, J. and Zalzali, A. and Cote, T. and Shi, N. and Weisberg, D. and Smith, S. P. and Grierson, B. A.},
-  booktitle={Proceedings of the IAEA FEC 2023 Conference},
-  year={2023},
-  url={https://github.com/ProjectTorreyPines/IMASDD.jl}
-}
-
-@article{brunton_2016,
-author = {Steven L. Brunton  and Joshua L. Proctor  and J. Nathan Kutz },
-title = {Discovering governing equations from data by sparse identification of nonlinear dynamical systems},
-journal = {Proceedings of the National Academy of Sciences},
-volume = {113},
-number = {15},
-pages = {3932-3937},
-year = {2016},
-doi = {10.1073/pnas.1517384113},
-URL = {https://www.pnas.org/doi/abs/10.1073/pnas.1517384113},
-eprint = {https://www.pnas.org/doi/pdf/10.1073/pnas.1517384113},
-abstract = {Extracting governing equations from data is a central challenge in many diverse areas of science and engineering. Data are abundant whereas models often remain elusive, as in climate science, neuroscience, ecology, finance, and epidemiology, to name only a few examples. In this work, we combine sparsity-promoting techniques and machine learning with nonlinear dynamical systems to discover governing equations from noisy measurement data. The only assumption about the structure of the model is that there are only a few important terms that govern the dynamics, so that the equations are sparse in the space of possible functions; this assumption holds for many physical systems in an appropriate basis. In particular, we use sparse regression to determine the fewest terms in the dynamic governing equations required to accurately represent the data. This results in parsimonious models that balance accuracy with model complexity to avoid overfitting. We demonstrate the algorithm on a wide range of problems, from simple canonical systems, including linear and nonlinear oscillators and the chaotic Lorenz system, to the fluid vortex shedding behind an obstacle. The fluid example illustrates the ability of this method to discover the underlying dynamics of a system that took experts in the community nearly 30 years to resolve. We also show that this method generalizes to parameterized systems and systems that are time-varying or have external forcing.}}
-
-@inproceedings{park2018_CESOL,
-  title={Integrated modeling of core, edge pedestal and scrape-off-layer for high $\beta$N steady-state scenarios on DIII-D},
-  author={Park, JM and Green, DL and Canik, JM and Elwasif, W and Lore, JD and Kim, K and Buttery, RJ and Candy, J and Ferron, JR and Meneghini, O and others},
-  booktitle={Proceedings of the IAEA FEC 2018 Conference},
-  year={2018},
-  url={https://nucleus.iaea.org/sites/fusionportal/Shared%20Documents/FEC%202018/fec2018-preprints/preprint0381.pdf}
-}
-
-@article{park2018_FASTRAN,
-    author = {Park, J. M. and Ferron, J. R. and Holcomb, C. T. and Buttery, R. J. and Solomon, W. M. and Batchelor, D. B. and Elwasif, W. and Green, D. L. and Kim, K. and Meneghini, O. and Murakami, M. and Snyder, P. B.},
-    title = "{Integrated modeling of high $\beta_N$ steady state scenario on DIII-D}",
-    journal = {Physics of Plasmas},
-    volume = {25},
-    number = {1},
-    pages = {012506},
-    year = {2018},
-    month = {01},
-    abstract = "{Theory-based integrated modeling validated against DIII-D experiments predicts that fully non-inductive DIII-D operation with βN \\&gt; 4.5 is possible with certain upgrades. IPS-FASTRAN is a new iterative numerical procedure that integrates models of core transport, edge pedestal, equilibrium, stability, heating, and current drive self-consistently to find steady-state (d/dt = 0) solutions and reproduces most features of DIII-D high βN discharges with a stationary current profile. Projecting forward to scenarios possible on DIII-D with future upgrades, the high qmin \\&gt; 2 scenario achieves stable operation at βN as high as 5 by using a very broad current density profile to improve the ideal-wall stabilization of low-n instabilities along with confinement enhancement from low magnetic shear. This modeling guides the necessary upgrades of the heating and current drive system to realize reactor-relevant high βN steady-state scenarios on DIII-D by simultaneous optimization of the current and pressure profiles.}",
-    issn = {1070-664X},
-    doi = {10.1063/1.5013021},
-    url = {https://doi.org/10.1063/1.5013021},
-    eprint = {https://pubs.aip.org/aip/pop/article-pdf/doi/10.1063/1.5013021/14743354/012506\_1\_online.pdf},
-}
-
-
-@techreport{ASTRA,
-title = {ASTRA Automated System for TRansport Analysis in a Tokamak},
-author = {Pereverzev, G. and Yushmanov, P.N.},
-institution = {Max-Planck-Institut f$\ddot{u}$r Plasmaphysik, Garching},
-address = {Germany},
-year = {2002},
-month = {Feb},
-number = {IPP 5/98},
-url = {https://pure.mpg.de/rest/items/item_2138238_1/component/file_2138237/content},
-} 
-
-@inproceedings{park2023,
-  title={Towards a high fidelity tokamak pulse simulator},
-  author={Park, Jin Myung and Staebler, Gary and Kim, Kyungjin and Barnett, Rhea and Canik, John and Collins, Cami and Hassan, Ehab and Lore, Jeremy and Snyder, Phil and Wilcox, Robert},
-  booktitle={APS Division of Plasma Physics Meeting},
-  year={2023}
-}
-
-@artcile{park_inprep,
-  title={Full Time-Dependent SOLPS-ITER Simulation of the SPARC Tokamak: Actuator Design for Particle and Divertor Condition Control, submitted to Nuclear Fusion},
-  author={Park, Jae-Sun and Lore, Jeremy D. and Reinke, Matthew and Kuang Adam Q. and De Pascuale, Sebastian and Creely, Alex},
-  journal = {Submitted to Nuclear Fusion},
-  year = {2024},
-}
-
-@article{Park2024,
-doi = {10.1088/1741-4326/ad4f9d},
-url = {https://dx.doi.org/10.1088/1741-4326/ad4f9d},
-year = {2024},
-month = {jun},
-publisher = {IOP Publishing},
-volume = {64},
-number = {7},
-pages = {076036},
-author = {Jae-Sun Park and Jeremy D. Lore and Matthew Reinke and Adam Q. Kuang and Sebastian De Pascuale and Alex Creely},
-title = {Full time-dependent SOLPS-ITER simulation of the SPARC tokamak: actuator design for particle and divertor condition control*},
-journal = {Nuclear Fusion},
-abstract = {This paper presents the application of full time-dependent SOLPS-ITER simulations for actuator design in the SPARC tokamak. This study employs both the EIRENE module, a neutral solver, and the B2.5 plasma module in a time-dependent mode. This is in contrast to most SOLPS simulations, which focus on steady-state solutions, where the neutral distribution is evolved without any time limit or for a time step of 1 second, which is several orders of magnitude larger than the fluid plasma time step. The time-dependent EIRENE was tested with a fixed B2.5 background and compared with a simple conductance based model in a simplified pump chamber geometry. This comparison aimed to verify the reliability of the neutral relaxation timescale derived from the time-dependent EIRENE. Subsequently, a full time-dependent simulation was performed in a realistic geometry, with the Monte-Carlo neutral time step synchronized with the plasma fluid time step. The numerical setup of the code, including relative time steps and the size of the census data used to store Monte-Carlo particle information is considered. The full-time dependent simulations are then applied to inform the design of the SPARC louver structure, which affects divertor plasma parameters by regulating the neutral conductance from the divertor to the pump. The response of the plasma and neutral parameters was captured on a timescale that enables the design of the actuator to consider time-dependent control capability. It was found that changing the louver opacity has an equivalent effect as varying the gas throughput via puff actuation. Therefore, equivalent divertor plasma conditions can be obtained from both actuators, while the neutral pressure distribution in the pump and divertor differs for each actuator.}
-}
-
-@article{Lore2024,
-	author={Lore, Jeremy D and Park, Jae-Sun and Eich, Thomas and Kuang, Adam Q. and Reinke, Matthew L and De Pascuale, Sebastian and Lomanowski, Bartosz and Creely, Alexander J and Canik, John M},
-	title={Evaluation of SPARC divertor conditions in H-mode operation using SOLPS-ITER},
-	journal={Nuclear Fusion},
-	url={http://iopscience.iop.org/article/10.1088/1741-4326/ad85f3},
-	year={2024},
-	abstract={The predicted divertor conditions for the SPARC tokamak are calculated using SOLPS-ITER for a range of scrape-off-layer (SOL) heat flux widths $\lamq$, input powers, and particle fuelling locations. Under H-mode scenario conditions with an upstream separatrix density of 1\e20 m$^{-3}$, the most conservative range of $\lamq$ extrapolations ($\approx$ 0.15 mm) results in extremely high unmitigated particle and energy fluxes to the divertor, both under full field (12.2 T) and power ($P_{SOL}$ = 29 MW) conditions, and 2/3 field with $P_{SOL}$ = 10 MW. Increasing the cross-field SOL diffusivities by 2-10x reduces the magnitude of the mitigation challenge, however strategies such as impurity seeding or strike-point-sweeping will likely still be required. &#xD;&#xD;A combination of steady-state and time-dependent SOLPS-ITER simulations are used to map out phase space diagrams of upstream and divertor conditions. At low upstream density the inner and outer divertor conditions are highly asymmetric, with a large temperature difference and significant heat fluxes driven by parallel currents. The solution has sharp bifurcations with a region of hysteresis, depending on whether the initial state is at a low or high density. This behavior is observed even when the fuelling location, cross-field diffusivity, and impurity level is changed, although the density window with asymmetry is reduced.&#xD;&#xD;The addition of neon impurity seeding reduces the divertor heat fluxes, but also causes a drop in the upstream electron density with fixed particle throughput. This drop can be counteracted by increased main ion throughput, however too much neon results in a back transition into the asymmetric divertor regimes suggesting a need for control of both main ion and impurity seeding levels to achieve a desired divertor state.}
-}
-
-@article{Kalman1960,
+@article{Kalman_1960_JBE,
     author = {Kalman, R. E.},
     title = "{A New Approach to Linear Filtering and Prediction Problems}",
     journal = {Journal of Basic Engineering},
@@ -306,7 +170,113 @@ abstract = {This paper presents the application of full time-dependent SOLPS-ITE
     eprint = {https://asmedigitalcollection.asme.org/fluidsengineering/article-pdf/82/1/35/5518977/35\_1.pdf},
 }
 
-@article{Smith1957,
+@article{Leonard_2018_PPCF,
+doi = {10.1088/1361-6587/aaa7a9},
+url = {https://dx.doi.org/10.1088/1361-6587/aaa7a9},
+year = {2018},
+month = {feb},
+publisher = {IOP Publishing},
+volume = {60},
+number = {4},
+pages = {044001},
+author = {A W Leonard},
+title = {Plasma detachment in divertor tokamaks},
+journal = {Plasma Physics and Controlled Fusion},
+abstract = {Observations of divertor plasma detachment in tokamaks are reviewed. Plasma detachment is characterized in terms of transport and dissipation of power, momentum and particle flux along the open field lines from the midplane to the divertor. Asymmetries in detachment onset and other characteristics between the inboard and outboard divertor plasmas is found to be primarily driven by plasma  drifts. The effect of divertor plate geometry and magnetic configuration on divertor detachment is summarized. Control of divertor detachment has progressed with a development of a number of diagnostics to characterize the detached state in real-time. Finally the compatibility of detached divertor operation with high performance core plasmas is examined.}
+}
+
+@article{Lore_2023_NF,
+doi = {10.1088/1741-4326/acbe0e},
+url = {https://dx.doi.org/10.1088/1741-4326/acbe0e},
+year = {2023},
+month = {mar},
+publisher = {IOP Publishing},
+volume = {63},
+number = {4},
+pages = {046015},
+author = {J.D. Lore and S. De Pascuale and P. Laiu and B. Russo and J.-S. Park and J.M. Park and S.L. Brunton and J.N. Kutz and A.A. Kaptanoglu},
+title = {Time-dependent SOLPS-ITER simulations of the tokamak plasma boundary for model predictive control using SINDy*},
+journal = {Nuclear Fusion},
+abstract = {Time-dependent SOLPS-ITER simulations have been used to identify reduced models with the sparse identification of nonlinear dynamics (SINDy) method and develop model-predictive control of the boundary plasma state using main ion gas puff actuation. A series of gas actuation sequences are input into SOLPS-ITER to produce a dynamic response in upstream and divertor plasma quantities. The SINDy method is applied to identify reduced linear and nonlinear models for the electron density at the outboard midplane  and the electron temperature at the outer divertor . Note that  is not necessarily the peak value of T  e  along the divertor. The identified reduced models are interpretable by construction (i.e. not black box), and have the form of coupled ordinary differential equations. Despite significant noise in , the reduced models can be used to predict the response over a range of actuation levels to a maximum deviation of 0.5% in  and 5%–10% in  for the cases considered. Model retraining using time history data triggered by a preset error threshold is also demonstrated. A model predictive control strategy for nonlinear models is developed and used to perform feedback control of a SOLPS-ITER simulation to produce a setpoint trajectory in  using the integrated plasma simulator framework. The developed techniques are general and can be applied to time-dependent data from other boundary simulations or experimental data. Ongoing work is extending the approach to model identification and control for divertor detachment, which will present transient nonlinear behavior from impurity seeding, including realistic latency and synthetic diagnostic signals derived from the full SOLPS-ITER output.}
+}
+
+@article{Lore_2024_NF,
+	author={Lore, Jeremy D and Park, Jae-Sun and Eich, Thomas and Kuang, Adam Q. and Reinke, Matthew L and De Pascuale, Sebastian and Lomanowski, Bartosz and Creely, Alexander J and Canik, John M},
+	title={Evaluation of SPARC divertor conditions in H-mode operation using SOLPS-ITER},
+	journal={Nuclear Fusion},
+	url={http://iopscience.iop.org/article/10.1088/1741-4326/ad85f3},
+	year={2024},
+	abstract={The predicted divertor conditions for the SPARC tokamak are calculated using SOLPS-ITER for a range of scrape-off-layer (SOL) heat flux widths $\lamq$, input powers, and particle fuelling locations. Under H-mode scenario conditions with an upstream separatrix density of 1\e20 m$^{-3}$, the most conservative range of $\lamq$ extrapolations ($\approx$ 0.15 mm) results in extremely high unmitigated particle and energy fluxes to the divertor, both under full field (12.2 T) and power ($P_{SOL}$ = 29 MW) conditions, and 2/3 field with $P_{SOL}$ = 10 MW. Increasing the cross-field SOL diffusivities by 2-10x reduces the magnitude of the mitigation challenge, however strategies such as impurity seeding or strike-point-sweeping will likely still be required. &#xD;&#xD;A combination of steady-state and time-dependent SOLPS-ITER simulations are used to map out phase space diagrams of upstream and divertor conditions. At low upstream density the inner and outer divertor conditions are highly asymmetric, with a large temperature difference and significant heat fluxes driven by parallel currents. The solution has sharp bifurcations with a region of hysteresis, depending on whether the initial state is at a low or high density. This behavior is observed even when the fuelling location, cross-field diffusivity, and impurity level is changed, although the density window with asymmetry is reduced.&#xD;&#xD;The addition of neon impurity seeding reduces the divertor heat fluxes, but also causes a drop in the upstream electron density with fixed particle throughput. This drop can be counteracted by increased main ion throughput, however too much neon results in a back transition into the asymmetric divertor regimes suggesting a need for control of both main ion and impurity seeding levels to achieve a desired divertor state.}
+}
+
+@article{Meneghini_2015_NF,
+author = {O. Meneghini and S.P. Smith and L.L. Lao and O. Izacard and Q. Ren and J.M. Park and J. Candy and Z. Wang and C.J. Luna and V.A. Izzo},
+journal = {Nuclear Fusion},
+volume = {55},
+pages = {083008},
+year = {2015},
+doi = {10.1088/0029-5515/55/8/083008},
+url = {https://doi.org/10.1088/0029-5515/55/8/083008},
+title = {Integrated modeling applications for tokamak experiments with \mbox{OMFIT}}
+}
+
+@article{Park_2018_PP,
+    author = {Park, J. M. and Ferron, J. R. and Holcomb, C. T. and Buttery, R. J. and Solomon, W. M. and Batchelor, D. B. and Elwasif, W. and Green, D. L. and Kim, K. and Meneghini, O. and Murakami, M. and Snyder, P. B.},
+    title = "{Integrated modeling of high $\beta_N$ steady state scenario on DIII-D}",
+    journal = {Physics of Plasmas},
+    volume = {25},
+    number = {1},
+    pages = {012506},
+    year = {2018},
+    month = {01},
+    abstract = "{Theory-based integrated modeling validated against DIII-D experiments predicts that fully non-inductive DIII-D operation with βN \\&gt; 4.5 is possible with certain upgrades. IPS-FASTRAN is a new iterative numerical procedure that integrates models of core transport, edge pedestal, equilibrium, stability, heating, and current drive self-consistently to find steady-state (d/dt = 0) solutions and reproduces most features of DIII-D high βN discharges with a stationary current profile. Projecting forward to scenarios possible on DIII-D with future upgrades, the high qmin \\&gt; 2 scenario achieves stable operation at βN as high as 5 by using a very broad current density profile to improve the ideal-wall stabilization of low-n instabilities along with confinement enhancement from low magnetic shear. This modeling guides the necessary upgrades of the heating and current drive system to realize reactor-relevant high βN steady-state scenarios on DIII-D by simultaneous optimization of the current and pressure profiles.}",
+    issn = {1070-664X},
+    doi = {10.1063/1.5013021},
+    url = {https://doi.org/10.1063/1.5013021},
+    eprint = {https://pubs.aip.org/aip/pop/article-pdf/doi/10.1063/1.5013021/14743354/012506\_1\_online.pdf},
+}
+
+@article{Park_2024_NF,
+doi = {10.1088/1741-4326/ad4f9d},
+url = {https://dx.doi.org/10.1088/1741-4326/ad4f9d},
+year = {2024},
+month = {jun},
+publisher = {IOP Publishing},
+volume = {64},
+number = {7},
+pages = {076036},
+author = {Jae-Sun Park and Jeremy D. Lore and Matthew Reinke and Adam Q. Kuang and Sebastian De Pascuale and Alex Creely},
+title = {Full time-dependent SOLPS-ITER simulation of the SPARC tokamak: actuator design for particle and divertor condition control*},
+journal = {Nuclear Fusion},
+abstract = {This paper presents the application of full time-dependent SOLPS-ITER simulations for actuator design in the SPARC tokamak. This study employs both the EIRENE module, a neutral solver, and the B2.5 plasma module in a time-dependent mode. This is in contrast to most SOLPS simulations, which focus on steady-state solutions, where the neutral distribution is evolved without any time limit or for a time step of 1 second, which is several orders of magnitude larger than the fluid plasma time step. The time-dependent EIRENE was tested with a fixed B2.5 background and compared with a simple conductance based model in a simplified pump chamber geometry. This comparison aimed to verify the reliability of the neutral relaxation timescale derived from the time-dependent EIRENE. Subsequently, a full time-dependent simulation was performed in a realistic geometry, with the Monte-Carlo neutral time step synchronized with the plasma fluid time step. The numerical setup of the code, including relative time steps and the size of the census data used to store Monte-Carlo particle information is considered. The full-time dependent simulations are then applied to inform the design of the SPARC louver structure, which affects divertor plasma parameters by regulating the neutral conductance from the divertor to the pump. The response of the plasma and neutral parameters was captured on a timescale that enables the design of the actuator to consider time-dependent control capability. It was found that changing the louver opacity has an equivalent effect as varying the gas throughput via puff actuation. Therefore, equivalent divertor plasma conditions can be obtained from both actuators, while the neutral pressure distribution in the pump and divertor differs for each actuator.}
+}
+
+@article{Pitts_2019_NME,
+title = {Physics basis for the first ITER tungsten divertor},
+journal = {Nuclear Materials and Energy},
+volume = {20},
+pages = {100696},
+year = {2019},
+issn = {2352-1791},
+doi = {https://doi.org/10.1016/j.nme.2019.100696},
+url = {https://www.sciencedirect.com/science/article/pii/S2352179119300237},
+author = {R.A. Pitts and X. Bonnin and F. Escourbiac and H. Frerichs and J.P. Gunn and T. Hirai and A.S. Kukushkin and E. Kaveeva and M.A. Miller and D. Moulton and V. Rozhansky and I. Senichenkov and E. Sytova and O. Schmitz and P.C. Stangeby and G. {De Temmerman} and I. Veselova and S. Wiesen},
+keywords = {ITER, Tungsten, Divertor, Heat fluxes, SOLPS},
+abstract = {On the eve of component procurement, this paper discusses the present physics basis for the first ITER tungsten (W) divertor, beginning with a reminder of the key elements defining the overall design, and outlining relevant aspects of the Research Plan accompanying the new “staged approach” to ITER nuclear operations which fixes the overall divertor lifetime constraint. The principal focus is on the main design driver, steady state power fluxes in the DT phases, obtained from simulations using the 2-D SOLPS-4.3 and SOLPS-ITER plasma boundary codes, assuming the use of the low Z seeding impurities nitrogen (N) and neon (Ne). A new perspective on the simulation database is adopted, concentrating purely on the divertor physics aspects rather than on the core-edge integration, which has been studied extensively in the course of the divertor design evolution and is published elsewhere. Emphasis is placed on factors which may increase the peak steady state loads: divertor target shaping for component misalignment protection, the influence of fluid drifts, and the consequences of narrow scrape-off layer heat flux channels. All tend to push the divertor into an operating space at higher sub-divertor neutral pressure in order to remain at power flux densities acceptable for the target material. However, a revised criterion for the maximum tolerable loads based on avoidance of W recrystallization, sets an upper limit potentially ∼50% higher than the previously accepted value of ∼10 MW m−2, a consequence both of the choice of material and the finalized component design. Although the simulation database is currently restricted to the 2-D toroidally symmetric situation, considerable progress is now also being made using the EMC3-Eirene 3-D code suite for the assessment of power loading in the presence of magnetic perturbations for ELM control. Some new results for low input power corresponding to the early H-mode operation phases are reported, showing that even if realistic plasma screening is taken into account, significant asymmetric divertor heat fluxes may arise far from the unperturbed strike point. The issue of tolerable limits for transient heat pulses is an open and key question. A new scaling for ELM power deposition has shown that whilst there may be more latitude for operation at higher current without ELM control, the ultimate limit is likely to be set more by material fatigue under large numbers of sub-threshold melting events.}
+}
+
+@article{Ravensbergen_2021_NC,
+author = {T. Ravensbergen and M. van Berkel and A. Perek and C. Galperti and B. P. Duval and O. Février and R. J. R. van Kampen and F. Felici and J. T. Lammers and C. Theiler and J. Schoukens and B. Linehan and M. Komm and S. Henderson and D. Brida and M. R. de Baar },
+journal = {Nature Communications},
+volume = {12},
+pages = {1105},
+year = {2021},
+doi = {https://doi.org/10.1038/s41467-021-21268-3},
+url = {https://doi.org/10.1038/s41467-021-21268-3},
+title = {Real-time feedback control of the impurity emission front in tokamak divertor plasmas}
+}
+
+@article{Smith_1957_CEP,
     author = {Smith, O. J.},
     title = "{Closed control of loops with dead time}",
     journal = {Chemical Engineering Progress},
@@ -318,3 +288,55 @@ abstract = {This paper presents the application of full time-dependent SOLPS-ITE
     url = {https://archive.org/details/sim_chemical-engineering-progress_1957-05_53_5},
     eprint = {https://archive.org/details/sim_chemical-engineering-progress_1957-05_53_5},
 }
+
+@book{Stangeby_2000,
+  title={The Plasma Boundary of Magnetic Fusion Devices},
+  author={Stangeby, P.C.},
+  isbn={9780750305594},
+  lccn={00037018},
+  series={Series in Plasma Physics and Fluid Dynamics},
+  url={https://books.google.com/books?id=qOliQgAACAAJ},
+  year={2000},
+  publisher={Taylor \& Francis}
+}
+
+@inproceedings{Conde_2011,
+  title={An introduction to Langmuir probe diagnostics of plasmas},
+  author={Luis Conde},
+  year={2011},
+  url={https://api.semanticscholar.org/CorpusID:53622081}
+}
+
+@inproceedings{Meneghini_2023,
+  title={FUsion Synthesis Engine: A next generation framework for integrated design of fusion pilot plants},
+  author = {Meneghini, O. and Slendebroek, T. and Lyons, B. C. and McLaughlin, K. and McClenaghan, J. and Stagner, L. and Harvey, J. and Neiser, T. F. and Ghiozzi, A. and Dose, G. and Guterl, J. and Zalzali, A. and Cote, T. and Shi, N. and Weisberg, D. and Smith, S. P. and Grierson, B. A.},
+  booktitle={Proceedings of the IAEA FEC 2023 Conference},
+  year={2023},
+  url={https://github.com/ProjectTorreyPines/IMASDD.jl}
+}
+
+@inproceedings{Park_2018,
+  title={Integrated modeling of core, edge pedestal and scrape-off-layer for high $\beta$N steady-state scenarios on DIII-D},
+  author={Park, JM and Green, DL and Canik, JM and Elwasif, W and Lore, JD and Kim, K and Buttery, RJ and Candy, J and Ferron, JR and Meneghini, O and others},
+  booktitle={Proceedings of the IAEA FEC 2018 Conference},
+  year={2018},
+  url={https://nucleus.iaea.org/sites/fusionportal/Shared%20Documents/FEC%202018/fec2018-preprints/preprint0381.pdf}
+}
+
+@inproceedings{Park_2023,
+  title={Towards a high fidelity tokamak pulse simulator},
+  author={Park, Jin Myung and Staebler, Gary and Kim, Kyungjin and Barnett, Rhea and Canik, John and Collins, Cami and Hassan, Ehab and Lore, Jeremy and Snyder, Phil and Wilcox, Robert},
+  booktitle={APS Division of Plasma Physics Meeting},
+  year={2023}
+}
+
+@techreport{Pereverzev_2002,
+title = {ASTRA Automated System for TRansport Analysis in a Tokamak},
+author = {Pereverzev, G. and Yushmanov, P.N.},
+institution = {Max-Planck-Institut f$\ddot{u}$r Plasmaphysik, Garching},
+address = {Germany},
+year = {2002},
+month = {Feb},
+number = {IPP 5/98},
+url = {https://pure.mpg.de/rest/items/item_2138238_1/component/file_2138237/content},
+} 
