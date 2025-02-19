@@ -1,0 +1,12 @@
+name: KSTAR24DetachCtrl
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - h5py
+  - numpy
+  - python
+  - scipy
+  - ipykernel
+  - matplotlib
+  - control

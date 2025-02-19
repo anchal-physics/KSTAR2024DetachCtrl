@@ -1,0 +1,356 @@
+shot_numbers:
+  # Day 1: December 2nd, 2024 (2hr session). Commented out shots were disrupted.
+  - 35253               # Used as reference shot in 35695 for strike point control settings
+  - 35360               # Used as reference shot in 35695
+  - 35580               # Used as reference shot in 35692
+  # - 35692             # Restored 35580 with constant X point target.​
+                            # Disrupted at 2s probably due to shortage of D2​
+  # - 35693             # Increased initial D2 gas puff​
+                            # Disrupted due NB2B fault halted at t=5.398s​
+  - 35694               # Repeated last setup​
+                            # Completed 16s shot but with X-point control. Strike point remained around 2 probes but expected to drift with impurity.​
+  # - 35695             # Restored 35360 with strike point control from 35253​
+                            # Disrupted due NB2B fault halted at t=5.5s​
+  # - 35696             # Repeated last setup with delayed start of EC2, EC4 to avoid early MHD mode​
+                            # Disrupted at 3.8s. Segment for Z-strike control was wrong.​
+  # - 35697             # Repeated with correct segment​
+                            # Disrupted at 4s. Conjecture: Bad area in lower outer divertor results in excess W sputtering when strike point is present there. Due to no early MHD mode, the confinement was high and that resulted in too much W accumulation.​
+  - 35698               # Restored 35694 with Z-X control set to oscillate with 2 cm pk-pk @ 5 Hz from 6 s on.​
+                            # Completed 16s. Still Analyzing if the sweep was enough for attachment fraction signal.​
+
+  # Day 2: December 6th, 2024 (4hr session with 20 minute intershot time). Commented out shots were disrupted.
+  - 35816               # Used as reference shot in 35850
+  - 35850               # Restored 35816 with 3V D2 pre-fill for 1 s and some corrections in PCS Divertor & Surrogate Category settings
+                            # First Plasma Shot of the day so Ip and plasma density showed glitches despite higher D2 pre-fill.​
+  - 35851               # Repeated with 3V D2 pre-fill for 2.5 s​
+                            # Good shot for reference​
+  # - 35852             # First System ID shot with 3 N2 (PVBL) pulses of heights 1V, 2.5V, 4 V and widths 1.5s, 1.5s and 1.75s​
+                            # Disrupted at 5s due to NBI Beam Fault.​
+  - 35853               # Repeat 35852​
+                            # Disrupted at 16s right after the end of the last nitrogen input step. Strike point remained within RT-LP array and got good SysID data. Step wise βN reduction from 2 to 1.5 during the second step onwards.​
+  - 35854               # Second System ID with always open valve at 1V and steps on top of it.​
+                            # Disrupted at 18s during ramp down. Got another set of good SysID data, however, it does not match with the previous shot probably because the outer strike point moved down 10s onwards (inner strike point moved up). Similar βN reduction but from 2 to 1.​
+  - 35855               # Detachment control experiment using Afrac with constant target of 0.3. ​
+                            # Gas category ignored divertor out because gas category detachment feedback enable switch was off. Another good reference shot with no impurity seeding​
+  # - 35856             # Repeat with feedback control on. PID Gains: GP=-10, Ti = 253 ms, pre-smoothing 𝜏 = 50 ms​
+                            # Crashed during ramp up at 1s. Not sure what caused this fault.​
+  - 35857               # Repeat​
+                            # Successful detachment control up to 17s. Crashed during ramp down.​
+  - 35858               # Detachment control experiment using Surrogate model heat flux output with minimum target of 4 MW​
+                            # Valve was set to open later than the control start point. Integral reached windup limit and thus control started with a large puff in the beginning which eventually caused disruption later even though the controller became stable quickly after the feedback valve opened.​
+  # - 35859             # Repeat with moderate target and corrected start time of control​
+                            # Shot died around 0s. Unknown reason.
+
+  # Day 3: December 20th, 2024 (Director's reserve). Commented out shots were disrupted.
+  # - 36158             # Restoring shot 35859 without feedback for reference. Beam configuration changed.
+                            # Disrupted at 4.5 seconds.
+  - 36159               # Repeat with adjusted settings.
+                            # Established good reference shot.
+  # - 35160             # Detachment control experiment using Surrogate model heat flux output with varying target.
+                            # Shot died early due to NBI fault
+  - 36161               # Detachment control experiment using Surrogate model heat flux output with varying target.
+                            # Successful detachment control up to 17s. Attachment fraction <= 0.2 maintained. Unable to bring up attachment fraction at will due to lack of opposing actuator.
+  - 36162               # Detachment control experiment using Surrogate model heat flux output with constant deep target.
+                            # Surrogate model output showed  unexplained change in offset level because of which target was set too high. Still attachment fraction <= 0.2 maintained.
+
+trees:
+  KSTAR:
+    # The commented out langmuir probes were not available in this experiment.
+    - LP_D_ID01:FOO
+    - LP_D_ID02:FOO     # Not available in some or all shots
+    - LP_D_ID03:FOO     # Not available in some or all shots
+    - LP_D_ID04:FOO     # Not available in some or all shots
+    - LP_D_ID05:FOO
+    - LP_D_ID06:FOO     # Not available in some or all shots
+    - LP_D_ID07:FOO
+    - LP_D_ID08:FOO     # Not available in some or all shots
+    - LP_D_ID09:FOO     # Not available in some or all shots
+    - LP_D_ID10:FOO     # Not available in some or all shots
+    - LP_D_ID11:FOO     # Not available in some or all shots
+    - LP_D_ID12:FOO     # Not available in some or all shots
+    - LP_D_ID13:FOO     # Not available in some or all shots
+    - LP_D_ID14:FOO     # Not available in some or all shots
+    - LP_D_ID15:FOO
+    - LP_D_ID16:FOO     # Not available in some or all shots
+    - LP_D_CD01:FOO     # Not available in some or all shots
+    - LP_D_CD02:FOO     # Not available in some or all shots
+    - LP_D_CD03:FOO     # Not available in some or all shots
+    - LP_D_CD04:FOO     # Not available in some or all shots
+    - LP_D_CD05:FOO     # Not available in some or all shots
+    - LP_D_CD06:FOO     # Not available in some or all shots
+    - LP_D_CD07:FOO     # Not available in some or all shots
+    - LP_D_CD08:FOO
+    - LP_D_CD09:FOO
+    - LP_D_CD10:FOO     # Not available in some or all shots
+    - LP_D_CD11:FOO     # Not available in some or all shots
+    - LP_D_CD12:FOO     # Not available in some or all shots
+    - LP_D_CD13:FOO     # Not available in some or all shots
+    - LP_D_CD14:FOO     # Not available in some or all shots
+    - LP_D_CD15:FOO
+    - LP_D_CD16:FOO
+    - LP_D_CD17:FOO     # Not available in some or all shots
+    - LP_D_CD18:FOO     # Not available in some or all shots
+    - LP_D_OD01:FOO     # Not available in some or all shots
+    - LP_D_OD02:FOO
+    - LP_D_OD03:FOO     # Not available in some or all shots
+    - LP_D_OD04:FOO
+    - LP_D_OD05:FOO     # Not available in some or all shots
+    - LP_D_OD06:FOO     # Not available in some or all shots
+    - LP_D_OD07:FOO     # Not available in some or all shots
+    - LP_D_OD08:FOO     # Not available in some or all shots
+    - LP_D_OD09:FOO     # Not available in some or all shots
+    - LP_D_OD10:FOO
+    - LP_D_OD11:FOO     # Not available in some or all shots
+    - LP_D_OD12:FOO
+    - LP_D_OD13:FOO     # Not available in some or all shots
+    - LP_D_OD14:FOO
+    - LP_D_OD15:FOO     # Not available in some or all shots
+    - LP_D_OD16:FOO
+    - LP_D_OD17:FOO
+    - LP_D_OD18:FOO
+
+    # Other diagnostics
+    - NE_TCI01 # Line average density from Two-Color Interferometer
+    - RC02              # Plasma current from rogowski
+    - LV23              # Loop voltage
+    - IRVB1_PRAD        # Total radiated power measured by IRVB
+    - pol_vb60:foo      # W-I Line
+    - pol_vb59:foo      # C-III Line
+
+    # Power channels
+    - EC2_PWR
+    - EC3_PWR
+    - EC4_PWR
+    - EC5_PWR
+    - EC6_PWR
+    - EC7_PWR
+    - EC8_PWR
+    - NB11_PNB
+    - NB12_PNB
+    - NB13_PNB
+    - NB2A_PNB
+    - NB2B_PNB
+
+    # Gas flow outputs
+    # L port (Only intended port to be used)
+    - LP_DFLOW_OUT:FOO  # D2
+    - LP_NFLOW_OUT:FOO  # N2
+    - LP_EFLOW_OUT:FOO  # Ne
+    - LP_AFLOW_OUT:FOO  # Ar
+    - LP_KFLOW_OUT:FOO  # Kr
+    # D port (Accidentally left open in shots 35692-35698)
+    - DH_DFLOW_OUT:FOO  # D2
+    - DH_NFLOW_OUT:FOO  # N2
+    - DH_EFLOW_OUT:FOO  # Ne
+    - DH_AFLOW_OUT:FOO  # Ar
+    - DH_KFLOW_OUT:FOO  # Kr
+
+  PCS_KSTAR:
+    # Gas Flow signals in PCS
+    # L port (Only intended port to be used)
+      # Flow signal sent which would be multiplied by ON switch signal and clipped
+    - GVSPVBLD2         # D2
+    - GVSPVBLN2         # N2
+    - GVSPVBLNe         # Ne
+      # Clipping Max and Min
+    - GVTPVBLD2MAX      # D2 Max
+    - GVTPVBLD2MIN      # D2 Min
+    - GVTPVBLN2MAX      # N2 Max
+    - GVTPVBLN2MIN      # N2 Min
+    - GVTPVBLNeMAX      # Ne Max
+    - GVTPVBLNeMIN      # Ne Min
+      # Switch
+    - GVIPVBLD2ON       # D2
+    - GVIPVBLN2ON       # N2
+    - GVIPVBLNeON       # Ne
+    # D port (Accidentally left open in shots 35692-35698)
+      # Flow signal sent which would be multiplied by ON switch signal and clipped
+    - GVSPVBDD2         # D2
+    - GVSPVBDN2         # N2
+    - GVSPVBDNe         # Ne
+      # Clipping Max and Min
+    - GVTPVBDD2MAX      # D2 Max
+    - GVTPVBDD2MIN      # D2 Min
+    - GVTPVBDN2MAX      # N2 Max
+    - GVTPVBDN2MIN      # N2 Min
+    - GVTPVBDNeMAX      # Ne Max
+    - GVTPVBDNeMIN      # Ne Min
+      # Switch
+    - GVIPVBDD2ON       # D2
+    - GVIPVBDN2ON       # N2
+    - GVIPVBDNeON       # Ne
+
+    # Realtime Langmuir Probe Signals recorded by PCS (D-port, Outer divertor)
+    # Note that these are not available in KSTAR tree but some have redundant LPs that are present in toroidally different location
+    - PCLPEP51          # LP_D_OD05 R=1620 mm  Z=-1275.0 mm
+    - PCLPEP52          # LP_D_OD08 R=1620 mm  Z=-1237.5 mm
+    - PCLPEP53          # LP_D_OD09 R=1620 mm  Z=-1225.0 mm     Toroidal companion: LP_D_OD10
+    - PCLPEP54          # LP_D_OD11 R=1620 mm  Z=-1212.5 mm     Toroidal companion: LP_D_OD12
+    - PCLPEP55          # LP_D_OD13 R=1620 mm  Z=-1175.0 mm     Toroidal companion: LP_D_OD14
+    - PCLPEP56          # LP_D_OD15 R=1620 mm  Z=-1162.5 mm     Toroidal companion: LP_D_OD16
+
+    # Electron density used by Afrac and Surrogate Mode
+    - GVSNE             # Line avg density from TCI
+    - DVSIP             # Plasma current
+
+    # Afrac Model Quantities
+    - DVILMDQVER        # Switch for lambda_q estimation method (0=manual, other=scaling law)
+    - DVSAJSAT          # Attached ion saturation current density model
+    - DVSAJSATF         # Attached ion saturation current density model (low-pass filtered)
+    - DVSLAMBDAQ        # SOL power width lambda_q at OMP from scaling law or manual input
+    - DVSQPAROMP        # Peak parallel heat flux at OMP
+    - DVSAFRAC          # Attachment Fraction Siganl
+    - DVTAFRAC          # Attachment Fraction Target set for control Attachment fraction ready to use in gas category (should match DVSAFRAC unless problem)
+
+    # IRVB Processed quantities
+    - DVSPALLIR         # Sum of all IRVB inverted regions
+    - DVSPDIVLO         # Sum of IRVB regions in outer divertor area (regions with Z below realtime X-point Z and R > realtime X-point R)
+    - DVSPDIVLI         # Sum of IRVB regions in inner divertor area (regions with Z below realtime X-point Z and R < realtime X-point R)
+    - DVSPRADPEAK       # Maximum signal from all IRVB regions
+    - DVSPCUSTIR1       # 1st Custom combination of IRVB regions
+    - DVSPCUSTIR2       # 2nd Custom combination of IRVB regions
+
+    # Divertor impurity concentration estimator 
+    - DVSDCONC
+    - DVSNCONC
+    - DVSNECONC
+    - DVSARCONC
+    - DVSKRCONC
+    - DVSTOTDFLOW
+    - DVSTOTNFLOW
+    - DVSTOTNEFLOW
+    - DVSTOTARFLOW
+    - DVSTOTKRFLOW
+    - DVSTOTDADD
+    - DVSTOTNADD
+    - DVSTOTNEADD
+    - DVSTOTARADD
+    - DVSTOTKRADD
+
+    # Surrogate model Quantities
+      # Inputs
+    - smsdensityin      # Electron Density in core
+    - smspowerin        # Estimated input power to device
+    - smsipin           # Plasma current input
+    - smsimpfracin      # Estimated impurity fraction
+    - smsdiffusin       # Input diffusion scaling factor (Was set manually)
+
+      # Outputs
+    - smsqodmax         # Max heat flux at outer divertor
+    - smsqidmax         # Max heat flux at inner divertor
+    - smsteodmax        # Max Te at outer divertor
+    - smsteidmax        # Max Te at innner divertor
+    - smsjsodmax        # Max ion saturation current density at inner divertor
+    - smsjsidmax        # Max ion saturation current density at inner divertor
+    - smsteompmax       # Max Te at outer mid plane
+    - smsneompmax       # Max ne at outer mid plane
+    - smsfradtot        # Fraction of total input power radiated as radiation
+    - smsfraddiv        # Fraction of radiated power in divertor region
+    - smspradpk         # Peak radiation power
+    - smsprpkpar        # Location of peak radiation power in meters from divertor along separatrix
+    - smsprpkprp        # Location of peak radiation power in meters from divertor perpendicular to separatrix
+    - smsqsel1          # 1st selected combination from heat flux profile along outer and inner divertor
+    - smsqsel2          # 2nd selected combination from heat flux profile along outer and inner divertor
+    - smstesel1         # 1st selected combination from Te profile along outer and inner divertor
+    - smstesel2         # 2nd selected combination from Te profile along outer and inner divertor
+    - smsjssel1         # 1st selected combination from ion saturation current density profile along outer and inner divertor
+    - smsjssel2         # 2nd selected combination from ion saturation current density profile along outer and inner divertor
+
+      # Warnings and error meassages
+      # Error codes
+        # -1: Code ran without any errors
+        #  0: Code did not run
+        #  1: Surrogate model is disabled
+        #  2: Surrogate evaluation called too early before the start of the shot
+        #  3: Surrogate evaluation called before anytime has elasped from last surrogate model evaluation
+        #  4: Sending category (typically diverotor) failed to send an input to surrogate category
+        #  5: Input received from divertor category is outside the bounds of surrogate model valid domain
+    - smswarning        # Warning messages if SMIRANGEFAIL >= 1
+    - smserrmsg         # Error message and abort if SMIRANGEFAIL = 2
+
+      # Control
+    - DVTSMQOD          # Set target on outer divertor heat flux
+
+    # Core parameters
+    - EFSWMHD           # Stored energy
+    - PCRC03            # Plasma current from rogowski
+    - PCLV23            # Loop voltage (inverted)
+    - EFSIPMEAS         # Measured Plasma Current
+    - EFSBETAN          # Beta_N
+    - EFSG1RX           # X-point R coordinate
+    - EFSG1ZX           # X-point Z coordinate
+    - EFSG1RXT          # X-point R Target
+    - EFSG1ZXT          # X-point Z Target
+
+    # IRVB Individual Inverted Region Channels
+    - GVSPRAD1
+    - GVSPRAD2
+    - GVSPRAD3
+    - GVSPRAD4
+    - GVSPRAD5
+    - GVSPRAD6
+    - GVSPRAD7
+    - GVSPRAD8
+    - GVSPRAD9
+    - GVSPRAD10
+    - GVSPRAD11
+    - GVSPRAD12
+    - GVSPRAD13
+    - GVSPRAD14
+    - GVSPRAD15
+    - GVSPRAD16
+    - GVSPRAD17
+    - GVSPRAD18
+    - GVSPRAD19
+    - GVSPRAD20
+    - GVSPRAD21
+    - GVSPRAD22
+    - GVSPRAD23
+    - GVSPRAD24
+    - GVSPRAD25
+    - GVSPRAD26
+    - GVSPRAD27
+    - GVSPRAD28
+    - GVSPRAD29
+    - GVSPRAD30
+    
+    # Beam power
+    - BMSPINJ
+  
+  EFITRT1:
+    - BETAN             # Normalized beta
+    - BCENTR            # Toroidal field at center of plasma (actual magnetic axis or nominal center?)
+  EFIT01:
+    - RVSOUT            # Outer strike point R coordinate
+    - ZVSOUT            # Outer strike point Z coordinate
+    - RVSIN             # Outer strike point R coordinate
+    - ZVSIN             # Outer strike point Z coordinate
+    - RXPT1             # X point R coordinate
+    - ZXPT1             # X point Z coordinate
+    - PSIRZ             # 2D Distribution of Psi
+  
+  SPECTRO:
+    # CAES
+    - VUV_IM_01         # NVII line
+    - VUV_IM_02         # CVI line
+    - VUV_IM_03         # OVII line
+    - VUV_IM_04         # W38+ - W42+
+    - VUV_IM_05         # W26+ line
+    # VUV Spectrometer
+    - VUV_HeII          # HeII line
+    - VUV_CIV           # CIV line
+    - VUV_FeXVI         # VUV_FeXVI line
+
+# Resample all data to at 1 kHz rate fro -0.1s to 20s time window
+resample:
+  start: -0.1
+  stop: 20
+  increment: 0.001
+
+# Rescale for different time axis trees
+rescale:                      
+  EFIT01: 1e-3                # EFIT01 writes dim0 in ms
+
+out_filename: KSTAR_detach_ctrl_data.h5
+server: guptaa@203.230.126.231:8005
+verbose: true

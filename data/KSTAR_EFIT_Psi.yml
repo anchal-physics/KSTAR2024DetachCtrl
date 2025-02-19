@@ -1,0 +1,65 @@
+shot_numbers:
+  # Day 1: December 2nd, 2024 (2hr session). Commented out shots were disrupted.
+  - 35253               # Used as reference shot in 35695 for strike point control settings
+  - 35360               # Used as reference shot in 35695
+  - 35580               # Used as reference shot in 35692
+  # - 35692             # Restored 35580 with constant X point target.​
+                            # Disrupted at 2s probably due to shortage of D2​
+  # - 35693             # Increased initial D2 gas puff​
+                            # Disrupted due NB2B fault halted at t=5.398s​
+  - 35694               # Repeated last setup​
+                            # Completed 16s shot but with X-point control. Strike point remained around 2 probes but expected to drift with impurity.​
+  # - 35695             # Restored 35360 with strike point control from 35253​
+                            # Disrupted due NB2B fault halted at t=5.5s​
+  # - 35696             # Repeated last setup with delayed start of EC2, EC4 to avoid early MHD mode​
+                            # Disrupted at 3.8s. Segment for Z-strike control was wrong.​
+  # - 35697             # Repeated with correct segment​
+                            # Disrupted at 4s. Conjecture: Bad area in lower outer divertor results in excess W sputtering when strike point is present there. Due to no early MHD mode, the confinement was high and that resulted in too much W accumulation.​
+  - 35698               # Restored 35694 with Z-X control set to oscillate with 2 cm pk-pk @ 5 Hz from 6 s on.​
+                            # Completed 16s. Still Analyzing if the sweep was enough for attachment fraction signal.​
+
+  # Day 2: December 6th, 2024 (4hr session with 20 minute intershot time). Commented out shots were disrupted.
+  - 35816               # Used as reference shot in 35850
+  - 35850               # Restored 35816 with 3V D2 pre-fill for 1 s and some corrections in PCS Divertor & Surrogate Category settings
+                            # First Plasma Shot of the day so Ip and plasma density showed glitches despite higher D2 pre-fill.​
+  - 35851               # Repeated with 3V D2 pre-fill for 2.5 s​
+                            # Good shot for reference​
+  # - 35852             # First System ID shot with 3 N2 (PVBL) pulses of heights 1V, 2.5V, 4 V and widths 1.5s, 1.5s and 1.75s​
+                            # Disrupted at 5s due to NBI Beam Fault.​
+  - 35853               # Repeat 35852​
+                            # Disrupted at 16s right after the end of the last nitrogen input step. Strike point remained within RT-LP array and got good SysID data. Step wise βN reduction from 2 to 1.5 during the second step onwards.​
+  - 35854               # Second System ID with always open valve at 1V and steps on top of it.​
+                            # Disrupted at 18s during ramp down. Got another set of good SysID data, however, it does not match with the previous shot probably because the outer strike point moved down 10s onwards (inner strike point moved up). Similar βN reduction but from 2 to 1.​
+  - 35855               # Detachment control experiment using Afrac with constant target of 0.3. ​
+                            # Gas category ignored divertor out because gas category detachment feedback enable switch was off. Another good reference shot with no impurity seeding​
+  # - 35856             # Repeat with feedback control on. PID Gains: GP=-10, Ti = 253 ms, pre-smoothing 𝜏 = 50 ms​
+                            # Crashed during ramp up at 1s. Not sure what caused this fault.​
+  - 35857               # Repeat​
+                            # Successful detachment control up to 17s. Crashed during ramp down.​
+  - 35858               # Detachment control experiment using Surrogate model heat flux output with minimum target of 4 MW​
+                            # Valve was set to open later than the control start point. Integral reached windup limit and thus control started with a large puff in the beginning which eventually caused disruption later even though the controller became stable quickly after the feedback valve opened.​
+  # - 35859             # Repeat with moderate target and corrected start time of control​
+                            # Shot died around 0s. Unknown reason.
+
+  # Day 3: December 20th, 2024 (Director's reserve). Commented out shots were disrupted.
+  # - 36158             # Restoring shot 35859 without feedback for reference. Beam configuration changed.
+                            # Disrupted at 4.5 seconds.
+  - 36159               # Repeat with adjusted settings.
+                            # Established good reference shot.
+  # - 35160             # Detachment control experiment using Surrogate model heat flux output with varying target.
+                            # Shot died early due to NBI fault
+  - 36161               # Detachment control experiment using Surrogate model heat flux output with varying target.
+                            # Successful detachment control up to 17s. Attachment fraction <= 0.2 maintained. Unable to bring up attachment fraction at will due to lack of opposing actuator.
+  - 36162               # Detachment control experiment using Surrogate model heat flux output with constant deep target.
+                            # Surrogate model output showed  unexplained change in offset level because of which target was set too high. Still attachment fraction <= 0.2 maintained.
+
+trees:
+  EFIT01:
+    - PSIRZ             # 2D Distribution of Psi
+    - SSIMAG            # Psi at Magnetic Axis
+    - SSIBRY            # Psi at Boundary
+    - LIM
+
+out_filename: KSTAR_detach_ctrl_Psi_data.h5
+server: guptaa@203.230.126.231:8005
+verbose: true
