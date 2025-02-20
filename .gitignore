@@ -25,3 +25,6 @@
 *.spl
 *.dvi
 main.pdf
+
+# All data .h5 files
+*.h5
