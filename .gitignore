@@ -28,3 +28,10 @@ main.pdf
 
 # All data .h5 files
 *.h5
+
+# Local files unrelated with project
+refs_old.bib
+ref_fmt.ipynb
+
+# Local copies of references papers
+references/*

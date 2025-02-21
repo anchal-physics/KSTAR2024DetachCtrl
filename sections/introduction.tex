@@ -2,10 +2,51 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Burning plasma tokamaks such asITER\cite{Holtkamp_2007_FED}, SPARC\cite{Creely_2020_JPP}, and the various DEMO concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target. Significant research has been carried over designing such divertors to withstand the high heat flux and ITER project has decided to use Tungsten as the divertor material. Thus, experimental reactors such KSTAR are in the process of upgrading their divertor and vessel walls to tungsten to design control systems and perform plasma studies in the presence of tunsgten contamination. Even with high melting point of tungsten, it is estimated that perpendicular heat flux on the divertor should be limited to 10--15~MW~$\mathrm{m}^{-2}$\cite{pitts_2019_nme} and the electron temperature at the divertor should remain within 8 eV\cite{Brezinsek_2019_NF} to avoid sputtering of tungsten and subsequent contamination of core plasma.
+Burning plasma tokamaks such as ITER\cite{Holtkamp_2007_FED}, SPARC\cite{Creely_2020_JPP}, and the various DEMO concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target.
+As part of the very hot core plasma escapes the magnetic confinement withing the last closed flux surface, the hot ions rapidly travel along the open field lines in \ac{SOL} region towards the divertor targets.
+To withstand the high heat flux, the divertor target plates are planned to be made out of tungsten which has high strength and the higest melting point of any metal.
+However, tungsten being a very high-Z material posses contamination challenges for the core plasma and it is important to develop operation stretegies that limit the tungsten sputtering, especially in the divertor region where hot plasma interacts with the tungsten surface in a very narrow region of the order of a few mm\cite{Eich_2013_NF}.
+Thus, experimental reactors such as KSTAR are in the process of upgrading their divertor and vessel walls to tungsten to design control systems and perform plasma studies in the presence of tungsten contamination.
 
-The heat flux reaching the divertor is typically reduced by puffing in impurity gases to dissipate energy and momemntum of the exhaust plasma in \ac{SOL}. This phenomenon is called divertor detachment. However, excessive impurity seeding could result in core contamination which not only reduces the fusion yield but can also cause cooling of core plasma resulting in collapse of H-mode or disruption of plasma confinement which can damage plasma facing components and vacuum vessel. Thus, it is important to carefully control the amount of impurity injected to keep the divertor cool while not contaminating the core plasma too much.
+It is estimated that for steady state operation, the constant heat flux reaching the divertor plates has to be below 10-15 MW/m$^2$\cite{Pitts_2019_NME} to avoid surface metling and structural damage to the divertor plates.
+Additionally, the electron temperature at the target plate must be below 8 eV\cite{Brezinsek_2019_NF} to avoid sputtering of tungsten and subsequent contamination of the core plasma.
+The heat flux reaching the divertor is typically reduced by puffing in gas in the \ac{SOL} region to dissipate energy and momentum from the exhaust plasma through ionization, charge exchange, and radiation.
+As the puffed gas neutrals travel towards the core plasma, they radiate energy based on local electron temperature and density.
+At higher temperatures, more and more electrons get stripped away from the neutral atoms and the raidation reduces and the main dissipation mechanism becomes charge exchange and ionization.
+Thus for effective and fast cooling, impurity gases such as nitrogen, neon, and argon are puffed which can dissipate heat through radiation farther away from the divertor.
+In the presence of such radiative dissipation, the plasma reaching the divertor reduces, effectively reducing the total ion flux which impinges on the divertor.
+This phenomenon is known as detachment onset as wetted surface by plasma is reduced.
+When only part of the surface is wetted, the plasma is said to be partially detached, while if the ion flux is almost completely stopped with higher neutral gas pressure, it is said to be fully detached.
 
-Divertor detachment is a fairly matured field with several different methods being demonstrated with different sensors and acturators in different experimental reactors. Radiated power control using bolometer measurements was shown in ASDEX Upgrade\cite{Kallenbach_2012_NF}, C-III emission based radiation front control in TCV\cite{Ravensbergen_2021_NC}, divertor electron temperature control using triple-tip Langmuir probes was demonstrated in EAST\cite{Eldon_2021_NME} \textbf{ETC ETC (ADD all latest feedback controlled experiments in other devies  with different control variables here.)} At KSTAR, the detachment control has been achieved using ion saturation current from realtime langmuir probes for calculating attachment fraction, \Afrac \cite{Eldon_2022_PPCF}. This approach has been previously demonstrated in JET\cite{Guillemaut_2017_PPCF}, EAST\cite{Yuan_2020_FED}, and DIII-D\cite{Eldon_2021_NME}. We have extended this approach in KSTAR with tungsten divertor and further tested a new prototpye newral network surrogate model of UEDGE 2D, DivControlNN\cite{Zhu_2025_InPrep}, for realtime heat flux estimation at the outer divertor.
+It is important though to keep the amount of impurity gases injected into the vessel to a minimum as higher gas injection eventually leads to more impurity reaching in the pedastal region of the plasma.
+This can lead to rapid cooling which can collapse H-mode and could also lead to disruption of the plasma confinement.
+Such sudden loss of plasma confinement can cause damage to the plasma facing components.
+Thus, it is important to carefully control the amount of impurity injected to keep the divertor cool while not contaminating the core plasma too much.
 
-This paper is organized as following. In Sec.\ref{sec:control_variables}, we describe the experimental setup and the definition of different control variables used for detachment control. In Sec.\ref{sec:sysid}, we describe our experimental shots used for identifying the system and using the fitted plant model to tune a PI controller using frequency response for closed-loop stability analysis and optimization. In Sec.\ref{sec:results}, we show the results of our detachment control attempts. And finally, in Sec.\ref{sec:discussion}, we discuss our results, the possible improvements we can make in future, and other interesting contemporary work and ideas in the field of detachment control.
+There are two key ways to control the heat flux reaching the divertor.
+First is to control the radiated power from the \ac{SOL} region to maintain optimum dissipation of heat before it reaches the divertor.
+This has been successfully demonstrated in various machines:
+using the bolometer chords in diverotor region in Alcator C-Mod\cite{Goetz_1999_POP}, JT-60U\cite{Asakura_2009_NF}, ASDEX Upgrade\cite{Kallenbach_2012_NF} and DIII-D\cite{Eldon_2019_NME},
+using AXUV diodes in EAST\cite{Wu_2018_NF},
+using VUV N VII line emission in JET\cite{Maddison_2011_NF}, and
+using C-III emission radiation front measured using MANTIS in TCV\cite{Ravensbergen_2021_NC}.
+
+The second way is to control the degree of plasma detachment from divertor target plates.
+This has been demonstrated widely in several machines as well:
+using divertor plate temperature measurements with surface thermocouples in Alcator C-Mod\cite{Brunner_2017_NF},
+using surface elctron temperature measurements with triple-tip Langmuir probes in EAST\cite{Eldon_2021_NME},
+using ion saturation current measurements from embedded Langmuir probes in JET\cite{Guillemaut_2017_PPCF}, and EAST\cite{Yuan_2020_FED}.
+In KSTAR, the ion saturation current measurements along with core electorn density, injected power, and local magnetic field were used to calculate a dervied control variable, \Afrac, which was used to control the detachment\cite{Eldon_2022_PPCF}.
+This technique has the added benefit that the rollover ion saturation current does not need to be calculated or estimated prior to the shot and thus this technique has the potential for wider applicability in different scenarios and other machines.
+In this work, we have re-sued this technique in our experiments at KSTAR with tungsten divertor to test the robustness of this control variable in presence of high-Z contramination from tungsten.
+
+In this work, we have also tested a new technique that uses a machine-learning-based surrogate model, DivControlNN\cite{Zhu_2025_InPrep}.
+This model integrates measurements from several realtime inputs to run through a large database of 2D UEDGE simulations and provide a realtime estimate of the heat flux reaching the divertor plates.
+We tested a prototype of this model with training limitations and input limitations in KSTAR and demonstrated detachment control for the first time using such a surrogate model.
+This paves way for utilizing such models in future reactors that will have a very limited set of sensors available for control systems.
+
+This paper is organized as following.
+In Sec.\ref{sec:control_variables}, we describe the experimental setup and the definition of different control variables used for detachment control.
+In Sec.\ref{sec:sysid}, we describe our experimental shots used for identifying the system and using the fitted plant model to tune a PI controller using frequency response for closed-loop stability analysis and optimization.
+In Sec.\ref{sec:results}, we show the results of our detachment control attempts.
+And finally, in Sec.\ref{sec:discussion}, we discuss our results, the possible improvements we can make in future, and other interesting contemporary work and ideas in the field of detachment control.
