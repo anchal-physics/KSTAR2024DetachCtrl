@@ -12,7 +12,7 @@ figure.edgecolor:       white
 figure.figsize:         12, 9
 
 ## Plot axes settings ##
-axes.labelsize:         16
+axes.labelsize:         8
 axes.facecolor:         white
 axes.edgecolor:         black
 axes.labelcolor:        black
@@ -22,10 +22,10 @@ axes.linewidth:         1
 axes.grid:              True
 axes.grid.axis:         both
 axes.grid.which:        both
-axes.titlesize:         16
+axes.titlesize:         8
 
 ## Text settings ##
-font.size:              20
+font.size:              8
 text.color:             black
 text.usetex:            False
 # [The below settings have effect only if usetex=False]
@@ -35,29 +35,29 @@ font.serif:             Georgia
 mathtext.fontset:       dejavuserif
 
 ## X-tick settings ##
-xtick.labelsize:        16
+xtick.labelsize:        8
 xtick.color:            black
 xtick.top:              True
 xtick.bottom:           True
 xtick.direction:        in
-xtick.major.size:       8
-xtick.major.width:      1
+xtick.major.size:       4
+xtick.major.width:      0.5
 xtick.major.pad:        5
-xtick.minor.size:       4
-xtick.minor.width:      1
+xtick.minor.size:       2
+xtick.minor.width:      0.5
 xtick.minor.visible:    True
 
 ## Y-tick settings ##
-ytick.labelsize:        16
+ytick.labelsize:        8
 ytick.color:            black
 ytick.left:             True
 ytick.right:            True
 ytick.direction:        in
-ytick.major.size:       8
-ytick.major.width:      1
+ytick.major.size:       4
+ytick.major.width:      0.5
 ytick.major.pad:        3.5
-ytick.minor.size:       4
-ytick.minor.width:      1
+ytick.minor.size:       2
+ytick.minor.width:      0.5
 ytick.minor.visible:    True
 
 ## Grid line settings ##
@@ -67,16 +67,18 @@ grid.linewidth:         0.5
 grid.alpha:             0.3
 
 ## Plot line settings ##
-lines.linewidth:        3
+lines.linewidth:        2
 
 ## Legend settings ##
 legend.borderpad:       0.2
 legend.fancybox:        True
-legend.fontsize:        16
+legend.fontsize:        8
 legend.framealpha:      0.8
 legend.handletextpad:   0.5
 legend.labelspacing:    0.33
 legend.loc:             best
+
+patch.force_edgecolor:  True
 
 ## Save settings ##
 savefig.dpi:            140

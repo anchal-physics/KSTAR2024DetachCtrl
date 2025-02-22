@@ -8,54 +8,113 @@
 \begin{figure*}[!ht]
  \centering
  \includegraphics[width=\textwidth]{figures/DetCtrl_2D_35853.pdf}
- \caption{System identification shot \# 35853. (a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines. The data has been interpolated spatially using cubic spline interpolation. The black curve shows the post-shot calculated strike point position on outer divertor using EFIT. (b) Shows the \Afrac calculated from peak value among the Langmuir probe array. The dashed black line shows the system identification fit on this data. (c) Left axis: Shows the N$_2$ gas command steps sent for system identification. Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel. (d) Left axis: Shows $\beta_n$. Right axis: Shows the plasma current (I$_p$).}
+ \caption{System identification shot \# 35853.
+(a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines.
+The data has been interpolated spatially using cubic spline interpolation.
+The black curve shows the post-shot calculated strike point position on outer divertor using EFIT.
+(b) Shows the \Afrac calculated from peak value among the Langmuir probe array.
+The dashed black line shows the system identification fit on this data.
+(c) Left axis: Shows the N$_2$ gas command steps sent for system identification.
+Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel.
+(d) Left axis: Shows $\beta_n$.
+Right axis: Shows the plasma current (I$_p$).}
  \label{fig:sysid_afrac}
 \end{figure*}
 
-Before we attempted detachment control experiments, we took two system identification shots. The data from first system identification shot \# 35853 is shown in Fig.\ref{fig:sysid_afrac}. In this shot, we puffed in N$_2$ gas in steps of 1.0 V, 2.5V, and 4.0 V with puff duration fo 1.5s each. A corresponding response was seen in \Afrac but with a delay. We later confirmed from post-shot EFIT data that the strike point was indeed within the realtime Langmuir Probe array and thus our \Afrac calculation was valid. We fitted the measured data with a simple first order plant model of gain K, time constant $\tau$, and time delay $L$ given by:
+Before we attempted detachment control experiments, we took two system identification shots.
+The data from first system identification shot \# 35853 is shown in Fig.\ref{fig:sysid_afrac}.
+In this shot, we puffed in N$_2$ gas in steps of 1.0 V, 2.5V, and 4.0 V with puff duration fo 1.5s each.
+A corresponding response was seen in \Afrac but with a delay.
+We later confirmed from post-shot EFIT data that the strike point was indeed within the realtime Langmuir Probe array and thus our \Afrac calculation was valid.
+We fitted the measured data with a simple first order plant model of gain K, time constant $\tau$, and time delay $L$ given by:
 
 \begin{equation}
     G(s) = \frac{K}{\tau s + 1}e^{-L s}
 \label{eq:sysid}
 \end{equation}
 
-The fit resulted in identified model with \AfracK, \AfracTau, and \AfracL. The fit is shown in Fig.\ref{fig:sysid_afrac}b. Note that only the part of time series data that was used in fit is shown for the fitted curve. This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment. It can be seen that \Afrac did not start at the value of 1.0 as should be the case for fully attached plasma initially. This was due to miscalibrated factor in PCS setting. We corrected this factor (by reducing it by factor of 2) after the system identification shot to ensure that the \Afrac starts at 1.0 so that controller target values make sense. This means that the identified response is high by a factor of 2 and thus we reduced the value of fitted K by factor of 2 for tuning the controller gains.
+The fit resulted in identified model with \AfracK, \AfracTau, and \AfracL.
+The fit is shown in Fig.\ref{fig:sysid_afrac}b.
+Note that only the part of time series data that was used in fit is shown for the fitted curve.
+This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment.
+It can be seen that \Afrac did not start at the value of 1.0 as should be the case for fully attached plasma initially.
+This was due to miscalibrated factor in PCS setting.
+We corrected this factor (by reducing it by factor of 2) after the system identification shot to ensure that the \Afrac starts at 1.0 so that controller target values make sense.
+This means that the identified response is high by a factor of 2 and thus we reduced the value of fitted K by factor of 2 for tuning the controller gains.
 
 \begin{figure}[!ht]
  \centering
  \includegraphics[width=\linewidth]{figures/Afrac_LoopStability.pdf}
- \caption{Closed loop transfer function analysis of the system  using \Afrac output with chosen PI controller with gains:\AfracKp, \AfracTi, and \Afracstau.}
- \label{fig:cltf_afrac}
+ \caption{Closed loop transfer function analysis of the system  using \Afrac output with chosen PI controller with gains:\AfracKp, \AfracTi, and \Afracstau.
+The dashed grey verticle line shows the \ac{UGF} of the system.}
+\label{fig:cltf_afrac}
 \end{figure}
 
 \begin{figure*}[!ht]
  \centering
  \includegraphics[width=\textwidth]{figures/DetCtrl_2D_35854.pdf}
- \caption{System identification shot \# 35854. (a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines. The data has been interpolated spatially using cubic spline interpolation. The black curve shows the post-shot calculated strike point position on outer divertor using EFIT. (b) Shows the heat flux at outer divertor calculated by DivControlNN. The dashed black line shows the system identification fit on this data. (c) Left axis: Shows the N$_2$ gas command steps sent for system identification. Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel. 
- (d) Shows the \Afrac calculated from peak value among the Langmuir probe array. (e) Left axis: Shows $\beta_n$. Right axis: Shows the plasma current (I$_p$).}
- \label{fig:sysid_sm}
+ \caption{System identification shot \# 35854.
+(a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines.
+The data has been interpolated spatially using cubic spline interpolation.
+The black curve shows the post-shot calculated strike point position on outer divertor using EFIT.
+(b) Shows the heat flux at outer divertor calculated by DivControlNN.
+The dashed black line shows the system identification fit on this data.
+(c) Left axis: Shows the N$_2$ gas command steps sent for system identification.
+Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel.
+(d) Shows the \Afrac calculated from peak value among the Langmuir probe array.
+(e) Left axis: Shows $\beta_n$.
+Right axis: Shows the plasma current (I$_p$).}
+\label{fig:sysid_sm}
 \end{figure*}
 
-\begin{figure}[!ht]
+\begin{figure}[!h]
  \centering
  \includegraphics[width=\linewidth]{figures/SM_LoopStability.pdf}
- \caption{Closed loop transfer function analysis of the system using DivControlNN heat flux at outer divertor output with chosen PI controller with gains: \SMKp, \SMTi, and \SMstau.}
- \label{fig:cltf_sm}
+ \caption{Closed loop transfer function analysis of the system using DivControlNN heat flux at outer divertor output with chosen PI controller with gains: \SMKp, \SMTi, and \SMstau.
+The dashed grey verticle line shows the \ac{UGF} of the system.}
+\label{fig:cltf_sm}
 \end{figure}
 
-The controller gains were chosen by visualing close loop transfer function of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}. Here, the frequency domain response of the plant model ($G(f)$) and PI controller are plotted together. When connected in series, this forms the open loop transfer function of the system ($O(f)$). The frequency where open loop gain becomes 1.0 is called \ac{UGF}). Phase margin is defined as the additional phase delay at \ac{UGF} that would make the system unstable by taking it to -180$^\circ$. Additionally, we also define delay margin as the additional actuation delay that would make \ac{UGF} unstable. The closed loop response is then calculated by solving the loop algebra in laplace domain:
+The controller gains were chosen by visualing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}.
+Here, the frequency domain response of the plant model ($G(s)$) and PI controller ($T_{PI}(s)$) are plotted together.
+When connected in series, this forms the \ac{OLTF} of the system ($O(s) = G(s) T_{PI}(s)$).
+The frequency where \ac{OLTF} becomes 1.0 is called \ac{UGF}).
+Phase margin is defined as the additional phase delay at \ac{UGF} that would make the system unstable by taking it to -180$^\circ$.
+Additionally, we also define delay margin as the additional actuation delay that would make \ac{UGF} unstable.
+The \ac{CLTF} is then calculated by solving the loop algebra in laplace domain:
 
 \begin{equation}
     C(s) = \frac{G(s)}{1 + O(s)}
+\label{eq:cltf}
 \end{equation}
 
-Because of the large delay, we chose to not use derivative gain. The goal of tuning was to push \ac{UGF} as high as possible (\AfracUGF) while keeping a reasonable phase margin (\AfracPhaseMargin) and margin for any additional actuation delay (\AfracDelayMargin). This resulted in controller settings as: \AfracKp, \AfracTi, and \Afracstau, where K$_p$ is proportional gain, T$_i$ is integral time, and $\tau_s$ is presmoothing time constant. This is still a very aggressive choice of controller, but given that the system identification fit gave an unexpectedly high value of response time $\tau=1$s probably due to too much noise during low step inputs, we decided to go ahead with this controller choice. The resulting PI controller transfer function is given by:
+Because of the large delay, we chose to not use derivative gain.
+The goal of tuning was to push \ac{UGF} as high as possible (\AfracUGF) while keeping a reasonable phase margin (\AfracPhaseMargin) and margin for any additional actuation delay (\AfracDelayMargin).
+This resulted in controller settings as: \AfracKp, \AfracTi, and \Afracstau, where K$_p$ is proportional gain, T$_i$ is integral time, and $\tau_s$ is presmoothing time constant.
+This is still a very aggressive choice of controller, but given that the system identification fit gave an unexpectedly high value of response time $\tau=1$s probably due to too much noise during low step inputs, we decided to go ahead with this controller choice.
+The resulting PI controller transfer function is given by:
 
 \begin{equation}
-    T_{PI}(f) = K_p \left( \frac{1}{T_i s} + 1\right) \frac{1}{1 + \tau_s s}
+    T_{PI}(s) = K_p \left( \frac{1}{T_i s} + 1\right) \frac{1}{1 + \tau_s s}
 \label{eq:PI}
 \end{equation}
 
-Unfortunately, the surrogate model was not confgured properly in this system identification shot due to technical errors, so we repeated a system identification but this time we decided to keep the nitrogen valve in constant open position, to look for any deviation in the behavior. The data from this second system identification shot is shown in Fig.\ref{fig:sysid_sm}. Despite all the limitations of DivControlNN as listed earlier, we still saw a good correlation in the DivControlNN heat flux output at outer divertor with the injected gas as seen in Fig.\ref{fig:sysid_sm}b. This is validated by estimated \Afrac in Fig.\ref{fig:sysid_sm}d showing that increase in detachment level as the predicted output heat flux decreases. The strike point was maintained within the realtime Langmuir Prone array (Fig.\ref{fig:sysid_sm}a) validating the output of \Afrac. Note that we did not yet calibrate the DivControlNN model with any experimental data, so we treat the output as arbitrary units and later attempted to control the detachment with estimated changes to this aribitrary output.
+Unfortunately, the surrogate model was not confgured properly in this system identification shot due to technical errors, so we repeated a system identification but this time we decided to keep the nitrogen valve in constant open position, to look for any deviation in the behavior.
+The data from this second system identification shot is shown in Fig.\ref{fig:sysid_sm}.
+Despite all the limitations of DivControlNN as listed earlier, we still saw a good correlation in the DivControlNN heat flux output at outer divertor with the injected gas as seen in Fig.\ref{fig:sysid_sm}b.
+This is validated by estimated \Afrac in Fig.\ref{fig:sysid_sm}d showing an increase in detachment level as the predicted output heat flux decreases.
+The strike point was maintained within the realtime Langmuir probe array (Fig.\ref{fig:sysid_sm}a) validating the output of \Afrac.
+Note that we did not yet calibrate the DivControlNN model with any experimental data, so we treat the output as arbitrary units and later attempted to control the detachment with estimated changes to this aribitrary output.
 
-We again fitted this system with a first order system with delay as described in Eq.\ref{eq:sysid}. The fit resulted in identified model with \SMK, \SMTau, and \SML. The fit is shown in Fig.\ref{fig:sysid_sm}b. Here as well, the fitting shown was performed during the experiment in the inter-shot interval and has not been modified or optimized later. The time domain in which fitting curve is shown is the data where the system was fitted. Admittedly, this fit was not very good and we did not believe the lag value to be accurate. There is no physical reason for why the lag in the system would be higher when we use DivControlNN output as compared to \Afrac. So for the purpose of tuning the controller, we arbitrarly set the system lag value to 100 ms. The controller gains were chosen by visualing close loop transfer function of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_sm} and following the same procedure as we described for \Afrac controller tuning. The resulting controller settings were: \SMKp, \SMTi, and \SMstau{} creating controller given by Eq.\ref{eq:PI}. Here, we estimated to achieve a \ac{UGF} of \SMUGF, phase margin of \SMPhaseMargin, and delay margin of \SMDelayMargin. This controller was also very aggressive, but we decided to go ahead with this controller choice given the limitations of the system identification fit and lack of time for further analysis in between the alloted run time to our experiment.
+We again fitted this system with a first order system with delay as described in Eq.\ref{eq:sysid}.
+The fit resulted in identified model with \SMK, \SMTau, and \SML.
+The fit is shown in Fig.\ref{fig:sysid_sm}b.
+Here as well, the fitting shown was performed during the experiment in the inter-shot interval and has not been modified or optimized later.
+The time domain in which fitting curve is shown is the data where the system was fitted.
+Admittedly, this fit was not very good and we did not believe the lag value to be accurate.
+There is no physical reason for why the lag in the system would be higher when we use DivControlNN output as compared to \Afrac.
+So for the purpose of tuning the controller, we arbitrarly set the system lag value to 100 ms.
+The controller gains were chosen by visualing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_sm} and following the same procedure as we described for \Afrac controller tuning.
+The resulting controller settings were: \SMKp, \SMTi, and \SMstau{} creating controller given by Eq.\ref{eq:PI}.
+Here, we estimated to achieve a \ac{UGF} of \SMUGF, phase margin of \SMPhaseMargin, and delay margin of \SMDelayMargin.
+This controller was also very aggressive, but we decided to go ahead with this controller choice given the limitations of the system identification fit and lack of time for further analysis in between the alloted run time to our experiment.
