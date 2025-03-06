@@ -4,7 +4,19 @@
 \begin{figure*}[!ht]
  \centering
  \includegraphics[width=\textwidth]{figures/DetCtrl_2D_35857.pdf}
- \caption{Detachment control shot \# 35857 using \Afrac controller. (a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines. The data has been interpolated spatially using cubic spline interpolation. The black curve shows the post-shot calculated strike point position on outer divertor using EFIT. (b) Shows the \Afrac calculated from peak value among the Langmuir probe array. The dashed black line shows the target provided to the controller to follow. (c) Left axis: Shows the N$_2$ gas command steps sent for system identification. Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel. (d) Left axis: Shows $\beta_n$. Right axis: Shows the plasma current (I$_p$).}
+ \caption{
+Detachment control shot \# 35857 using \Afrac controller.
+(a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines.
+The data has been interpolated spatially using cubic spline interpolation.
+The black curve shows the post-shot calculated strike point position on outer divertor using EFIT.
+(b) Shows the \Afrac calculated from peak value among the Langmuir probe array.
+The dashed black line shows the target provided to the controller to follow.
+(c) Left axis: Shows the N$_2$ gas command steps sent for system identification.
+Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel.
+(d) Total radiated power measured by \ac{IRVB}.
+(e) Left axis: Shows $\beta_n$.
+Right axis: Shows the plasma current (I$_p$).
+}
  \label{fig:detctrl_afrac}
 \end{figure*}
 
@@ -12,12 +24,42 @@
 \begin{figure*}[!ht]
  \centering
  \includegraphics[width=\textwidth]{figures/DetCtrl_2D_36161.pdf}
- \caption{Detachment control shot \# 36161 using DivControlNN heat flux at outer divertor. (a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines. The data has been interpolated spatially using cubic spline interpolation. The black curve shows the post-shot calculated strike point position on outer divertor using EFIT. (b) Shows the heat flux at outer divertor calculated by DivControlNN. The dashed black line shows the target provided to the controller to follow. (c) Left axis: Shows the N$_2$ gas command steps sent for system identification. Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel. (d) Shows the \Afrac calculated from peak value among the Langmuir probe array. (e) Left axis: Shows $\beta_n$. Right axis: Shows the plasma current (I$_p$).}
+ \caption{
+Detachment control shot \# 36161 using DivControlNN heat flux at outer divertor.
+(a) Shows the measured ion saturation current by realtime Langmuir Probe array at locations marked by grey dashed lines.
+The data has been interpolated spatially using cubic spline interpolation.
+The black curve shows the post-shot calculated strike point position on outer divertor using EFIT.
+(b) Shows the heat flux at outer divertor calculated by DivControlNN.
+The dashed black line shows the target provided to the controller to follow.
+(c) Left axis: Shows the N$_2$ gas command steps sent for system identification.
+Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel.
+(d) Left axis: Shows the \Afrac calculated from peak value among the Langmuir probe array.
+Right axis: Total radiated power measured by \ac{IRVB}.
+(e) Left axis: Shows $\beta_n$.
+Right axis: Shows the plasma current (I$_p$).
+}
  \label{fig:detctrl_sm}
 \end{figure*}
 
-Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments. First, we used \Afrac controller in KSTAR \# 35857 with results shown in Fig.\ref{fig:detctrl_afrac}. As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within the realtime Langmuir probe array giving validity to the \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b. Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end. It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value. This further validated, that \Afrac controller strategy first devised in Ref.\cite{Eldon_2022_PPCF} is a viable option for detachment control even with Tungsten divertor in KSTAR.
+Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments.
+First, we used \Afrac controller in KSTAR \# 35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
+As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within the realtime Langmuir probe array giving validity to the \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b.
+Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
+It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value.
+This further validated, that \Afrac controller strategy first devised in Ref.\cite{Eldon_2022_PPCF} is a viable option for detachment control even with Tungsten divertor in KSTAR.
 
-Since \Afrac controller has been demonstrated in the past as well, we decided to utilize remaining alloted runtime on KSTAR to test the DivControlNN prototype based controller. Fig.\ref{fig:detctrl_sm} shows the results from shot \# 36161 where we deployed this controller. An immediate issue was seen with DivControlNN output that the intial heat flux calculation had a starting value than we saw in reference shots and system identification shot \# 35854. Because of this, when the controller turned on at 7.5s, the large error resulted in railing of gas command output which resulted in too much N$_2$ injected into the system. While this quickly brought down the measured signal, it also resulted in a large overshoot and probably created power starvation in the core plasma. This is evident from the system behavior in the following seconds where the calculated heat flux output did not rise much even though impurity injection was stopped. In the nest rampdown of target from 10.5s to 11.5s, more impurity was injected as we tuned an aggresive controller. It can be seen from \Afrac in Fig.\ref{fig:detctrl_sm}d that the system reached into deep detachment by this point and the ion saturation current measurements (Fig.\ref{fig:detctrl_sm}a) became unreliable beyond 11s. This is why the heat flux did not naturally recover even when the target was lifted up between 13s to 15s. There is no surprise with the fact that using an uncalibrated output can result in bad set target values.
+Since \Afrac controller has been demonstrated in the past as well, we decided to utilize remaining alloted runtime on KSTAR to test the DivControlNN prototype based controller.
+Fig.\ref{fig:detctrl_sm} shows the results from shot \# 36161 where we deployed this controller.
+An immediate issue was seen with DivControlNN output that the intial heat flux calculation had a starting value than we saw in reference shots and system identification shot \# 35854.
+Because of this, when the controller turned on at 7.5s, the large error resulted in railing of gas command output which resulted in too much N$_2$ injected into the system.
+While this quickly brought down the measured signal, it also resulted in a large overshoot and probably created power starvation in the core plasma.
+This is evident from the system behavior in the following seconds where the calculated heat flux output did not rise much even though impurity injection was stopped.
+In the nest rampdown of target from 10.5s to 11.5s, more impurity was injected as we tuned an aggresive controller.
+It can be seen from \Afrac in Fig.\ref{fig:detctrl_sm}d that the system reached into deep detachment by this point and the ion saturation current measurements (Fig.\ref{fig:detctrl_sm}a) became unreliable beyond 11s.
+This is why the heat flux did not naturally recover even when the target was lifted up between 13s to 15s.
+There is no surprise with the fact that using an uncalibrated output can result in bad set target values.
 
-Post-shot data analysis discovered further issues in our operation of the DivControlNN model. The impurity fraction calculation as mentioned in \ref{sec:control_variables} malfunctioned and sent a constant zero input to the model. Thus the model was unable to respond to large amounts of impurity that were injected into the system and was only relying on data from line integrated core electron density and plasma current as realtime inputs. Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model based controller for detachment control in future reactors.
+Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
+The impurity fraction calculation as mentioned in \ref{sec:control_variables} malfunctioned and sent a constant zero input to the model.
+Thus the model was unable to respond to large amounts of impurity that were injected into the system and was only relying on data from line integrated core electron density and plasma current as realtime inputs.
+Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model based controller for detachment control in future reactors.
