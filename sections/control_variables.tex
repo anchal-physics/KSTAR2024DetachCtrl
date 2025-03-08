@@ -1,18 +1,31 @@
 \begin{figure}[!ht]
  \centering
  \includegraphics[width=\linewidth]{figures/RefShot.pdf}
- \caption{Reference shot \# 35855.
+ \caption{
+Reference shot \# 35851.
 (a) Showing last closed flux surface at t=8 seconds.
 The magnetic shape control was programmed to keep X point fixed which provided a sufficiently stable strike point on the realtime Langmuir Probe array.
 (b) Zoomed-in locations of realtime Outer Divertor (OD) Langmuir probes.
-(c) Plasma current (I$_p$) and $\beta_n$ for reference shot.}
+(c) Plasma current (I$_p$) and $\beta_n$ for reference shot.
+}
  \label{fig:ref_shot}
 \end{figure}
 
 \section{Experimental setup and control variables}
 \label{sec:control_variables}
 
-The experiment was conducted on standard single lower null H-mode plasma profile with reference shot KSTAR \# 35855 with the equilibrium profile as shown in Fig.\ref{fig:ref_shot}.
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[width=\linewidth]{figures/StrikePointWidth.pdf}
+ \caption{
+Strike point width estimation for reference shot \# 35851.
+the raw data from langmuir probe array has been filtered by 8th order Butterworth filter ith cut-off frequency of 20 Hz and then down sampled to 40 Hz.
+For each data point on this plot, the x-axis position is calculated by subtracting the \ac{OSP} position reported by EFIT from the probe's Z coordinate.
+}
+ \label{fig:strike_point_width}
+\end{figure}
+
+The experiment was conducted on standard single lower null H-mode plasma profile with reference shot KSTAR \# 35851 with the equilibrium profile as shown in Fig.\ref{fig:ref_shot}.
 The plasma shaping steps commensed by 7s and the shot was programmed for flat-top upto 17s providing 10s long window for detachment control experiment.
 For heat flux control, N$_2$ gas puffing was used.
 The heat flux control variable was tested with several different inputs.
@@ -22,6 +35,12 @@ $A_{frac}$ is a convinient choice of control variable which is easily available 
 If the strike point on the diverter tile is fixed in position well enough by the shape control system, a single close-by langmuir probe is enough to provide the ion saturation current required for $A_{frac}$ calculation.
 However,if the strike point control is not good enough, or if it is required to leave it as a free variable to allow for controlling other parameters in the shape control loop (as was the case in our experiments), then it is requried to estimate the true ion saturation current through measurements made by an Langmuir probe array.
 In our experiments, we chose the peak value from the langmuir probe array as the input to ion saturation current at strike point.
+Fig.\ref{fig:strike_point_width} plots the data from this langmuir probe array for our reference shot.
+The horizontal axis in this figure has been referenced from the EFIT reported \ac{OSP} position.
+Thus, this figure shows the spread of ion saturation current profile across the strike point.
+Here, we see that the striek point is closer to OD8 and OD9 with a peak ion saturation current value of roughly 0.25 A at the strike point position.
+We estimate the width of the ion saturation current profile at half the maximum value referenced to the baseline value of 0.1 A measured by far away probes, giving approximately at least a 14 mm wide profile.
+This ensures that the langmuir probe array as shown in Fig.\ref{fig:ref_shot} would always have atleast one probe that can confidently measure the ion saturation current for the strike point when the strike point is within the closely placed probes, OD8, OD9, and OD11.
 
 Langmuir probes would not be able to survive high heat flux in burning plasma future reactors.
 In general, such reactors would be severely limited in the number of realtime sensors available for control systems because of high neutron fluence and heat flux in vacuum vessel, and thus alternate control variables need to be searched for.
