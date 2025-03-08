@@ -15,7 +15,10 @@ The dashed black line shows the system identification fit on this data.
 (c) Left axis: Shows the N$_2$ gas command steps sent for system identification.
 Right axis: Shows the cummulative N$_2$ gas particles injected into the vessel.
 (d) Left axis: Shows $\beta_n$.
-Right axis: Shows the plasma current (I$_p$).}
+Right axis: Shows the plasma current (I$_p$).
+$^*$ Note: \Afrac for this shot was not calibrated properly and the raw data reported 2 times the value.
+We fixed this factor after this shot and this figure shows the corrected value.
+}
  \label{fig:sysid_afrac}
 \end{figure*}
 
@@ -71,10 +74,6 @@ The fit resulted in identified model with \AfracK, \AfracTau, and \AfracL.
 The fit is shown in Fig.\ref{fig:sysid_afrac}b.
 Note that only the part of time series data that was used in fit is shown for the fitted curve.
 This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment.
-It can be seen that \Afrac did not start at the value of 1.0 as should be the case for fully attached plasma initially.
-This was due to miscalibrated factor in PCS setting.
-We corrected this factor (by reducing it by factor of 2) after the system identification shot to ensure that the \Afrac starts at 1.0 so that controller target values make sense.
-This means that the identified response is high by a factor of 2 and thus we reduced the value of fitted K by factor of 2 for tuning the controller gains.
 
 The controller gains were chosen by visualing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}.
 Here, the frequency domain response of the plant model ($G(s)$) and PI controller ($T_{PI}(s)$) are plotted together.
