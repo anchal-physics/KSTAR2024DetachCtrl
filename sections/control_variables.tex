@@ -1,29 +1,9 @@
-\begin{figure}[!ht]
- \centering
- \includegraphics[width=\linewidth]{figures/RefShot.pdf}
- \caption{
-Reference shot \# 35851.
-(a) Showing last closed flux surface at t=8 seconds.
-The magnetic shape control was programmed to keep X point fixed which provided a sufficiently stable strike point on the realtime Langmuir Probe array.
-(b) Zoomed-in locations of realtime Outer Divertor (OD) Langmuir probes.
-(c) Plasma current (I$_p$) and $\beta_n$ for reference shot.
-}
- \label{fig:ref_shot}
-\end{figure}
+\input{figures/RefShot}
 
 \section{Experimental setup and control variables}
 \label{sec:control_variables}
 
-\begin{figure}[!ht]
- \centering
- \includegraphics[width=\linewidth]{figures/StrikePointWidth.pdf}
- \caption{
-Strike point width estimation for reference shot \# 35851.
-the raw data from langmuir probe array has been filtered by 8th order Butterworth filter ith cut-off frequency of 20 Hz and then down sampled to 40 Hz.
-For each data point on this plot, the x-axis position is calculated by subtracting the \ac{OSP} position reported by EFIT from the probe's Z coordinate.
-}
- \label{fig:strike_point_width}
-\end{figure}
+\input{figures/StrikePointWidth}
 
 The experiment was conducted on standard single lower null H-mode plasma profile with reference shot KSTAR \# 35851 with the equilibrium profile as shown in Fig.\ref{fig:ref_shot}.
 The plasma shaping steps commensed by 7s and the shot was programmed for flat-top upto 17s providing 10s long window for detachment control experiment.
