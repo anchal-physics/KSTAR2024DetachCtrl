@@ -111,8 +111,8 @@ The fit resulted in identified model with \SMK, \SMTau, and \SML.
 The fit is shown in Fig.\ref{fig:sysid_sm}b.
 Here as well, the fitting shown was performed during the experiment in the inter-shot interval and has not been modified or optimized later.
 The time domain in which fitting curve is shown is the data where the system was fitted.
-Admittedly, this fit was not very good and we did not believe the lag value to be accurate.
-There is no physical reason for why the lag in the system would be higher when we use DivControlNN output as compared to \Afrac.
+Admittedly, this fit was not very good and we did not believe the large lag value to be accurate.
+% There is no physical reason for why the lag in the system would be higher when we use DivControlNN output as compared to \Afrac.
 So for the purpose of tuning the controller, we arbitrarly set the system lag value to 100 ms.
 The controller gains were chosen by visualing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_sm} and following the same procedure as we described for \Afrac controller tuning.
 The resulting controller settings were: \SMKp, \SMTi, and \SMstau{} creating controller given by Eq.\ref{eq:PI}.
