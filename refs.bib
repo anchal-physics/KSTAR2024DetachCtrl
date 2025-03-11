@@ -136,6 +136,21 @@ doi={10.1038/s41586-021-04301-9},
 url={https://doi.org/10.1038/s41586-021-04301-9}
 }
 
+@article{Zhu_2022_JPP,
+  title={Data-driven model for divertor plasma detachment prediction},
+  author={Zhu, Ben and Zhao, Menglong and Bhatia, Harsh and Xu, Xue-qiao and Bremer, Peer-Timo and Meyer, William and Li, Nami and Rognlien, Thomas},
+  journal={Journal of Plasma Physics},
+  volume={88},
+  number={5},
+  pages={895880504},
+  year={2022},
+  publisher={Cambridge University Press},
+  url = {https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/datadriven-model-for-divertor-plasma-detachment-prediction/BC221B0DF5A8857B08AE74475C413243},
+  doi = {https://doi.org/10.1017/S002237782200085X},
+  abstract={We present a fast and accurate data-driven surrogate model for divertor plasma detachment prediction leveraging the latent feature space concept in machine learning research. Our approach involves constructing and training two neural networks: an autoencoder that finds a proper latent space representation (LSR) of plasma state by compressing the multi-modal diagnostic measurements and a forward model using multi-layer perception (MLP) that projects a set of plasma control parameters to its corresponding LSR. By combining the forward model and the decoder network from autoencoder, this new data-driven surrogate model is able to predict a consistent set of diagnostic measurements based on a few plasma control parameters. In order to ensure that the crucial detachment physics is correctly captured, highly efficient 1D UEDGE model is used to generate training and validation data in this study. The benchmark between the data-driven surrogate model and UEDGE simulations shows that our surrogate model is capable of providing accurate detachment prediction (usually within a few per cent relative error margin) but with at least four orders of magnitude speed-up, indicating that performance-wise, it has the potential to facilitate integrated tokamak design and plasma control. Comparing with the widely used two-point model and/or two-point model formatting, the new data-driven model features additional detachment front prediction and can be easily extended to incorporate richer physics. This study demonstrates that the complicated divertor and scrape-off-layer plasma state has a low-dimensional representation in latent space. Understanding plasma dynamics in latent space and utilising this knowledge could open a new path for plasma control in magnetic fusion energy research.}
+
+}
+
 @article{Dudson_2024_CPC,
 title = {Hermes-3: Multi-component plasma simulations with BOUT++},
 journal = {Computer Physics Communications},
@@ -596,8 +611,9 @@ abstract = {EAST achieved 101.2 seconds H-mode discharge with total power inject
 @article{Zhu_2025_InPrep,
 author = {Zhu, Ben and Zhao, Menglong and Xu, Xue-Qiao and Gupta, Anchal and Kwon, KyuBeen and Ma, Xinxing and Eldon, David},
 title = {Latent Space Mapping: Revolutionizing Predictive Models for Divertor Plasma Detachment Control},
-journal = {In Preparation},
-year = {2025}
+journal = {Physics of Plasmas (under review)},
+url = {https://arxiv.org/abs/2502.19654},
+year = {2025},
 }
 
 @book{Stangeby_2000,
@@ -651,3 +667,15 @@ month = {Feb},
 number = {IPP 5/98},
 url = {https://pure.mpg.de/rest/items/item_2138238_1/component/file_2138237/content},
 } 
+
+@article{Rognlien_1999,
+  title={Two-dimensional electric fields and drifts near the magnetic separatrix in divertor tokamaks},
+  author={Rognlien, Thomas D and Ryutov, Dmitri D and Mattor, N and Porter, GD},
+  journal={Physics of Plasmas},
+  volume={6},
+  number={5},
+  pages={1851--1857},
+  year={1999},
+  publisher={American Institute of Physics},
+  url={https://pubs.aip.org/aip/pop/article/6/5/1851/1068834/Two-dimensional-electric-fields-and-drifts-near}
+}
