@@ -5,47 +5,46 @@
 
 \input{figures/StrikePointWidth}
 
-The experiment was conducted on standard single lower null H-mode plasma profile with reference shot KSTAR \# 35851 with the equilibrium profile as shown in Fig.\ref{fig:ref_shot}.
-The plasma shaping steps commensed by 7s and the shot was programmed for flat-top upto 17s providing 10s long window for detachment control experiment.
+The experiment was conducted on a standard single lower null H-mode plasma profile with reference shot KSTAR \# 35851 with the equilibrium profile as shown in Fig.\ref{fig:ref_shot}.
+The plasma shaping steps commenced by 7s and the shot was programmed for flat-top up to 17s providing a 10s long window for detachment control experiment.
 For heat flux control, N$_2$ gas puffing was used.
 The heat flux control variable was tested with several different inputs.
 
-First, we utilized previously develoed $A_{frac}$\cite{Eldon_2022_PPCF}, which is defined as the ratio of measured ion saturation current to modeled (using 2PM\cite{Leonard_2018_PPCF}) ion saturation current assuming fully attachment plasma.
-$A_{frac}$ is a convinient choice of control variable which is easily available in most tokamaks and allows for cross comparison among machines.
-If the strike point on the diverter tile is fixed in position well enough by the shape control system, a single close-by langmuir probe is enough to provide the ion saturation current required for $A_{frac}$ calculation.
-However,if the strike point control is not good enough, or if it is required to leave it as a free variable to allow for controlling other parameters in the shape control loop (as was the case in our experiments), then it is requried to estimate the true ion saturation current through measurements made by an Langmuir probe array.
-In our experiments, we chose the peak value from the langmuir probe array as the input to ion saturation current at strike point.
-Fig.\ref{fig:strike_point_width} plots the data from this langmuir probe array for our reference shot.
+First, we utilized previously developed \Afrac\cite{Eldon_2022_PPCF}, which is defined as the ratio of measured ion saturation current to modeled (using 2PM\cite{Leonard_2018_PPCF}) ion saturation current assuming fully attachment plasma.
+\Afrac is a convenient choice of control variable that is easily available in most tokamaks and allows for cross-comparison among machines.
+If the strike point on the diverter tile is fixed in position well enough by the shape control system, a single close-by Langmuir probe is enough to provide the ion saturation current required for $A_{frac}$ calculation.
+However, if the strike point control is not good enough, or if it is required to leave it as a free variable to allow for controlling other parameters in the shape control loop (as was the case in our experiments), then it is required to estimate the true ion saturation current through measurements made by a Langmuir probe array.
+In our experiments, we chose the peak value from the Langmuir probe array as the input to the ion saturation current at the strike point.
+Fig.\ref{fig:strike_point_width} plots the data from this Langmuir probe array for our reference shot.
 The horizontal axis in this figure has been referenced from the EFIT reported \ac{OSP} position.
-Thus, this figure shows the spread of ion saturation current profile across the strike point.
-Here, we see that the striek point is closer to OD8 and OD9 with a peak ion saturation current value of roughly 0.25 A at the strike point position.
+Thus, this figure shows the spread of the ion saturation current profile across the strike point.
+Here, we see that the strike point is closer to OD8 and OD9 with a peak ion saturation current value of roughly 0.25 A at the strike point position.
 We estimate the width of the ion saturation current profile at half the maximum value referenced to the baseline value of 0.1 A measured by far away probes, giving approximately at least a 14 mm wide profile.
-This ensures that the langmuir probe array as shown in Fig.\ref{fig:ref_shot} would always have atleast one probe that can confidently measure the ion saturation current for the strike point when the strike point is within the closely placed probes, OD8, OD9, and OD11.
+This ensures that the Langmuir probe array as shown in Fig.\ref{fig:ref_shot} would always have at least one probe that can confidently measure the ion saturation current for the strike point when the strike point is within the closely placed probes, OD8, OD9, and OD11.
 
 Langmuir probes would not be able to survive high heat flux in burning plasma future reactors.
-In general, such reactors would be severely limited in the number of realtime sensors available for control systems because of high neutron fluence and heat flux in vacuum vessel, and thus alternate control variables need to be searched for.
-Towards this goal, we tested a prototype of a machine-learning-based surrogate model of 2D UEDGE, DivControlNN.
+In general, such reactors would be severely limited in the number of realtime sensors available for control systems because of high neutron fluence and heat flux in vacuum vessels, and thus alternate control variables need to be searched for.
+Toward this goal, we tested a prototype of a machine-learning-based surrogate model of 2D UEDGE, DivControlNN.
 The employed version of DivControlNN is trained on $\approx$ 70,000 2D UEDGE simulations of KSTAR.
 The training dataset scanned core electron density ($1.08 \times 10^{19} - 6.62 \times 10^{19}$ m$^{-3}$), plasma current ($600-800$ kA), injected total power through NBI and ECH ($1-8$ MW), impurity fraction with respect to Deuterium density ($0-0.04$), and scaling of diffusion coefficient profile with a factor ($0.6 - 2$).
 The diffusion coefficient profile is assumed for a typical H-mode shot which can be scaled as an input to the model.
-This provided a widely applicable surrogate model which gives steady state values of heat flux, ion saturation current, and electorn temperature along the two divertors, electron density and temperature at upstream point of midplane, and total radiated power, power fraction radiated from divertor, and peak radiation power location in the poloidal cross-section of the device.
-The model generates output within 10\% error from the 2D UEDGE outpout.
+This provided a widely applicable surrogate model that gives steady-state values of heat flux, ion saturation current, and electron temperature along the two divertors, electron density and temperature at the upstream point of the midplane, and total radiated power, power fraction radiated from divertor, and peak radiation power location in the poloidal cross-section of the device.
+The model generates output within 10\% error from the 2D UEDGE output.
 
-DivControlNN is orginially developed and trained using python's TensorFlow package and consists of two different models working in tandem.
-The first is a multi-modal beta-variational autoencoder\cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on 2D UEDGE database into a latent space representation.
+DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
+The first is a multi-modal beta-variational autoencoder\cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on a 2D UEDGE database into a latent space representation.
 The second stage is a multi-layer perceptron (MLP) model that maps the inputs of the 2D UEDGE simulations (which also form the inputs to the overall surrogate model).
 During inference operation, the MLP model first maps the inputs to the latent space and the decoder network from the autoencoder then decodes the latent space into useful outputs.
-While python is the industry choice for developing and training such models, it can not be used for real-time inference purposes such as our use case.
-We converted the python model into a pure C code using a keras2c\cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
+While Python is the industry choice for developing and training such models, it can not be used for real-time inference purposes such as our use case.
+We converted the Python model into a pure C code using a keras2c\cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
 The generated C code runs an inference operation in about 160 $\mu$s on Intel\textsuperscript{\textregistered} Core\textsuperscript{TM} i7-6600U CPU @ 2.60GHz while we saw speed up of upto 18 $\mu$s per inference on Apple\textsuperscript{\textregistered} M2\textsuperscript{TM} Pro.
-The real-time PCS in KSTAR runs it's divertor control categories in a 5 $\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1 ms clock-cycle CPU ensuring enough runtime for it along with other process in that CPU.
-This was still more than sufficient for our control purposes which anyways can not control faster than few 10s of Hz due to system response time and gas actuation speed.
+The real-time PCS in KSTAR runs its divertor control categories in a 5 $\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1 ms clock-cycle CPU ensuring enough runtime for it along with other processes in that CPU.
+This was still more than sufficient for our control purposes which anyway can not control faster than a few 10s of Hz due to system response time and gas actuation speed.
 
 This preliminary model, however, has been trained on 2D UEDGE simulations of KSTAR with carbon divertor and carbon as the sole impurity species.
 So it does not reflect the same Tungsten divertor system in which it was tested.
 There were several other limitations to the realtime input provided to the model.
-There was no reliable input for impurity fraction in plasma and we created an adhoc gas accumulation model which estimated impurity fraction by taking ratio of total puffed impurity with total puffed Deuterium gas with estimated decay rates to model the effect of pumping and wall adsorption.
-Additionally at KSTAR, the total input power from NBI and ECH sources is not completely available in realtime PCS and we had to input a feedforward signal matching the programmed rate of some sources that got summed with the other sources whose power was avaialble in realtime.
-Finally, the diffusion coefficient scaling factor was set to 1.0 for loack of any better realtime information on it.
-Despite these limitations, we attempted to use this model as a preliminary test for using such a surrogate model in realtime and identify major obstacles before testing an improved and more relevant version in future.
-% This, along with improvements in realtime data availability in KSTAR would empower the model to provide outputs with higher confidence in future.
+There was no reliable input for impurity fraction in plasma and we created an ad-hoc gas accumulation model which estimated impurity fraction by taking the ratio of total puffed impurity with total puffed Deuterium gas with estimated decay rates to model the effect of pumping and wall adsorption.
+Additionally at KSTAR, the total input power from NBI and ECH sources is not completely available in realtime PCS and we had to input a feedforward signal matching the programmed rate of some sources that got summed with the other sources whose power was available in realtime.
+Finally, the diffusion coefficient scaling factor was set to 1.0 for lack of any better realtime information on it.
+Despite these limitations, we attempted to use this model as a preliminary test for using such a surrogate model in real time and identify major obstacles before testing an improved and more relevant version in the future.
