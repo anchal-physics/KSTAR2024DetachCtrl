@@ -31,7 +31,7 @@ There is no surprise with the fact that setting target values for an uncalibrate
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
 The impurity fraction calculation as mentioned in \ref{sec:control_variables} malfunctioned and sent a constant zero input to the model.
 Thus the model was unable to respond to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density and plasma current as realtime inputs.
-In full carbon machine tests, it has been seen in the past\needcite that deuterium alone is sufficient to attain detachment as enough wall-sourced intrinsic carbon impurity exists in the plasma during a campaign.
+In full carbon machine tests, it has been seen in the past\cite{Loarte_1998_NF, Eldon_2017_NF} that deuterium alone is sufficient to attain detachment as enough wall-sourced intrinsic carbon impurity exists in the plasma during a campaign.
 This might have been the case in shot \# 36161 as well, that even though impurity was seeded mostly as feedback to observed electron density (as input power mostly remained constant), the controller mostly worked initially as N$_2$ has a similar radiation loss profile as carbon.
 However, once the injected amount of nitrogen was beyond what the UEDGE simulation could assume background intrinsic carbon to be, the relationship broke down and thus the control is not very good beyond 11s.
 Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model-based controller for detachment control in future reactors.
