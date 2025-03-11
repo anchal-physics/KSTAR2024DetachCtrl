@@ -6,7 +6,7 @@
 \input{figures/Prad_2D}
 
 Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments.
-First, we used \Afrac controller in KSTAR \# 35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
+First, we used \Afrac controller in KSTAR \#35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
 As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within the realtime Langmuir probe array giving validity to the \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b.
 Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
 It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value.
@@ -17,8 +17,8 @@ The total radiated power from the plasma as measured by KSTAR \ac{IRVB} remained
 This further validated, that \Afrac controller strategy first devised in Ref.\cite{Eldon_2022_PPCF} is a viable option for detachment control even with Tungsten divertor in KSTAR.
 
 Since \Afrac controller has been demonstrated in the past as well, we decided to utilize the remaining allotted runtime on KSTAR to test the DivControlNN prototype-based controller.
-Fig.\ref{fig:detctrl_sm} shows the results from shot \# 36161 where we deployed this controller.
-An immediate issue was seen with DivControlNN output that the initial heat flux calculation had a different starting value than what we saw in reference shots and system identification shot \# 35854.
+Fig.\ref{fig:detctrl_sm} shows the results from shot \#36161 where we deployed this controller.
+An immediate issue was seen with DivControlNN output that the initial heat flux calculation had a different starting value than what we saw in reference shots and system identification shot \#35854.
 Because of this, when the controller turned on at 7.5s, the large error resulted in the railing of gas command output which caused too much N$_2$ injected into the system.
 While this quickly brought down the measured signal, it also resulted in an overshoot.
 In the next ramp-down of the target from 10.5s to 11.5s, more impurity was injected as we tuned an aggressive controller.
@@ -31,7 +31,8 @@ There is no surprise with the fact that setting target values for an uncalibrate
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
 The impurity fraction calculation as mentioned in \ref{sec:control_variables} malfunctioned and sent a constant zero input to the model.
 Thus the model was unable to respond to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density and plasma current as realtime inputs.
-In full carbon machine tests, it has been seen in the past\cite{Loarte_1998_NF, Eldon_2017_NF} that deuterium alone is sufficient to attain detachment as enough wall-sourced intrinsic carbon impurity exists in the plasma during a campaign.
-This might have been the case in shot \# 36161 as well, that even though impurity was seeded mostly as feedback to observed electron density (as input power mostly remained constant), the controller mostly worked initially as N$_2$ has a similar radiation loss profile as carbon.
-However, once the injected amount of nitrogen was beyond what the UEDGE simulation could assume background intrinsic carbon to be, the relationship broke down and thus the control is not very good beyond 11s.
+In the past it has been seen that deuterium alone is sufficient to attain partial detachment\cite{Loarte_1998_NF, Eldon_2017_NF}.
+This might be the case with shot \#36161, that the model inference with zero impurity fraction input still reported a decrease in estimated heatflux as the electron density input increased with N$_2$ puffing.
+The only other changeable input, input power, mostly remained constant during flat top of the shot.
+However, as the amount of total puffed N$_2$ increased, the pure deuterium plasma case from which the model must be infering the heat flux would deviate and thus the control is not very good beyond 11s.
 Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model-based controller for detachment control in future reactors.
