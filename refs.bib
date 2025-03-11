@@ -136,21 +136,6 @@ doi={10.1038/s41586-021-04301-9},
 url={https://doi.org/10.1038/s41586-021-04301-9}
 }
 
-@article{Zhu_2022_JPP,
-  title={Data-driven model for divertor plasma detachment prediction},
-  author={Zhu, Ben and Zhao, Menglong and Bhatia, Harsh and Xu, Xue-qiao and Bremer, Peer-Timo and Meyer, William and Li, Nami and Rognlien, Thomas},
-  journal={Journal of Plasma Physics},
-  volume={88},
-  number={5},
-  pages={895880504},
-  year={2022},
-  publisher={Cambridge University Press},
-  url = {https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/datadriven-model-for-divertor-plasma-detachment-prediction/BC221B0DF5A8857B08AE74475C413243},
-  doi = {https://doi.org/10.1017/S002237782200085X},
-  abstract={We present a fast and accurate data-driven surrogate model for divertor plasma detachment prediction leveraging the latent feature space concept in machine learning research. Our approach involves constructing and training two neural networks: an autoencoder that finds a proper latent space representation (LSR) of plasma state by compressing the multi-modal diagnostic measurements and a forward model using multi-layer perception (MLP) that projects a set of plasma control parameters to its corresponding LSR. By combining the forward model and the decoder network from autoencoder, this new data-driven surrogate model is able to predict a consistent set of diagnostic measurements based on a few plasma control parameters. In order to ensure that the crucial detachment physics is correctly captured, highly efficient 1D UEDGE model is used to generate training and validation data in this study. The benchmark between the data-driven surrogate model and UEDGE simulations shows that our surrogate model is capable of providing accurate detachment prediction (usually within a few per cent relative error margin) but with at least four orders of magnitude speed-up, indicating that performance-wise, it has the potential to facilitate integrated tokamak design and plasma control. Comparing with the widely used two-point model and/or two-point model formatting, the new data-driven model features additional detachment front prediction and can be easily extended to incorporate richer physics. This study demonstrates that the complicated divertor and scrape-off-layer plasma state has a low-dimensional representation in latent space. Understanding plasma dynamics in latent space and utilising this knowledge could open a new path for plasma control in magnetic fusion energy research.}
-
-}
-
 @article{Dudson_2024_CPC,
 title = {Hermes-3: Multi-component plasma simulations with BOUT++},
 journal = {Computer Physics Communications},
@@ -551,6 +536,22 @@ url = {https://doi.org/10.1038/s41467-021-21268-3},
 title = {Real-time feedback control of the impurity emission front in tokamak divertor plasmas}
 }
 
+@article{Rognlien_1999_PP,
+author = {Rognlien, T. D. and Ryutov, D. D. and Mattor, N. and Porter, G. D.},
+title = {Two-dimensional electric fields and drifts near the magnetic separatrix in divertor tokamaks},
+journal = {Physics of Plasmas},
+volume = {6},
+number = {5},
+pages = {1851-1857},
+year = {1999},
+month = {05},
+abstract = {A two-dimensional calculation is presented for the transport of plasma in the edge region of a divertor tokamak solving continuity, momentum, and energy balance fluid equations. The model uses classical processes of parallel transport along the magnetic field and cross-field drifts together with anomalous radial diffusion, including perpendicular ion viscosity. The self-consistent electrostatic potential is calculated on both sides of the magnetic separatrix via quasineutrality and current continuity. Outside the separatrix, the model extends to material divertor plates where the incident plasma is recycled as neutral gas and where the plate sheath and parallel currents dominate the potential structure. Inside the separatrix, various radial current terms—from anomalous viscosity, collisional damping, inertia, and ∇B drifts—contribute to determining the potential. The model rigorously enforces cancellation of gyroviscous and magnetization terms from the transport equations. The results emphasize the importance of E×B particle flow under the X-point which depends on the sign of the toroidal magnetic field. Radial electric field profiles at the outer midplane show strong variation with the magnitude of the anomalous diffusion coefficients and the core toroidal rotation velocity, indicating that shear stabilization of edge turbulence can likewise be sensitive to these parameters. },
+issn = {1070-664X},
+doi = {10.1063/1.873488},
+url = {https://doi.org/10.1063/1.873488},
+eprint = {https://pubs.aip.org/aip/pop/article-pdf/6/5/1851/19073566/1851\_1\_online.pdf},
+}
+
 @article{Smith_1957_CEP,
     author = {Smith, O. J.},
     title = "{Closed control of loops with dead time}",
@@ -606,6 +607,20 @@ url = {https://www.sciencedirect.com/science/article/pii/S0920379620301058},
 author = {Q.P. Yuan and K. Wu and L. Wang and J.C. Xu and K.D. Li and J.B. Liu and L.Y. Meng and R.R. Zhan and Z.P. Luo and B.J. Xiao and D. Eldon and Jayson Barr and A. Hyatt},
 keywords = {Active heat flux control, Impurity seeding, Partial detachment, Degree of detachment control},
 abstract = {EAST achieved 101.2 seconds H-mode discharge with total power injection up to 3MW in 2017. Consequently to the enhanced auxiliary heating power, the active divertor heat flux control is urgently needed in EAST. In 2018, the active divertor detachment feedback control was implemented successfully in EAST plasma control system (PCS) with divertor Langmuir probe measurements for evaluating the divertor particle flux. The control algorithm controlled the degree of detachment effectively during the 2018 EAST experiments through either D2 fueling in the low field side using SMBI or impurity seeding from the divertor volume in H-mode plasmas, without significant degradation of the core-plasma performance, i.e., exhibiting good core-edge-divertor integration. The algorithm implementation in PCS and experimental results will be reported in this paper. Further efforts will be made to extend active feedback control towards long-pulse H-mode detachment maintenance in the near future, which will benefit the high power, H-mode operation for ITER.}
+}
+
+@article{Zhu_2022_JPP,
+title={Data-driven model for divertor plasma detachment prediction},
+author={Zhu, Ben and Zhao, Menglong and Bhatia, Harsh and Xu, Xue-qiao and Bremer, Peer-Timo and Meyer, William and Li, Nami and Rognlien, Thomas},
+journal={Journal of Plasma Physics},
+volume={88},
+number={5},
+pages={895880504},
+year={2022},
+publisher={Cambridge University Press},
+url = {https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/datadriven-model-for-divertor-plasma-detachment-prediction/BC221B0DF5A8857B08AE74475C413243},
+doi = {https://doi.org/10.1017/S002237782200085X},
+abstract={We present a fast and accurate data-driven surrogate model for divertor plasma detachment prediction leveraging the latent feature space concept in machine learning research. Our approach involves constructing and training two neural networks: an autoencoder that finds a proper latent space representation (LSR) of plasma state by compressing the multi-modal diagnostic measurements and a forward model using multi-layer perception (MLP) that projects a set of plasma control parameters to its corresponding LSR. By combining the forward model and the decoder network from autoencoder, this new data-driven surrogate model is able to predict a consistent set of diagnostic measurements based on a few plasma control parameters. In order to ensure that the crucial detachment physics is correctly captured, highly efficient 1D UEDGE model is used to generate training and validation data in this study. The benchmark between the data-driven surrogate model and UEDGE simulations shows that our surrogate model is capable of providing accurate detachment prediction (usually within a few per cent relative error margin) but with at least four orders of magnitude speed-up, indicating that performance-wise, it has the potential to facilitate integrated tokamak design and plasma control. Comparing with the widely used two-point model and/or two-point model formatting, the new data-driven model features additional detachment front prediction and can be easily extended to incorporate richer physics. This study demonstrates that the complicated divertor and scrape-off-layer plasma state has a low-dimensional representation in latent space. Understanding plasma dynamics in latent space and utilising this knowledge could open a new path for plasma control in magnetic fusion energy research.}
 }
 
 @article{Zhu_2025_InPrep,
@@ -667,15 +682,3 @@ month = {Feb},
 number = {IPP 5/98},
 url = {https://pure.mpg.de/rest/items/item_2138238_1/component/file_2138237/content},
 } 
-
-@article{Rognlien_1999,
-  title={Two-dimensional electric fields and drifts near the magnetic separatrix in divertor tokamaks},
-  author={Rognlien, Thomas D and Ryutov, Dmitri D and Mattor, N and Porter, GD},
-  journal={Physics of Plasmas},
-  volume={6},
-  number={5},
-  pages={1851--1857},
-  year={1999},
-  publisher={American Institute of Physics},
-  url={https://pubs.aip.org/aip/pop/article/6/5/1851/1068834/Two-dimensional-electric-fields-and-drifts-near}
-}
