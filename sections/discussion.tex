@@ -1,41 +1,40 @@
 \section{Discussion}
 \label{sec:discussion}
 
-In this paper, we described re-using \Afrac as a reliable control variable for detachment control provided that realtime ion saturation current measurements are available from the Langmuir probes and the strike point is controlled good enough that such an array can be used to calculate \Afrac.
+In this paper, we described re-using \Afrac as a reliable control variable for detachment control provided that realtime ion saturation current measurements are available from the Langmuir probes and the strike point is controlled well enough that such an array can be used to calculate \Afrac.
 It can be seen from panels (a) and (c) in Fig.\ref{fig:sysid_afrac}, Fig.\ref{fig:sysid_sm}, and Fig.\ref{fig:detctrl_sm} that when the total injected impurity amount crosses a rough threshold of about $1\times10^{20}$ particles, the plasma shape starts to rotate such that strike point on outer divertor starts drifting downwards (and the inner strike point moves upwards) even though the X-point is held in place by the magnetic shape control system.
-Thus, \Afrac controller is best suited with a outer strike point control system commissioned on the device which was not the case for the KSTAR esperimental campaign in which we tested these controllers.
-It is also important to keep note of the width of strike point and it's profile on the divertor.
-In our case, we estimated that the strike point width is about 14 mm, just enough to ensure that atleast one of the Langmuir probes are always inside the wetted area from the \ac{SOL} plasma.
+Thus, \Afrac controller is best suited with an outer strike point control system commissioned on the device which was not the case for the KSTAR experimental campaign in which we tested these controllers.
+It is also important to keep note of the width of the strike point and its profile on the divertor.
+In our case, we estimated that the strike point width is about 14 mm, just enough to ensure that at least one of the Langmuir probes is always inside the wetted area from the \ac{SOL} plasma.
 Even then, it can be seen at around 12.4s in Fig.\ref{fig:sysid_afrac} and at around 10s in Fig.\ref{fig:detctrl_afrac} that as the strike point moves from OD9 (Z=-1.225m) to OD11(Z=-1.2125m), the corresponding \Afrac value shows a sharp decline and then recovery, probably due to the peak passing through the middle of the two probes.
 This effect is small enough that our existing controller was able to fix it, but it shows a potential source of error in system identification and might also cause loss of control if the sudden transition can excite an unstable oscillation of the \ac{UGF}.
-For future applications of this controller, we are working on including realtime spatial analysis of the strike point profile, potentially informaed with profile shapes from high fidelity simulations from SOLPS-ITER or UEDGE.
-% It should be noted that realtime profile analysis for the case of sweeping strike points has been successfully demonstrated\needcite in the past and this would be an extension of that to include the case where strike point sweep is not wide enough or is not an available service from magnetic shape controller.
+For future applications of this controller, we are working on including realtime spatial analysis of the strike point profile, potentially informed with profile shapes from high-fidelity simulations from SOLPS-ITER or UEDGE.
 
-It should be noted that in the application of \Afrac controller method on KSTAR, tuning of the overall factor to \Afrac so that it reports 1.0 when fully attached was more trickier than the case for full carbon environment KSTAR\cite{Eldon_2022_PPCF}.
-We noticed offsets in the outputs of Langmuir probes which changed from shot to shot, and thus ensuring correct normalizing factor for \Afrac became harder.
+It should be noted that in the application of \Afrac controller method on KSTAR, tuning the overall factor to \Afrac so that it reports 1.0 when fully attached was trickier than the case for full carbon environment KSTAR\cite{Eldon_2022_PPCF}.
+We noticed offsets in the outputs of Langmuir probes which changed from shot to shot, and thus ensuring the correct normalizing factor for \Afrac became harder.
 This was the reason why we had to change the factor for \Afrac after shot \#35853 as also mentioned in the caption of Fig.\ref{fig:sysid_afrac}.
-After this experinece, we have now added an online offset estimator and substraction for all probe signals, which measures the offset before the plasma breakdown and ensures that the zero-offset is correct on the probes.
-This issue is likely due to electrical connectivity problems with the probes which also showed other issues during the campaign, but still this experience should be noted for future reproduction and improvements.
+After this experience, we have now added an online offset estimator and subtraction for all probe signals, which measures the offset before the plasma breakdown and ensures that the zero offset is correct on the probes.
+This issue is likely due to electrical connectivity problems with the probes which also showed other issues during the campaign, but still, this experience should be noted for future reproduction and improvements.
 
-Although, Langmuir probes might not be able to survive future burning plasma experiments, they are still a valuable tool for studying detachment control experiments for the ease of installation and operation in experimental devices.
+Although Langmuir probes might not be able to survive future burning plasma experiments, they are still a valuable tool for studying detachment control experiments for ease of installation and operation in experimental devices.
 Even in burning plasma devices, sacrificial Langmuir probes can be used in commissioning controllers based on other control variables given the success and reliability of using these probes for detachment control demonstrated on various devices \cite{Eldon_2021_NME, Guillemaut_2017_PPCF, Yuan_2020_FED}.
-The good results from \Afrac controller as seen in Fig.\ref{fig:detctrl_afrac} could also motivate further research in similar biased electrode measurement methods of SOL plasma such as biased divertor plates \cite{Toi_2023_NF, Cui_2024_NF} which behave like larger area langmuir probes and can withstand harsher conditions in comparison to small tip area probes.
+The good results from \Afrac controller as seen in Fig.\ref{fig:detctrl_afrac} could also motivate further research in similar biased electrode measurement methods of SOL plasma such as biased divertor plates \cite{Toi_2023_NF, Cui_2024_NF} which behave like larger area Langmuir probes and can withstand harsher conditions in comparison to small tip area probes.
 
-We also demonstrated using a machine-learning-based surrogate model, DivControlNN, which inferes from a large databse of 2D UEDGE simulations for estimating inaccessible quantities in the plasma, such as heat flux on the divertor, for controlling detachment level with realtime feedback.
+We also demonstrated using a machine-learning-based surrogate model, DivControlNN, which infers from a large database of 2D UEDGE simulations for estimating inaccessible quantities in the plasma, such as heat flux on the divertor, for controlling detachment level with realtime feedback.
 As of the writing of this manuscript, this detachment control method is the first of its kind ever implemented and will act as a stepping stone for future deployments.
 This is an important step in the direction of achieving detachment control in future burning plasma reactors which would have very limited means of measuring the detachment level due to space constraints and harsh environment.
 We have identified critical weak points in the prototype of DivControlNN and the control infrastructure required to utilize this model, and we are working on improving these aspects for future tests.
-We are in the process of creating new 2D UEDGE database of KSTAR with tunsten divertor and considering multiple charged states of additional impurities such as nitrogen, neon, and argon.
+We are in the process of creating a new 2D UEDGE database of KSTAR with a tungsten divertor and considering multiple charged states of additional impurities such as nitrogen, neon, and argon.
 New models would be trained on the expanded database and acquired experimental data from this campaign, with the input of injected gas flow instead of impurity fraction to simplify the use case of these models.
-training new models in Tungsten divertor environment and with gas flow rate as an input by running the 2D UEDGE simulations with multi-charge-state impurity model.
-We would also work with KSTAR team to improve PCS communication infrastructure so that accurate realtime values of injected power are available to our models.
+We would also work with the KSTAR team to improve PCS communication infrastructure so that accurate realtime values of injected power are available to our models.
 
-The initial success of the neural network surrogate model in detachment control motivates and corraborates similar studies, simulations, and training of other models for providing fast estimates of plasma parameters, for quick decision making in control room during experiments, as well as, for potential use in other control systems where important plasma properties are often not accessible directly.
-In fact, neural network based control system approach has already been demonstrated in magnetic shape control\cite{Degrave_2022_Nature}.
+The initial success of the neural network surrogate model in detachment control motivates and corroborates similar studies, simulations, and training of other models for providing fast estimates of plasma parameters, for quick decision-making in the control room during experiments, as well as, for potential use in other control systems where important plasma properties are often not accessible directly.
+A neural network based control system approach has already been demonstrated in magnetic shape control\cite{Degrave_2022_Nature}.
 For \ac{SOL} plasma predictions, machine learning model based on Hermes-3\cite{Dudson_2024_CPC} simulations of MAST-U\cite{Holt_2024_NF} and neural partial differential equation solver for TCV\cite{Poels_2023_NF} have been reported recently and are under further development.
 
-Another major focus of future experiments would be to use nobel gases in detachment control as N$_2$ while being optimum in cooling the SOL plasma is not allowed in burning plasma devices due to formation of tritiated ammonia that poses radiactive dangers.
+Another major focus of future experiments would be to use noble gases in detachment control as N$_2$ while being optimum in cooling the SOL plasma is not allowed in burning plasma devices due to the formation of tritiated ammonia that poses radioactive dangers.
 We are in the process of testing Ne and Ar as alternate cooling gases.
 In the medium-sized tokamaks such as KSTAR though, the effect of Ne has been hard to observe as small gas puffs do not actuate enough on the \ac{SOL} plasma but if the gas puffing is increased, we suddenly observe disruption due to too much cooling inside the separatrix.
 More widely, there has been recent interest in using pellets for impurity injection for detachment control to reduce the large lag time and response time associated with gas puffing.
-Another alternative is dropping the impurity in the form of solid powder, such as Boron, although the investigation on it's use for this purpose is still in preliminary phase and poses additional challenges in terms of long lag time due to free fall and accumulation of unused powder in the device.
+Another alternative is dropping the impurity in the form of solid powder, such as Boron.
+However, the investigation on its use for this purpose is still in a preliminary phase and poses additional challenges in terms of long lag time due to free fall and accumulation of unused powder in the device.
