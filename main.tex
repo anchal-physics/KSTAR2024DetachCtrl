@@ -1,29 +1,13 @@
-\documentclass[final,5p,times]{elsarticle}  % Uncomment for final style formatting
-%\documentclass[review,times]{elsarticle}  % Uncomment for review/manuscript style formatting
+\documentclass[10pt]{iopart}
+
+\bibliographystyle{iopart-num.bst}
 
 \usepackage{graphicx} % Required for inserting images
 \usepackage{lineno,hyperref}
-\usepackage{diagbox}
-\usepackage{xcolor}
+% Recoloring links for figures and citations makes the draft easier to read than having the colored boxes around things. Won't matter in the final; the published version always is cleaned up. But this is nice for the manuscript.
+\hypersetup{colorlinks,linkcolor={red!50!black},citecolor={green!50!black}, urlcolor={blue!50!black}}
 \modulolinenumbers[5]
-
-\journal{}
-
-% \bibliographystyle{elsarticle-num}  %% `Elsevier LaTeX' style
-% \bibliographystyle{elsarticle-num_etal}  % author lists shortened
-% \bibliographystyle{elsarticle-num_etal_no_doi}  % author lists shortened and DOI hidden
-\bibliographystyle{elsarticle-num_etal_title_no_extra_url.bst} % first author et al, title with link, no extra url
-
-\usepackage{dcolumn}% Align table columns on decimal point
-\usepackage{bm}% bold math
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{mathptmx}
-\usepackage{mathtools}
-\usepackage{etoolbox}
-\usepackage{hyperref}
-\usepackage{textcomp}
+\usepackage{xcolor}
 
 \usepackage{acro}
 \input{acronyms}
@@ -37,48 +21,42 @@
 
 \newcommand{\Afrac}{A$_{frac}$\ }
 
-% Recoloring links for figures and citations makes the draft easier to read than having the colored boxes around things. Won't matter in the final; the published version always is cleaned up. But this is nice for the manuscript.
-\hypersetup{colorlinks,linkcolor={red!50!black},citecolor={green!50!black}, urlcolor={blue!50!black}}
-
 \input{institutions}
 
 \begin{document}
 
 \title{Detachment control in KSTAR with Tungsten divertor}
-\author[ORAU]{Anchal Gupta\corref{mycorrespondingauthor}}
-\cortext[mycorrespondingauthor]{Corresponding author}
-\ead{guptaa@fusion.gat.com}
 
-\author[GA]{David Eldon}
+% IOPART
+\author{
+    Anchal Gupta$^a$\footnote{Corresponding author: guptaa@fusion.gat.com},
+    David Eldon$^b$, 
+    Eunnam Bang$^c$, 
+    KyuBeen Kwon$^a$, 
+    Hyungho Lee$^c$, 
+    Anthony Leonard$^b$, 
+    Junghoo Hwang$^c$, 
+    Xueqiao Xu$^d$, 
+    Menglong Zhao$^d$, 
+    Ben Zhu$^d$
+}
 
-\author[KFE]{Eunnam Bang}
-
-\author[ORAU]{KyuBeen Kwon}
-
-\author[KFE]{Hyungho Lee}
-
-\author[GA]{Anthony Leonard}
-
-\author[KFE]{Junghoo Hwang}
-
-\author[LLNL]{Xueqiao Xu}
-
-\author[LLNL]{Menglong Zhao}
-
-\author[LLNL]{Ben Zhu}
-
-\address[ORAU]{\ORAU}
-\address[GA]{\GA}
-\address[KFE]{\KFE}
-\address[LLNL]{\LLNL}
+\address{$^a$\ORAU}
+\address{$^b$\GA}
+\address{$^c$\KFE}
+\address{$^d$\LLNL}
 
 \date{\today}
 
 \input{abstract}
 
-\acresetall  % Reset acronyms after the abstract. This has unexpected behavior for acronyms that aren't used later.
+\submitto{\PPCF}
 
 \maketitle
+
+\ioptwocol
+
+\acresetall  % Reset acronyms after the abstract. This has unexpected behavior for acronyms that aren't used later.
 
 \input{sections/introduction}
 
