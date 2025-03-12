@@ -13,22 +13,23 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          cache: 'pip'
+      - run: pip install argparse 
+      - name: Create flat file structure for submission
+        run: |
+          python code/create_submission_files.py main.tex ./sub -x iopart.cls iopart-num.bst iopart10.clo refs.bib
       - name: Compile LaTeX document
         # Using https://github.com/xu-cheng/latex-action
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: ./sub/main.tex
           work_in_root_file_dir: True
-        # Change filename above if different.
-        # Use following to compile multiple latex files
-        # with:
-        #   root_file: |
-        #     file1.tex
-        #     file2.tex
       - name: Create published directory
         run: |
           mkdir ./public
-          cp main.pdf ./public/
+          cp ./sub/main.pdf ./public/
         # Add more files above to publish them if required.
       - name: Upload latest compiled output to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
