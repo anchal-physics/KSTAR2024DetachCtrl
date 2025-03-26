@@ -19,16 +19,14 @@ The data from the first system identification shot \#35853 is shown in Fig.\ref{
 In this shot, we puffed in N$_2$ gas in steps of 1.0 V, 2.5V, and 4.0 V with puff duration of 1.5s each.
 A corresponding response was seen in \Afrac but with a delay.
 We later confirmed from post-shot EFIT data that the strike point was indeed within the real-time Langmuir Probe array and thus our \Afrac calculation was valid.
-We fitted the measured data with a simple first-order plant model of gain K, time constant $\tau$, and time delay $L$ given by:
-\textcolor{red}{This is just FOPDT like was used before? You might mention that this is the frequency space representation of the same FOPDT model that was used previously and cite past work where FOPDT was used for sys ID, like my ppcf 2022. Let them know this part didn't really change too much.}
+We fitted the measured data with a simple first-order plant model (same as first order plus dead time\cite{Eldon_2022_PPCF}) of gain K, time constant $\tau$, and time delay $L$ given by (in Laplace domain):
 
 \begin{equation}
  G(s) = \frac{K}{\tau s + 1}e^{-L s}
 \label{eq:sysid}
 \end{equation}
 
-\textcolor{red}{define G and s}
-
+where $s$ is complex frequency variable in Laplace domain and $G(s)$ is the transfer function of the plant model.
 The fit resulted in an identified model with \AfracK, \AfracTau, and \AfracL.
 The fit is shown in Fig.\ref{fig:sysid_afrac}b.
 Note that only the part of the time series data that was used in fit is shown for the fitted curve.
@@ -79,8 +77,6 @@ The controller gains were chosen by visualizing \ac{CLTF} of the system with cho
 The resulting controller settings were: \SMKp, \SMTi, and \SMstau{} creating controller given by Eq.\ref{eq:PI}.
 Here, we estimated to achieve a \ac{UGF} of \SMUGF, phase margin of \SMPhaseMargin, and delay margin of \SMDelayMargin.
 This controller was also very aggressive, but we decided to go ahead with this controller choice given the limitations of the system identification fit and lack of time for further analysis in between the allotted run time of our experiment.
+We understand that the system identification procedure is fitting a more complex and probably non-linear model with a simple linear model, and thus the above mentioned controller tuning technique is at best a good way to come up with an intial controller that can be adjusted better after the first closed loop test
 
 \textcolor{red}{Some notes to possibly include in discussion later: the sys ID for the two systems has pretty different times. DivControlNN is basically a density measurement plus a transformation, and core average density has additional transport timescales that should slow it down relative to a purely SOL response like seen in Isatmeasured. Afrac is a mix of both SOL and core timescales. So it makes sense if DivControlNN is slower, right? Not trusting this in the short time between shots might've gotten us in trouble when picking gains to go with DivCotnrolNN.}
-
-
-\textcolor{red}{What you can also discuss somewhere (maybe here, maybe in discussion later) is that these controller tunings all are implicitly linearizing what we know to be a complicated and nonlinear system, and that, plus the presence of noise, means the probability of actual performance deviating from ideal predictions is pretty high and ad-hoc tuning adjustments after seeing the first closed loop test are common. So it was reasonable to try something to get more information; the first closed loop control test was a diagnostic.}
