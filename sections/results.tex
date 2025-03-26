@@ -3,6 +3,8 @@
 
 \input{figures/DetCtrl_2D_36161}
 
+\input{figures/SM_inputs_36161}
+
 \input{figures/Prad_2D}
 
 Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments.
@@ -35,9 +37,9 @@ This would have reduced $P_{SOL}$ and started to starve the divertor of power, d
 There is no surprise with the fact that setting target values for an uncalibrated output is not always deterministic and would cause issues as we faced.
 
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
-The impurity fraction calculation as mentioned in \ref{sec:control_variables} malfunctioned and sent a constant zero input to the model.
+The impurity fraction calculation as mentioned in \ref{sec:control_variables} malfunctioned and sent a constant zero input to the model (Fig.\ref{fig:SM_inputs_36161}e).
 Thus the model was unable to respond to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density and plasma current as realtime inputs.
-\textcolor{red}{As mentioned earlier, I think this should be brought up during the setup section so that we describe what we actually set up, not just what we intended to set up.}
+% \textcolor{red}{As mentioned earlier, I think this should be brought up during the setup section so that we describe what we actually set up, not just what we intended to set up.}
 In the past it has been seen that deuterium alone is sufficient to attain partial detachment\cite{Loarte_1998_NF, Eldon_2017_NF}.
 \textcolor{red}{No, not deuterium alone. Deuterium \emph{puffing} alone can do it, if there's a carbon wall to sputter to make a carbon source to go with the deuterium puff. KSTAR still has a carbon main wall that could do it. Also, $P_{rad}=n_e n_Z L_Z(T_e)$, so changing $n_e$ when you have some background impurity will do it. So yes, puffing deuterium in the presence of some fixed impurity population will drive detachment, even if the D2 doesn't trigger any additional sputtering related impurity influx. The ELMs will have knocked carbon off the main chamber wall. Then increasing deuterium density in the divertor will increase $n_e$ and therefore $P_{rad}$. Be precise about these things. The results you quoted were from carbon-walled devices. Not for this paper per se but for fun, check ASDEX Upgrade results to see if detachment can be achieved with D2 only puffing in full tungsten.}
 This might be the case with shot \#36161, that the model inference with zero impurity fraction input still reported a decrease in estimated heatflux as the electron density input increased with N$_2$ puffing.
