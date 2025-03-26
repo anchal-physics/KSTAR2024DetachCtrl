@@ -1,21 +1,27 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Burning plasma tokamaks such as ITER\cite{Holtkamp_2007_FED}, SPARC\cite{Creely_2020_JPP}, and the various DEMO concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target.
+Burning plasma tokamaks such as ITER\cite{Holtkamp_2007_FED}, SPARC\cite{Creely_2020_JPP}, and the various DEMO\cite{} and \ac{FPP}\cite{} concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target.
+% DEMO: could try something like https://doi.org/10.1016/j.fusengdes.2014.01.070 as an example
+% FPP example: 10.1088/1741-4326/abe4af
 As part of the very hot core plasma escapes the magnetic confinement within the last closed flux surface, the hot ions rapidly travel along the open field lines in \ac{SOL} region towards the divertor targets.
-To withstand the high heat flux, the divertor target plates are planned to be made out of tungsten which has high strength and the highest melting point of any metal.
+To withstand the high heat flux, the divertor target plates are planned to be made out of tungsten, which has a high melting point, good resilience against erosion by the plasma, and relatively low tritium retention compared to other well-studied materials like carbon.
 However, tungsten being a very high-Z material poses contamination challenges for the core plasma and it is important to develop operation strategies that limit the tungsten sputtering, especially in the divertor region where hot plasma interacts with the tungsten surface in a very narrow region of the order of a few mm\cite{Eich_2013_NF}.
-Thus, experimental reactors such as KSTAR are in the process of upgrading their divertor and vessel walls to tungsten to design control systems and perform plasma studies in the presence of tungsten contamination.
+Thus, experimental reactors such as KSTAR are in the process of changing their divertor and main chamber walls from carbon to tungsten to facilitate study of plasma scenarios, operations, and control in the presence of a reactor-relevant wall.
 
 It is estimated that for steady-state operation, the constant heat flux reaching the divertor plates has to be below 10-15 MW/m$^2$\cite{Pitts_2019_NME} to avoid surface melting and structural damage to the divertor plates.
-Additionally, the electron temperature at the target plate must be below 8 eV\cite{Brezinsek_2019_NF} to avoid sputtering of tungsten and subsequent contamination of the core plasma.
+Additionally, the electron temperature at the target plate must be below the tungsten sputtering threshold, which is 8 eV\cite{Brezinsek_2019_NF} for sputtering by deuterium but lower for heavier ions, to minimize contamination of the core plasma.
 The heat flux reaching the divertor is typically reduced by puffing in gas in the \ac{SOL} region to dissipate energy and momentum from the exhaust plasma through ionization, charge exchange, and radiation.
 As the puffed gas neutrals travel toward the core plasma, they radiate energy based on local electron temperature and density.
-At higher temperatures, more and more electrons get stripped away from the neutral atoms and the radiation reduces and the main dissipation mechanism becomes charge exchange and ionization.
+%At higher temperatures, more and more electrons get stripped away from the neutral atoms and the radiation reduces and the main dissipation mechanism becomes charge exchange and ionization.%No... there just isn't much dissipation from deuterium in the core. There's no charge exchange in there except with neutral beams, but those neutrals have even higher energy than the plasma so they heat instead of cooling.
+Hydrogenic fuel and helium exhaust atoms are ionized at low temperatures in the \ac{SOL} and divertor, and thus offer little radiative cooling except at the edges where the plasma has already cooled.
 Thus for effective and fast cooling, impurity gases such as nitrogen, neon, and argon are puffed which can dissipate heat through radiation farther away from the divertor.
-In the presence of such radiative dissipation, the plasma reaching the divertor reduces, effectively reducing the total ion flux which impinges on the divertor.
-This phenomenon is known as detachment onset as the wetted surface by plasma is reduced.
-When only part of the surface is wetted, the plasma is said to be partially detached, while if the ion flux is almost completely stopped with higher neutral gas pressure, it is said to be fully detached.
+In the presence of such radiative dissipation, the heat load conducted by the plasma to the divertor reduces.
+Additionally, high density (facilitated both by adding gas and by cooling the plasma at $\approx$constant pressure) dissipates momentum and reduces the total ion flux which impinges on the divertor.
+When these dissipation process become significant, recombination occurs and the divertor begins to be shielded from the plasma by a population of neutrals: the primary plasma-neutral interaction zone \emph{detaches} from the solid target plate.
+%This phenomenon is known as detachment onset as the wetted surface by plasma is reduced.
+When only part of the surface is detached, the plasma is said to be partially detached, while if the ion flux is almost completely stopped with higher neutral gas pressure, it is said to be fully detached. 
+\textcolor{red}{Is this needed at this stage in the intro? Maybe, but I'd have to keep reading to see.}
 
 It is important though to keep the amount of impurity gases injected into the vessel to a minimum as higher gas injection eventually leads to more impurity reaching in the pedestal region of the plasma.
 This can lead to rapid cooling which can collapse H-mode and could also lead to disruption of the plasma confinement.
