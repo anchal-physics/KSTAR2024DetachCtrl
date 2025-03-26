@@ -32,8 +32,11 @@ The horizontal axis in this figure has been referenced from the EFIT reported \a
 Thus, this figure shows the spread of the ion saturation current profile across the strike point.
 Here, we see that the strike point is closer to OD8 and OD9 with a peak ion saturation current value of roughly 0.2~A at the strike point position.
 We estimate the width of the ion saturation current profile at half the maximum value referenced to the baseline value of 0.05~A measured by far away probes, giving FWHM$\gtrsim$16~mm.
-This ensures that the Langmuir probe array as shown in Fig.\ref{fig:ref_shot} would always have at least one probe that can confidently measure the ion saturation current for the strike point when the strike point is within the closely placed probes, OD8, OD9, and OD11.
-\textcolor{red}{You should quote the probe spacing to go with 16~mm FWHM. Also, if the probe spacing were also about 16~mm, you only ensure that your max error is no more than 50\%. So be careful about this confidence statement. It seems that significant underestimates could still occur. Even 20\% could be impactful! We are programming Afrac trajectories where the difference between 0.4 and 0.3 matters. Okay, that's 25\%, but still.}
+This ensures that when the strike point is within the closely placed probes, OD8, OD9, and OD11 (Fig.\ref{fig:ref_shot}), at least one probe can measure the ion saturation current while being within the peak region of the strike point.
+We used the maximum value measured among the probe array to calculate \Afrac and since these probes are 12.5~mm apart, it means that the maximum deviation from the actual peak value would be $\lesssim$35\%.
+Assuming that the strike point stays for equal amount of time in any location between the probe array (uniformly distributed, this can be further corraborated by noticing the motion of strike point in the figures in later sections), the mean error in peak value would be about 13\% while median error would be about 10\% assuming a gaussian profile with 16~mm FWHM.
+This estimation in turn sets goals for a potential future strike point controller, to bound the strike point movement within 6.25~mm of the probe location to achieve above mentioned uncertainties.
+If such a strike point controller can keep the strike point motion within 2.35~mm, the mean error would go below 2\% which would already be better than the other sources of error in the ion saturation current measurement.
 
 Langmuir probes would not be able to survive high heat flux in burning plasma future reactors.
 In general, such reactors would be severely limited in the number of realtime sensors available for control systems because of high neutron fluence and heat flux in vacuum vessels, and thus alternate control variables need to be searched for.
@@ -51,8 +54,7 @@ During inference operation, the MLP model first maps the inputs to the latent sp
 While Python is the industry choice for developing and training such models, it can not be used for real-time inference purposes such as our use case.
 We converted the Python model into a pure C code using a keras2c\cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
 The generated C code runs an inference operation in about 160 $\mu$s on Intel\textsuperscript{\textregistered} Core\textsuperscript{TM} i7-6600U CPU @ 2.60GHz while we saw speed up of upto 18 $\mu$s per inference on Apple\textsuperscript{\textregistered} M2\textsuperscript{TM} Pro.
-The real-time PCS in KSTAR runs its divertor control categories in a 5 $\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1 ms clock-cycle CPU ensuring enough runtime for it along with other processes in that CPU.
-\textcolor{red}{Please double check KSTAR clock cycle; I thought it was 50~$\mu$s, not 5.}
+The real-time PCS in KSTAR runs its divertor control categories in a 50 $\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1 ms clock-cycle CPU ensuring enough runtime for it along with other processes in that CPU.
 This was still more than sufficient for our control purposes which anyway can not control faster than a few 10s of Hz due to system response time and gas actuation speed.
 
 This preliminary model, however, has been trained on 2D UEDGE simulations of KSTAR with carbon divertor and carbon as the sole impurity species.
@@ -60,7 +62,9 @@ So it does not reflect the same Tungsten divertor system in which it was tested.
 There were several other limitations to the realtime input provided to the model.
 There was no reliable input for impurity fraction in plasma and we created an ad-hoc gas accumulation model which estimated impurity fraction by taking the ratio of total puffed impurity with total puffed Deuterium gas with estimated decay rates to model the effect of pumping and wall adsorption.
 Additionally at KSTAR, the total input power from NBI and ECH sources is not completely available in realtime PCS and we had to input a feedforward signal matching the programmed rate of some sources that got summed with the other sources whose power was available in realtime.
+Such feedforward programming is vulnerable to changes in actal power delivered during the shot including timing mismatch of on/off commands of NBI sources as well as power drop out when a source fails during the shot.
+The ohmic power contribution is also prone to errors as a simple production $P_{ohm} \approx I_p \cdot V_{loop}$ is used in realtime estimate which assumes that all $I_p$ is inductively driven and ignores current drive due to other sources.
 Finally, the diffusion coefficient scaling factor was set to 1.0 for lack of any better realtime information on it.
 Despite these limitations, we attempted to use this model as a preliminary test for using such a surrogate model in real time and identify major obstacles before testing an improved and more relevant version in the future.
-\textcolor{red}{Maybe mention here that the impurity estimator wasn't connected properly for these experiments/it malfunctioned?}
-\textcolor{red}{Consider elaborating on input power. $P_{ohm} \approx I_p \cdot V_{loop}$, which doesn't match more refined estimates for ohmic power. Probably because this simple approximation assumes that all of Ip is inductively driven. PNBI comes from beam on/off command, programmed beam voltage, and beam power vs voltage lookup table. Discrepancies between actual on/off and requested on off are not detected (bad). ECH is purely a feedforward waveform based on what the ech group says they're programming. This is better than the 0 it was before (2022 ppcf paper), but prone to errors keeping it updated and won't detect sources not firing when requested (like nbi).}
+% DE comment: \textcolor{red}{Maybe mention here that the impurity estimator wasn't connected properly for these experiments/it malfunctioned?}
+% Response: I've mentioned it later in results section.
