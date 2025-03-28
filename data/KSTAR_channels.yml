@@ -270,6 +270,7 @@ trees:
 
       # Control
     - DVTSMQOD          # Set target on outer divertor heat flux
+    - DVIIOVRRDE
 
     # Core parameters
     - EFSWMHD           # Stored energy
