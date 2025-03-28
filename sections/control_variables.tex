@@ -61,10 +61,10 @@ This preliminary model, however, has been trained on 2D UEDGE simulations of KST
 So it does not reflect the same Tungsten divertor system in which it was tested.
 There were several other limitations to the realtime input provided to the model.
 There was no reliable input for impurity fraction in plasma and we created an ad-hoc gas accumulation model which estimated impurity fraction by taking the ratio of total puffed impurity with total puffed Deuterium gas with estimated decay rates to model the effect of pumping and wall adsorption.
+It turned out that even this estimator did not work correctly during the shots and we discuss this more in Sec.\ref{sec:sysid} later.
 Additionally at KSTAR, the total input power from NBI and ECH sources is not completely available in realtime PCS and we had to input a feedforward signal matching the programmed rate of some sources that got summed with the other sources whose power was available in realtime.
 Such feedforward programming is vulnerable to changes in actal power delivered during the shot including timing mismatch of on/off commands of NBI sources as well as power drop out when a source fails during the shot.
 The ohmic power contribution is also prone to errors as a simple production $P_{ohm} \approx I_p \cdot V_{loop}$ is used in realtime estimate which assumes that all $I_p$ is inductively driven and ignores current drive due to other sources.
 Finally, the diffusion coefficient scaling factor was set to 1.0 for lack of any better realtime information on it.
 Despite these limitations, we attempted to use this model as a preliminary test for using such a surrogate model in real time and identify major obstacles before testing an improved and more relevant version in the future.
-% DE comment: \textcolor{red}{Maybe mention here that the impurity estimator wasn't connected properly for these experiments/it malfunctioned?}
-% Response: I've mentioned it later in results section.
+% DE comment: \textcolor{red}{Maybe mention here that the impurity estimator wasn't connected properly for these experiments/it malfunctioned?} Done
