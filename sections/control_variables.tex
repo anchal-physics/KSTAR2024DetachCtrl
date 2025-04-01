@@ -10,7 +10,7 @@ The plasma shaping steps commenced by 7~s and the shot was programmed for flat-t
 For heat flux control, N$_2$ gas puffing was used.
 The heat flux control variable was tested with several different inputs.
 
-First, we utilized previously developed \Afrac\cite{Eldon_2022_PPCF}, which is defined as the ratio of measured ion saturation current ($I_{sat, measured}$) to modeled (using 2PM\cite{Leonard_2018_PPCF}) ion saturation current assuming fully attachment plasma ($I_{sat, attached}$).
+First, we utilized previously developed \ac{Afrac}\cite{Eldon_2022_PPCF}, which is defined as the ratio of measured ion saturation current ($I_{sat, measured}$) to modeled (using 2PM\cite{Leonard_2018_PPCF}) ion saturation current assuming fully attachment plasma ($I_{sat, attached}$).
 \begin{equation}
     A_{frac} = \frac{I_{sat, measured}}{I_{sat, attached}}
 \end{equation}
@@ -21,10 +21,10 @@ $I_{sat, attached}$ is estimated using Eq.(13) from \cite{Eldon_2022_PPCF}:
     I_{sat, attached} = C \langle n_{e} \rangle^2 q_{||, a}^{-\frac{3}{7}} 
 \end{equation}
 
-Here, $C$ is a calibration constant determined during reference shots so that \Afrac is 1.0 when \ac{SOL} plasma is fully attached to the divertor, $\langle n_{e} \rangle$ is the line-averaged electron density measured by interferometer and $q_{||, a}$ is the heat flux density at the outer mid-plane which is estimated using Eq.(15) from \cite{Eldon_2022_PPCF}.
+Here, $C$ is a calibration constant determined during reference shots so that \ac{Afrac} is 1.0 when \ac{SOL} plasma is fully attached to the divertor, $\langle n_{e} \rangle$ is the line-averaged electron density measured by interferometer and $q_{||, a}$ is the heat flux density at the outer mid-plane which is estimated using Eq.(15) from \cite{Eldon_2022_PPCF}.
 The calibration constant $C$ accounts for gaps in real-time data availability on KSTAR and may be removed if more measurements become available in the future.
-\Afrac is a convenient choice of control variable that is easily available in most tokamaks and allows for cross-comparison among machines.
-If the strike point on the divertor tile is fixed in position well enough by the shape control system, a single close-by Langmuir probe is enough to provide the ion saturation current required for $A_{frac}$ calculation.
+\ac{Afrac} is a convenient choice of control variable that is easily available in most tokamaks and allows for cross-comparison among machines.
+If the strike point on the divertor tile is fixed in position well enough by the shape control system, a single close-by Langmuir probe is enough to provide the ion saturation current required for \ac{Afrac} calculation.
 However, if the strike point control is not good enough, or if it is required to leave it as a free variable to allow for controlling other parameters in the shape control loop (as was the case in our experiments), then it is required to estimate the true ion saturation current through measurements made by a Langmuir probe array.
 In our experiments, we chose the peak value from the Langmuir probe array as the input to the ion saturation current at the strike point.
 Fig.\ref{fig:strike_point_width} plots the data from this Langmuir probe array for our reference shot.
@@ -33,7 +33,7 @@ Thus, this figure shows the spread of the ion saturation current profile across 
 Here, we see that the strike point is closer to OD8 and OD9 with a peak ion saturation current value of roughly 0.2~A at the strike point position.
 We estimate the width of the ion saturation current profile at half the maximum value referenced to the baseline value of 0.05~A measured by far away probes, giving FWHM$\gtrsim$16~mm.
 This ensures that when the strike point is within the closely placed probes, OD8, OD9, and OD11 (Fig.\ref{fig:ref_shot}), at least one probe can measure the ion saturation current while being within the peak region of the strike point.
-We used the maximum value measured among the probe array to calculate \Afrac and since these probes are 12.5~mm apart, it means that the maximum deviation from the actual peak value would be $\lesssim$35\%.
+We used the maximum value measured among the probe array to calculate \ac{Afrac} and since these probes are 12.5~mm apart, it means that the maximum deviation from the actual peak value would be $\lesssim$35\%.
 Assuming that the strike point stays for equal amount of time in any location between the probe array (uniformly distributed, this can be further corraborated by noticing the motion of strike point in the figures in later sections), the mean error in peak value would be about 13\% while median error would be about 10\% assuming a gaussian profile with 16~mm FWHM.
 This estimation in turn sets goals for a potential future strike point controller, to bound the strike point movement within 6.25~mm of the probe location to achieve above mentioned uncertainties.
 If such a strike point controller can keep the strike point motion within 2.35~mm, the mean error would go below 2\% which would already be better than the other sources of error in the ion saturation current measurement.
