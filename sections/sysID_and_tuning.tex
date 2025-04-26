@@ -52,7 +52,7 @@ The \ac{CLTF} is then calculated by solving the loop algebra in the Laplace doma
 Because of the long delay, we chose to not use a derivative gain.
 The goal of tuning was to push \ac{UGF} as high as possible (\AfracUGF) while keeping a reasonable phase margin (\AfracPhaseMargin) and margin for any additional actuation delay (\AfracDelayMargin).
 This resulted in controller settings as: \AfracKp, \AfracTi, and \Afracstau, where K$_p$ is proportional gain, T$_i$ is integral time, and $\tau_s$ is pre-smoothing time constant.
-This is still a very aggressive choice of controller, but provided that the system identification fit gave an unexpectedly high value of response time $\tau=1$s probably due to too much noise during small step inputs, we decided to go ahead with this controller choice.
+This is still a very aggressive choice of controller, but given that the system identification fit gave an unexpectedly high value of response time $\tau=1$s probably due to too much noise during small step inputs, we decided to go ahead with this controller choice.
 The resulting PI controller transfer function is given by:
 
 \begin{equation}
