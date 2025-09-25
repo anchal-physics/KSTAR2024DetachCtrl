@@ -21,7 +21,7 @@ The data from the first system identification shot \#35853 is shown in Fig.\ref{
 In this shot, we puffed in N$_2$ gas in steps of 1.0 V, 2.5V, and 4.0 V with puff duration of 1.5s each.
 A corresponding response was seen in \Afrac but with a delay.
 We later confirmed from post-shot EFIT data that the strike point was indeed within the real-time \ac{LP} array and thus our \Afrac calculation was valid.
-We fitted the measured data with a simple first-order plant model (same as first order plus dead time\cite{Eldon_2022_PPCF}) of gain K, time constant $\tau$, and time delay $L$ given by (in Laplace domain):
+We fitted the measured data with a simple first-order plant model (same as first order plus dead time\cite{Eldon_2022_PPCF}) of gain K, time constant $\tau$, and time delay $L$ given by Eq.\ref{eq:sysid} (in Laplace domain):
 
 \begin{equation}
  G(s) = \frac{K}{\tau s + 1}e^{-L s}
@@ -35,12 +35,13 @@ Note that only the part of the time series data that was used in fit is shown fo
 This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment.
 
 The controller gains were chosen by visualizing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}.
+Transfer functions describe relationships between system output and system input, and the \aq{CLTF} in particular describes how system output will relate to the control target. 
 Here, the frequency domain response of the plant model ($G(s)$) and PI controller ($T_{PI}(s)$) are plotted together.
 When connected in series, this forms the \ac{OLTF} of the system ($O(s) = G(s) T_{PI}(s)$).
 The frequency where \ac{OLTF} becomes 1.0 is called \ac{UGF}).
 Phase margin is defined as the additional phase delay at \ac{UGF} that would make the system unstable by taking it to -180$^\circ$.
 Additionally, we also define delay margin as the additional actuation delay that would make \ac{UGF} unstable.
-The \ac{CLTF} is then calculated by solving the loop algebra in the Laplace domain:
+The \ac{CLTF} is then calculated by solving the loop algebra in the Laplace domain as in Eq.\ref{eq:cltf}:
 
 \begin{equation}
  C(s) = \frac{G(s)}{1 + O(s)}
