@@ -35,7 +35,7 @@ Note that only the part of the time series data that was used in fit is shown fo
 This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment.
 
 The controller gains were chosen by visualizing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}.
-Transfer functions describe relationships between system output and system input, and the \aq{CLTF} in particular describes how system output will relate to the control target. 
+%Transfer functions describe relationships between system output and system input, and the \aq{CLTF} in particular describes how system output will relate to the control target.
 Here, the frequency domain response of the plant model ($G(s)$) and PI controller ($T_{PI}(s)$) are plotted together.
 When connected in series, this forms the \ac{OLTF} of the system ($O(s) = G(s) T_{PI}(s)$).
 The frequency where \ac{OLTF} becomes 1.0 is called \ac{UGF}).
@@ -54,7 +54,7 @@ Because of the long delay, we chose to not use a derivative gain.
 The goal of tuning was to push \ac{UGF} as high as possible (\AfracUGF) while keeping a reasonable phase margin (\AfracPhaseMargin) and margin for any additional actuation delay (\AfracDelayMargin).
 This resulted in controller settings as: \AfracKp, \AfracTi, and \Afracstau, where K$_p$ is proportional gain, T$_i$ is integral time, and $\tau_s$ is pre-smoothing time constant.
 This is still a very aggressive choice of controller, but given that the system identification fit gave an unexpectedly high value of response time $\tau=1$s probably due to too much noise during small step inputs, we decided to go ahead with this controller choice.
-The resulting PI controller transfer function is given by:
+The resulting PI controller transfer function is given by Eq.\ref{eq:PI}:
 
 \begin{equation}
  T_{PI}(s) = K_p \left( \frac{1}{T_i s} + 1\right) \frac{1}{1 + \tau_s s}
