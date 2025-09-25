@@ -1,12 +1,12 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Burning plasma tokamaks such as ITER\cite{Holtkamp_2007_FED}, SPARC\cite{Creely_2020_JPP}, and the various DEMO\cite{Federici_2014_FED} and \ac{FPP}\cite{Buttery_2021_NF} concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target.
+Burning plasma tokamaks such as ITER \cite{Holtkamp_2007_FED}, SPARC \cite{Creely_2020_JPP}, and the various DEMO \cite{Federici_2014_FED} and \ac{FPP} \cite{Buttery_2021_NF} concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target.
 Heat exhausted from the core plasma is rapidly conducted along the open field lines in the \ac{SOL} toward the divertor targets.
 To withstand the high heat flux, the divertor target plates are planned to be made out of tungsten, which has a high melting point, good resilience against erosion by the plasma, and relatively low tritium retention compared to other well-studied materials like carbon.
-Using ITER's tungsten divertor as an example, it is estimated that for steady-state operation, the constant heat flux reaching the divertor target has to be below 10-15 MW/m$^2$\cite{Pitts_2019_NME} to avoid surface melting and structural damage to the divertor plates.
-Additionally, tungsten being a very high-Z material poses contamination challenges for the core plasma and it is important to develop operation strategies that limit the tungsten sputtering, especially in the divertor region where hot plasma interacts with the tungsten surface in a very narrow region of the order of a few mm\cite{Eich_2013_NF}.
-Therefore, the electron temperature at the target plate must be below the tungsten sputtering threshold, which is 8 eV\cite{Brezinsek_2019_NF} for sputtering by deuterium but lower for heavier ions, to minimize contamination of the core plasma.
+Using ITER's tungsten divertor as an example, it is estimated that for steady-state operation, the constant heat flux reaching the divertor target has to be below 10-15 MW/m$^2$ \cite{Pitts_2019_NME} to avoid surface melting and structural damage to the divertor plates.
+Additionally, tungsten being a very high-Z material poses contamination challenges for the core plasma and it is important to develop operation strategies that limit the tungsten sputtering, especially in the divertor region where hot plasma interacts with the tungsten surface in a very narrow region of the order of a few mm \cite{Eich_2013_NF}.
+Therefore, the electron temperature at the target plate must be below the tungsten sputtering threshold, which is 8~eV \cite{Brezinsek_2019_NF} for sputtering by deuterium but lower for heavier ions, to minimize contamination of the core plasma.
 Thus, experimental reactors such as KSTAR are in the process of changing their divertor and main chamber walls from carbon to tungsten to facilitate study of plasma scenarios, operations, and control in the presence of a reactor-relevant wall.
 
 The heat flux reaching the divertor as well as $T_e$ near the target are both typically reduced by puffing in gas in the \ac{SOL} region to dissipate energy and momentum from the exhaust plasma through ionization, charge exchange, and radiation.
@@ -26,22 +26,22 @@ Thus, it is important to carefully control the amount of impurity injected to ke
 There are two key approaches to controlling divertor conditions.
 The first is to control the sources that determine the fluxes that reach the divertor, such as radiated power throughout the plasma, sometimes divided between the divertor volume, \ac{SOL}, and within the \ac{LCFS}.
 This has been successfully demonstrated in various machines:
-using the bolometer chords in divertor region in Alcator C-Mod\cite{Goetz_1999_POP}, JT-60U\cite{Asakura_2009_NF}, ASDEX Upgrade\cite{Kallenbach_2012_NF} and DIII-D\cite{Eldon_2019_NME},
-using AXUV diodes in EAST\cite{Wu_2018_NF},
-using VUV N VII line emission in JET\cite{Maddison_2011_NF}, and
-using C-III emission radiation front measured using MANTIS in TCV\cite{Ravensbergen_2021_NC}.
+using the bolometer chords in divertor region in Alcator C-Mod \cite{Goetz_1999_POP}, JT-60U \cite{Asakura_2009_NF}, ASDEX Upgrade \cite{Kallenbach_2012_NF} and DIII-D\cite{Eldon_2019_NME},
+using AXUV diodes in EAST \cite{Wu_2018_NF},
+using VUV N VII line emission in JET \cite{Maddison_2011_NF}, and
+using C-III emission radiation front measured using MANTIS in TCV \cite{Ravensbergen_2021_NC}.
 
 The second way is to directly control key parameters at the divertor target plates.
 This has been demonstrated widely in several machines as well:
-using divertor plate temperature measurements with surface thermocouples in Alcator C-Mod\cite{Brunner_2017_NF},
-using surface electron temperature measurements with triple-tip Langmuir probes in EAST\cite{Eldon_2021_NME} or $T_e$ very close to the surface with divertor Thomson scattering in DIII-D \cite{Eldon_2017_NF},
-using ion saturation current measurements from embedded Langmuir probes in JET\cite{Guillemaut_2017_PPCF}, EAST\cite{Yuan_2020_FED}, DIII-D\cite{Eldon_2021_NME}, and COMPASS\cite{Khodunov_2021_PPCF}.
-In KSTAR, the ion saturation current measurements along with core electron density, injected power, and local magnetic field were used to calculate a derived control variable, \ac{Afrac}, which was used to control the detachment\cite{Eldon_2022_PPCF}.
+using divertor plate temperature measurements with surface thermocouples in Alcator C-Mod \cite{Brunner_2017_NF},
+using surface electron temperature measurements with triple-tip Langmuir probes in EAST \cite{Eldon_2021_NME} or $T_e$ very close to the surface with divertor Thomson scattering in DIII-D \cite{Eldon_2017_NF},
+using ion saturation current measurements from embedded Langmuir probes in JET \cite{Guillemaut_2017_PPCF}, EAST \cite{Yuan_2020_FED}, DIII-D \cite{Eldon_2021_NME}, and COMPASS \cite{Khodunov_2021_PPCF}.
+In KSTAR, the ion saturation current measurements along with core electron density, injected power, and local magnetic field were used to calculate a derived control variable, \ac{Afrac}, which was used to control the detachment \cite{Eldon_2022_PPCF}.
 This technique has the added benefit that the rollover ion saturation current does not need to be calculated or estimated prior to the shot and thus this technique has the potential for wider applicability in different scenarios and other machines.
 In this work, we have re-used this technique in our experiments at KSTAR with a tungsten divertor to test the robustness of this control variable in the presence of high-Z contamination from tungsten.
 
-In this work, we have also tested a new technique that uses a machine-learning-based surrogate model, DivControlNN\cite{Zhu_2025_InPrep}.
-This model integrates measurements from several realtime inputs to run through a large database of 2D UEDGE\cite{Rognlien_1999_PP} simulations and provide a realtime estimate of the heat flux reaching the divertor plates along with several other key plasma parameters upstream in \ac{SOL} and at the two divertors.
+In this work, we have also tested a new technique that uses a machine-learning-based surrogate model, DivControlNN \cite{zhu_2025_pop}.
+This model integrates measurements from several realtime inputs to run through a large database of 2D UEDGE \cite{Rognlien_1999_PP} simulations and provide a realtime estimate of the heat flux reaching the divertor plates along with several other key plasma parameters upstream in \ac{SOL} and at the two divertors.
 We tested a prototype of this model with training and input limitations in KSTAR and demonstrated detachment control for the first time using such a surrogate model.
 This paves the way for utilizing such models in future reactors that will have a very limited set of sensors available for control systems.
 
