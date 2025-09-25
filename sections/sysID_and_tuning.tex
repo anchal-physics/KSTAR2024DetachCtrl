@@ -20,7 +20,7 @@ Before we attempted detachment control experiments, we took two system identific
 The data from the first system identification shot \#35853 is shown in Fig.\ref{fig:sysid_afrac}.
 In this shot, we puffed in N$_2$ gas in steps of 1.0 V, 2.5V, and 4.0 V with puff duration of 1.5s each.
 A corresponding response was seen in \Afrac but with a delay.
-We later confirmed from post-shot EFIT data that the strike point was indeed within the real-time Langmuir Probe array and thus our \Afrac calculation was valid.
+We later confirmed from post-shot EFIT data that the strike point was indeed within the real-time \ac{LP} array and thus our \Afrac calculation was valid.
 We fitted the measured data with a simple first-order plant model (same as first order plus dead time\cite{Eldon_2022_PPCF}) of gain K, time constant $\tau$, and time delay $L$ given by (in Laplace domain):
 
 \begin{equation}
@@ -64,7 +64,7 @@ Unfortunately, the surrogate model was not configured properly in this system id
 The data from this second system identification shot is shown in Fig.\ref{fig:sysid_sm}.
 Despite all the limitations of DivControlNN as listed earlier, we still saw a good correlation in the DivControlNN heat flux output at the outer divertor with the injected gas as seen in Fig.\ref{fig:sysid_sm}b (the spikes down in heat flux correspond to brief interruptions in NBI power; see Fig.\ref{fig:SM_inputs_35854}).
 This is validated by estimated \Afrac in Fig.\ref{fig:sysid_sm}d showing an increase in detachment level as the predicted output heat flux decreases.
-The strike point was maintained within the realtime Langmuir probe array (Fig.\ref{fig:sysid_sm}a) validating the output of \Afrac{}.
+The strike point was maintained within the realtime \ac{LP}  array (Fig.\ref{fig:sysid_sm}a) validating the output of \Afrac{}.
 Note that we have not yet calibrated the DivControlNN model with any experimental data, so we treated the output as arbitrary units and later attempted to control the detachment with estimated changes to this arbitrary output.
 
 Fig.\ref{fig:SM_inputs_35854} shows the time-varying inputs to DivControlNN along with the heatflux output from the model.
