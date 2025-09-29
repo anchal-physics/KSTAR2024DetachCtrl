@@ -10,6 +10,9 @@ First, we used \Afrac controller in KSTAR \#35857 with results shown in Fig.\ref
 As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the realtime Langmuir probe array, thus the obtained \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
 Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
 It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value.
+There are signs of small decaying oscillations which is a characteristic of a PID loop tuned for faster-than-critical response to reach the target quickly while causing minor decaying oscillations.
+While the PID loop can be made less aggressive to critically approach the target, this generally comes at the cost of approximately half the speed with which it is possible to aggressively approach the target while remaining stable.
+Here we chose to demonstrate an aggressive strategy but a slower strategy without any oscillations is also possible.
 From 8s to 10s, it can be seen that the injected N$_2$ was just enough to ramp down the measured \Afrac with the same slope.
 The accumulated offset from the target eventually caused the integral term to send a brief impulse of nitrogen near 9.8~s and then the controller further converged with the target value.
 For the rest of the shot, small nitrogen puffs were required to correct the drifting \Afrac and keep it on the target.
