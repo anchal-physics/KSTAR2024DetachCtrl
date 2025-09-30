@@ -58,7 +58,7 @@ The real-time PCS in KSTAR runs its divertor control categories in a 50 $\mu$s c
 This was still more than sufficient for our control purposes which anyway can not control faster than a few 10s of Hz due to system response time and gas actuation speed.
 
 This preliminary model, however, has been trained on 2D UEDGE simulations of KSTAR with carbon divertor and carbon as the sole impurity species.
-So the model does not exactly capture the environment with tungsten impurity from the tungsten divertor it was tested in, however the radiation loss profiles due to carbon and nitrogen (which was used in the test) are sufficiently similar to expect ballpark accuracy at the very least.
+So the model does not exactly capture the environment with tungsten impurity from the tungsten divertor it was tested in, however the radiation loss profiles due to carbon and nitrogen (which was used in the test) are sufficiently similar (see Fig.1 of \cite{kallenbach_2013_ppcf}) to expect ballpark accuracy at the very least.
 So it does not reflect the same Tungsten divertor system in which it was tested.
 There were several other limitations to the realtime input provided to the model.
 There was no reliable input for impurity fraction in plasma and we created an ad-hoc gas accumulation model which estimated impurity fraction by taking the ratio of total puffed impurity with total puffed Deuterium gas with estimated decay rates to model the effect of pumping and wall adsorption.
