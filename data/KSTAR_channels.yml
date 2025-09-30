@@ -195,6 +195,8 @@ trees:
 
     # Afrac Model Quantities
     - DVILMDQVER        # Switch for lambda_q estimation method (0=manual, other=scaling law)
+    - DVSMJSAT
+    - DVSMJSATF
     - DVSAJSAT          # Attached ion saturation current density model
     - DVSAJSATF         # Attached ion saturation current density model (low-pass filtered)
     - DVSLAMBDAQ        # SOL power width lambda_q at OMP from scaling law or manual input
