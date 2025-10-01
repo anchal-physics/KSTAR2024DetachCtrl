@@ -9,7 +9,7 @@ Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment 
 First, we used \Afrac{} controller in KSTAR \#35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
 As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the real-time Langmuir probe array, thus the obtained \Afrac{} signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
 Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
-It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value.
+It is also evident that the aggressive control strategy was reasonable in that it provided a quick response to the initial change in the target value.
 There are signs of small decaying oscillations which is a characteristic of a PID loop tuned for faster-than-critical response to reach the target quickly while causing minor decaying oscillations.
 While the PID loop can be made less aggressive to critically approach the target, this generally comes at the cost of approximately half the speed with which it is possible to aggressively approach the target while remaining stable.
 Here we chose to demonstrate an aggressive strategy but a slower strategy without any oscillations is also possible.
@@ -33,6 +33,7 @@ A stronger driver for the failure to reattach when the heat flux target was incr
 Clean walls are effective at pumping nitrogen as it sticks to them, but heavily saturated walls release nitrogen and can act as a source after gas flow is turned off.
 Even if the walls are only a weak or negligible source, they will be much less effective at particle removal and thus nitrogen inventory will not decrease quickly enough to follow a reattaching control target.
 Inefficient pumping compared to puffing is a known challenge to control that relies on gas as the primary actuator \cite{Eldon_2017_NF,eldon_2025_ppcf}.
+This type of nonlinear response also increases the risk of running an aggressive controller as periods of excess seeding may be difficult to recover from; tuning choices that could be preferable in other contexts are not necessarily the best for detachment control.
 \fixme{We may want to be more quantitative about power starvation if we can get calibrated pradcore.}
 \fixme{Check for changes in ELMs that might have increased tungsten influx to the core; this peaked on-axis radiation looks like tungsten. Detaching more deeply shouldn't increase tungsten sputtering, but messing with the pedestal could increase penetration of tungsten that's floating around the edge, anyway. Or reduce flushing of tungsten that penetrates.}
 % \textcolor{red}{Comment on hysteresis stemming from interaction between core and impurity seeding for divertor management? I'll write something if I can find the right words.}
