@@ -45,6 +45,8 @@ The employed version of DivControlNN is trained on approximately 70,000 2D UEDGE
 The training dataset scanned core electron density ($1.5 \times 10^{19} - 7.0 \times 10^{19}$ m$^{-3}$), plasma current ($600-800$ kA), total input power split evenly between ion and electron channels ($1-8$ MW), impurity fraction with respect to Deuterium density ($0-0.04$), and scaling of diffusion coefficient profile with a factor ($0.6 - 2$).
 The diffusion coefficient profile is assumed for a typical H-mode shot which can be scaled as an input to the model.
 This provided a widely applicable surrogate model that gives steady-state values of heat flux, ion saturation current, and electron temperature along the two divertors, electron density and temperature at the upstream point of the midplane, and total radiated power, power fraction radiated from divertor, and peak radiation power location in the poloidal cross-section of the device.
+Values are relative to local profiles (peaks) or relative to magnetic geometry (1D profiles could be extracted, or values at the separatrix), so minor deviations to the plasma boundary shape are likely to be minor sources of error.
+Even larger departures from the model plasma shape will not cause errors due to mismapping positions, only errors according to how sensitive plasma behavior is to the boundary shape.
 The model generates output within 20\% error from the 2D UEDGE output.
 
 DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
