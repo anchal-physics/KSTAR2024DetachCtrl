@@ -48,6 +48,8 @@ This could have resulted in the high controller gain that saturated the gas resp
 We are in the process of creating a new 2D UEDGE database of KSTAR with a tungsten divertor and considering multiple charged states of additional impurities such as nitrogen, neon, and argon.
 New models would be trained on the expanded database and acquired experimental data from this campaign, with the input of injected gas flow instead of impurity fraction to simplify the use case of these models.
 We would also work with the KSTAR team to improve PCS communication infrastructure so that accurate real-time values of injected power are available to our models.
+Accuracy would be further improved by removing core radiated power $P_{rad,core}$ from the power that is input from the core plasma to the UEDGE computation region.
+Omitting $P_{rad,core}$ is a more serious error when significant tungsten accumulates near the magnetic axis and radiates strongly there (as was seen in \ref{fig:prad_2d}c) and this should be included.
 
 The initial success of the neural network surrogate model in detachment control motivates and corroborates similar studies, simulations, and training of other models for providing fast estimates of plasma parameters, for quick decision-making in the control room during experiments, as well as, for potential use in other control systems where important plasma properties are often not accessible directly.
 A neural network based control system approach has already been demonstrated in magnetic shape control \cite{Degrave_2022_Nature}.
