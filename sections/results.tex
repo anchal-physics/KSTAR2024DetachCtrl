@@ -6,28 +6,30 @@
 \input{figures/Prad_2D}
 
 Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments.
-First, we used \Afrac controller in KSTAR \#35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
-As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the real-time Langmuir probe array, thus the obtained \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
+First, we used \Afrac{} controller in KSTAR \#35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
+As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the real-time Langmuir probe array, thus the obtained \Afrac{} signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
 Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
 It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value.
 There are signs of small decaying oscillations which is a characteristic of a PID loop tuned for faster-than-critical response to reach the target quickly while causing minor decaying oscillations.
 While the PID loop can be made less aggressive to critically approach the target, this generally comes at the cost of approximately half the speed with which it is possible to aggressively approach the target while remaining stable.
 Here we chose to demonstrate an aggressive strategy but a slower strategy without any oscillations is also possible.
-From 8s to 10s, it can be seen that the injected N$_2$ was just enough to ramp down the measured \Afrac with the same slope.
+From 8~s to 10~s, it can be seen that the injected N$_2$ was just enough to ramp down the measured \Afrac{} with the same slope.
 The accumulated offset from the target eventually caused the integral term to send a brief impulse of nitrogen near 9.8~s and then the controller further converged with the target value.
-For the rest of the shot, small nitrogen puffs were required to correct the drifting \Afrac and keep it on the target.
-The total radiated power from the plasma as measured by KSTAR \ac{IRVB} remained below 3.5 MW ($\approx$65\% of injected power) and as can be seen in Fig.\ref{fig:prad_2d}a (snapshot taken at around the time of maximum radiation), the majority of the radiation was coming from the divertor region and the core region was not losing power through radiation.
-This further validated, that \Afrac controller strategy first devised in Ref.\cite{Eldon_2022_PPCF} is a viable option for detachment control even with Tungsten divertor in KSTAR.
+For the rest of the shot, small nitrogen puffs were required to correct the drifting \Afrac{} and keep it on the target.
+The total radiated power from the plasma as measured by KSTAR \ac{IRVB} remained below 3.5~MW ($\approx$65\% of injected power) and as can be seen in Fig.\ref{fig:prad_2d}a (snapshot taken at around the time of maximum radiation), the majority of the radiation was coming from the divertor region and the core region was not losing power through radiation.
+\fixme{This statement needs backing; just looking at the heatmap isn't enough. We should have pradcore and praddiv traces to make such a statement. Also, the core literally is losing some power. Just maybe not as much? But the volume is so much bigger that even with lower radiation density, it could be significant.}
+This further validated, that \Afrac{} controller strategy first devised in Ref.\cite{Eldon_2022_PPCF} is a viable option for detachment control even with Tungsten divertor in KSTAR.
 
-Since \Afrac controller has been demonstrated in the past as well, we decided to utilize the remaining allotted runtime on KSTAR to test the DivControlNN prototype-based controller.
+Since \Afrac{} controller has been demonstrated in the past as well, we decided to utilize the remaining allotted runtime on KSTAR to test the DivControlNN prototype-based controller.
 Fig.\ref{fig:detctrl_sm} shows the results from shot \#36161 where we deployed this controller.
 An immediate issue was seen with DivControlNN output that the initial heat flux calculation had a different starting value than what we saw in reference shots and system identification shot \#35854 (this shot appeared in figures~\ref{fig:sysid_sm} and \ref{fig:SM_inputs_35854}).
-Because of this, when the controller turned on at 7.5s, the large error resulted in the railing of gas command output which caused too much N$_2$ injected into the system.
+Because of this, when the controller turned on at 7.5~s, the large error resulted in the railing of gas command output which caused too much N$_2$ injected into the system.
 While this quickly brought down the measured signal, it also resulted in an overshoot.
-In the next ramp-down of the target from 10.5s to 11.5s, more impurity was injected as we tuned an aggressive controller.
-It can be seen from \Afrac in Fig.\ref{fig:detctrl_sm}d that the system reached deep detachment by this point and the ion saturation current measurements (Fig.\ref{fig:detctrl_sm}a) became unreliable beyond 12~s.
-In post-analysis of IRVB inverted data as shown in Fig.\ref{fig:prad_2d}, we can see that the core started radiating a lot of power after the last railed impulse of gas input between 10.8~s to 12~s (Fig.\ref{fig:prad_2d}c), whereas \#36161 with DivControlNN heat flux control was similar to \#35857 with $A_{frac}$ control prior to that (Fig.\ref{fig:prad_2d}b vs Fig.\ref{fig:prad_2d}a).
+In the next ramp-down of the target from 10.5~s to 11.5~s, more impurity was injected as we tuned an aggressive controller.
+It can be seen from \Afrac{} in Fig.\ref{fig:detctrl_sm}d that the system reached deep detachment by this point and the ion saturation current measurements (Fig.\ref{fig:detctrl_sm}a) became unreliable beyond 12~s.
+In post-analysis of IRVB inverted data as shown in Fig.\ref{fig:prad_2d}, we can see that the core started radiating a lot of power after the last railed impulse of gas input between 10.8~s to 12~s (Fig.\ref{fig:prad_2d}c), whereas \#36161 with DivControlNN heat flux control was similar to \#35857 with \Afrac{} control prior to that (Fig.\ref{fig:prad_2d}b vs Fig.\ref{fig:prad_2d}a).
 This would have reduced $P_{SOL}$ (power entering SOL from core) and started to starve the divertor of power, driving or contributing to the failure to follow the rising heat flux target shown in Fig.\ref{fig:detctrl_sm}b between 13 and 15~s.
+\fixme{Check for changes in ELMs that might have increased tungsten influx to the core; this peaked on-axis radiation looks like tungsten. Detaching more deeply shouldn't increase tungsten sputtering, but messing with the pedestal could increase penetration of tungsten that's floating around the edge, anyway. Or reduce flushing of tungsten that penetrates.}
 % \textcolor{red}{Comment on hysteresis stemming from interaction between core and impurity seeding for divertor management? I'll write something if I can find the right words.}
 There is no surprise with the fact that setting target values for an uncalibrated output is not always deterministic and would cause issues as we faced.
 

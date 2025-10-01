@@ -46,7 +46,7 @@ The training dataset scanned core electron density ($1.5 \times 10^{19} - 7.0 \t
 The diffusion coefficient profile is assumed for a typical H-mode shot which can be scaled as an input to the model.
 This provided a widely applicable surrogate model that gives steady-state values of heat flux, ion saturation current, and electron temperature along the two divertors, electron density and temperature at the upstream point of the midplane, and total radiated power, power fraction radiated from divertor, and peak radiation power location in the poloidal cross-section of the device.
 Values are relative to local profiles (peaks) or relative to magnetic geometry (1D profiles could be extracted, or values at the separatrix), so minor deviations to the plasma boundary shape are likely to be minor sources of error.
-Even larger departures from the model plasma shape will not cause errors due to mismapping positions, only errors according to how sensitive plasma behavior is to the boundary shape.
+Even larger departures from the model plasma shape will not cause errors directly due to mis-mapping positions, although other plasma behaviors would be expected to have some sensitivity to boundary shape.
 The model generates output within 20\% error from the 2D UEDGE output.
 
 DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
@@ -54,10 +54,10 @@ The first is a multi-modal $\beta$-variational autoencoder \cite{Higgins_2017_IC
 The second stage is a multi-layer perceptron (MLP) model that maps the inputs of the 2D UEDGE simulations (which also form the inputs to the overall surrogate model).
 During inference operation, the MLP model first maps the inputs to the latent space and the decoder network from the autoencoder then decodes the latent space into useful outputs.
 While Python is the industry choice for developing and training such models, it can not be used for real-time inference purposes such as our use case.
-We converted the Python model into a pure C code using a keras2c \cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
-The generated C code runs an inference operation in about 160 $\mu$s on Intel\textsuperscript{\textregistered} Core\textsuperscript{TM} i7-6600U CPU @ 2.60GHz while we saw speed up of up to 18 $\mu$s per inference on Apple\textsuperscript{\textregistered} M2\textsuperscript{TM} Pro.
-The real-time PCS in KSTAR runs its divertor control categories in a 50 $\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1 ms clock-cycle CPU ensuring enough runtime for it along with other processes in that CPU.
-This was still more than sufficient for our control purposes which anyway can not control faster than a few 10s of Hz due to system response time and gas actuation speed.
+We converted the Python model into a pure C code using a \texttt{keras2c} \cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
+The generated C code runs an inference operation in about 160 $\mu$s on Intel\textsuperscript{\textregistered} Core\textsuperscript{TM} i7-6600U CPU @ 2.60GHz while we saw speed up of up to 18~$\mu$s per inference on Apple\textsuperscript{\textregistered} M2\textsuperscript{TM} Pro.
+The real-time PCS in KSTAR runs its divertor control categories in a 50~$\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1~ms clock-cycle CPU ensuring enough runtime for it along with other processes in that CPU.
+This was still more than sufficient for our control purposes which anyway cannot control faster than a few 10s of Hz due to system response time and gas actuation speed.
 
 This preliminary model, however, has been trained on 2D UEDGE simulations of KSTAR with carbon divertor and carbon as the sole impurity species.
 So the model does not exactly capture the environment with tungsten impurity from the tungsten divertor it was tested in, however the radiation loss profiles due to carbon and nitrogen (which was used in the test) are sufficiently similar (see Fig.1 of \cite{kallenbach_2013_ppcf}) to expect ballpark accuracy at the very least.
@@ -66,7 +66,8 @@ There were several other limitations to the real-time input provided to the mode
 There was no reliable input for impurity fraction in plasma and we created an ad-hoc gas accumulation model which estimated impurity fraction by taking the ratio of total puffed impurity with total puffed Deuterium gas with estimated decay rates to model the effect of pumping and wall adsorption.
 It turned out that even this estimator did not work correctly during the shots and we discuss this more in Sec.\ref{sec:sysid} later.
 Additionally at KSTAR, the total input power from NBI and ECH sources is not completely available in real-time PCS and we had to input a feedforward signal matching the programmed rate of some sources that got summed with the other sources whose power was available in real-time.
-Such feedforward programming is vulnerable to changes in actal power delivered during the shot including timing mismatch of on/off commands of NBI sources as well as power drop out when a source fails during the shot.
-The ohmic power contribution is also prone to errors as a simple production $P_{ohm} \approx I_p \cdot V_{loop}$ is used in real-time estimate which assumes that all $I_p$ is inductively driven and ignores current drive due to other sources.
+Such feedforward programming is vulnerable to changes in actual power delivered during the shot including timing mismatch of on/off commands of NBI sources as well as power drop out when a source fails during the shot.
+The error incurred by not capturing unplanned heating changes is mitigated by discharges suffering from these effects tending to disrupt.
+The ohmic power contribution is also prone to errors as a simple production $P_{ohm} \approx I_p \cdot V_{loop}$ is used in real-time which assumes that all $I_p$ is inductively driven and ignores current drive due to other sources; however, ohmic power is a small fraction of the total.
 Finally, the diffusion coefficient scaling factor was set to 1.0 for lack of any better real-time information on it.
 Despite these limitations, we attempted to use this model as a preliminary test for using such a surrogate model in real time and identify major obstacles before testing an improved and more relevant version in the future.
