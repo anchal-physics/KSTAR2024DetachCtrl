@@ -7,7 +7,7 @@
 
 Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments.
 First, we used \Afrac controller in KSTAR \#35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
-As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the realtime Langmuir probe array, thus the obtained \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
+As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the real-time Langmuir probe array, thus the obtained \Afrac signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
 Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
 It is also evident that the aggressive control strategy was good and did not result in any long sustained oscillations while providing a quick response to the changing target value.
 There are signs of small decaying oscillations which is a characteristic of a PID loop tuned for faster-than-critical response to reach the target quickly while causing minor decaying oscillations.
@@ -33,7 +33,7 @@ There is no surprise with the fact that setting target values for an uncalibrate
 
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
 The impurity fraction calculation as mentioned in Sec.\ref{sec:control_variables} malfunctioned and sent a constant zero input to the model (see Fig.\ref{fig:SM_inputs_35854}e).
-Thus the model was unable to respond directly to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density, input power, and plasma current as realtime inputs.
+Thus the model was unable to respond directly to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density, input power, and plasma current as real-time inputs.
 Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model-based controller for detachment control in future reactors.
 
 % In the past it has been seen that puffing deuterium is sufficient to attain partial detachment\cite{Loarte_1998_NF, Eldon_2017_NF} when the plasma facing wall is made of carbon.
@@ -41,7 +41,7 @@ Despite these limitations, this preliminary test sheds light on the potential of
 % Such intrinsic impurity population can drive detachment through increased electron density as radiated power due to impurity is given by $P_{rad}=n_e n_Z L_Z(T_e)$ where $n_e$ is electron density, $n_Z$ is ion density, and $L_Z(T_e)$ is the radiative loss function for the impurity ion.
 % Thus, in the presence of some intrinsic impurity
 % \textcolor{red}{No, not deuterium alone. Deuterium \emph{puffing} alone can do it, if there's a carbon wall to sputter to make a carbon source to go with the deuterium puff. KSTAR still has a carbon main wall that could do it. Also, $P_{rad}=n_e n_Z L_Z(T_e)$, so changing $n_e$ when you have some background impurity will do it. So yes, puffing deuterium in the presence of some fixed impurity population will drive detachment, even if the D2 doesn't trigger any additional sputtering related impurity influx. The ELMs will have knocked carbon off the main chamber wall. Then increasing deuterium density in the divertor will increase $n_e$ and therefore $P_{rad}$. Be precise about these things. The results you quoted were from carbon-walled devices. Not for this paper per se but for fun, check ASDEX Upgrade results to see if detachment can be achieved with D2 only puffing in full tungsten.}
-% This might be the case with shot \#36161, that the model inference with zero impurity fraction input still reported a decrease in estimated heatflux as the electron density input increased with N$_2$ puffing.
+% This might be the case with shot \#36161, that the model inference with zero impurity fraction input still reported a decrease in estimated heat flux as the electron density input increased with N$_2$ puffing.
 % % \textcolor{red}{Did they put background carbon in? Although the seeded impurity (neon I think in that version of DivControlNN) may have been 0, the intrinsic impurity might not have been.} No there was no intrinsic impurity in the sims
 % The only other changeable input, input power, mostly remained constant during flat top of the shot.
 % However, as the amount of total puffed N$_2$ increased, the pure deuterium plasma case from which the model must be infering the heat flux would deviate and thus the control is not very good beyond 11s.
