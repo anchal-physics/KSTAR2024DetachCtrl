@@ -49,6 +49,13 @@ Values are relative to local profiles (peaks) or relative to magnetic geometry (
 Even larger departures from the model plasma shape will not cause errors directly due to mis-mapping positions, although other plasma behaviors would be expected to have some sensitivity to boundary shape.
 The model generates output within 20\% error from the 2D UEDGE output.
 
+The model runs in the UEDGE database are all converged to steady state, yet we are operating a controller that deals with plasma dynamics.
+The reason we propose this is acceptable is because the model is being used to relate upstream conditions to divertor conditions, and the timescale of the SOL is very fast: we would expect most changes to the SOL to propagate at the ion acoustic speed $c_s$ and thus equilibrate much faster than any other timescale in the problem.
+For example, in deuterium plasma at 40~eV (half of the typical $\sim80$~eV separatrix $T_e$ estimate for mid-sized tokamaks like \mbox{DIII-D} and KSTAR \cite{stangeby_2015_nf}), $c_s=391$~km$\;$s$^{-1}$.
+For a 30~m connection length that might be reasonably found in the near SOL of KSTAR, communication between the midplane and divertor would take place on timescales of about 80~$\mu$s.
+This is twice as fast as the DivControlNN computation time, so modeling the SOL as steady state is not a significant source of error.
+There could be issues with the part of the UEDGE model that is within the separatrix, and with properly accounting time between power being injected into the core and it flowing into the UEDGE mesh, and treatment of these should be refined as development progresses.
+
 DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
 The first is a multi-modal $\beta$-variational autoencoder \cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on a 2D UEDGE database into a latent space representation.
 The second stage is a multi-layer perceptron (MLP) model that maps the inputs of the 2D UEDGE simulations (which also form the inputs to the overall surrogate model).
