@@ -10,7 +10,7 @@ The plasma shaping steps commenced by 7~s and the shot was programmed for flat-t
 For heat flux control, N$_2$ gas puffing was used.
 The heat flux control variable was tested with several different inputs.
 
-First, we utilized previously developed \ac{Afrac}\cite{Eldon_2022_PPCF}, which is defined as the ratio of measured ion saturation current ($I_{sat, measured}$) to modeled (using 2PM\cite{Leonard_2018_PPCF}) ion saturation current assuming fully attachment plasma ($I_{sat, attached}$).
+First, we utilized previously developed \ac{Afrac} \cite{Eldon_2022_PPCF}, which is defined as the ratio of measured ion saturation current ($I_{sat, measured}$) to modeled (using 2PM \cite{Leonard_2018_PPCF}) ion saturation current assuming fully attachment plasma ($I_{sat, attached}$).
 \begin{equation}
     A_{frac} = \frac{I_{sat, measured}}{I_{sat, attached}}
 \end{equation}
@@ -50,11 +50,11 @@ Even larger departures from the model plasma shape will not cause errors due to 
 The model generates output within 20\% error from the 2D UEDGE output.
 
 DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
-The first is a multi-modal $\beta$-variational autoencoder\cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on a 2D UEDGE database into a latent space representation.
+The first is a multi-modal $\beta$-variational autoencoder \cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on a 2D UEDGE database into a latent space representation.
 The second stage is a multi-layer perceptron (MLP) model that maps the inputs of the 2D UEDGE simulations (which also form the inputs to the overall surrogate model).
 During inference operation, the MLP model first maps the inputs to the latent space and the decoder network from the autoencoder then decodes the latent space into useful outputs.
 While Python is the industry choice for developing and training such models, it can not be used for real-time inference purposes such as our use case.
-We converted the Python model into a pure C code using a keras2c\cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
+We converted the Python model into a pure C code using a keras2c \cite{keras2c} package which is developed for generally converting such neural networks into real-time compatible C codes.
 The generated C code runs an inference operation in about 160 $\mu$s on Intel\textsuperscript{\textregistered} Core\textsuperscript{TM} i7-6600U CPU @ 2.60GHz while we saw speed up of up to 18 $\mu$s per inference on Apple\textsuperscript{\textregistered} M2\textsuperscript{TM} Pro.
 The real-time PCS in KSTAR runs its divertor control categories in a 50 $\mu$s clock cycle CPU, so we ran DivControlNN in a separate 1 ms clock-cycle CPU ensuring enough runtime for it along with other processes in that CPU.
 This was still more than sufficient for our control purposes which anyway can not control faster than a few 10s of Hz due to system response time and gas actuation speed.

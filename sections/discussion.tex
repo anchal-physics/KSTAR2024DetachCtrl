@@ -17,14 +17,14 @@ In our experimental session, since strike point control had not been commissione
 But we found that the actuation strength and response time of the poloidal field coils at KSTAR do not allow for large enough and fast enough strike point sweeps.
 % \textcolor{red}{Do you want to mention that we attempted real-time empirical profile analysis with strike point sweeps, but found that KSTAR's coils could make big+fast enough sweeps? This would probably work at d3d, but now who cares because it won't work in the long pulse devices. I am in favor of documenting good ideas that don't work so others don't try them without expanding them to solve the issues we found. It also shows we prepared/tried to prepare for a lot of possible gotchas. Things got weird but we really did think a lot of things through in our designs.}
 
-It should be noted that in the application of \Afrac controller method on KSTAR, tuning the overall factor to \Afrac so that it reports 1.0 when fully attached was trickier than the case for full carbon environment KSTAR\cite{Eldon_2022_PPCF}.
+It should be noted that in the application of \Afrac controller method on KSTAR, tuning the overall factor to \Afrac so that it reports 1.0 when fully attached was trickier than the case for full carbon environment KSTAR \cite{Eldon_2022_PPCF}.
 We noticed offsets in the outputs of Langmuir probes which changed from shot to shot, and thus ensuring the correct normalizing factor for \Afrac became harder.
 This was the reason why we had to change the factor for \Afrac after shot \#35853 as also mentioned in the caption of Fig.\ref{fig:sysid_afrac}.
 After this experience, we have now added an online offset estimator and subtraction for all probe signals, which measures the offset before the plasma breakdown and ensures that the zero offset is correct on the probes.
 This issue is likely due to electrical connectivity problems with the probes which also showed other issues during the campaign, but still, this experience should be noted for future reproduction and improvements.
 
-Another point of uncertainty in \Afrac model could be the magnetic connection length between the upstream (outboard midplane) and divertor in the 2PM\cite{Leonard_2018_PPCF}.
-This length is kept fixed in the model and while we did not change the plasma boundary shape much from the previous test\cite{Eldon_2022_PPCF} in carbon divertor KSTAR, it still makes it a potential source of error in wider usage in future.
+Another point of uncertainty in \Afrac model could be the magnetic connection length between the upstream (outboard midplane) and divertor in the 2PM \cite{Leonard_2018_PPCF}.
+This length is kept fixed in the model and while we did not change the plasma boundary shape much from the previous test \cite{Eldon_2022_PPCF} in carbon divertor KSTAR, it still makes it a potential source of error in wider usage in future.
 The real-time equilibrium calculations during shot provided by RTEFIT is being upgraded to also output this magnetic connection length so that in future the model gets more accurate and time varying information about this important parameter.
 % \textcolor{red}{The magnetic connection length between the upstream (outboard midplane) and divertor in the TPM is one of the important inputs, but it would've changed as we tried to optimize the shape. I think this could've been part of the problems. In carbon, I used a shape that had been dialed in pretty well thanks to colleagues like Junghoo Hwang and Matthias Bernert, and the preliminary sys ID shots I took. In tungsten, we were trying to do many changes at once to keep the scenario together. We are doing an upgrade to have RTEFIT output this connection length $L_\parallel$ so that we won't have to recalibrate this aspect of the model during shape changes.}
 
@@ -50,12 +50,12 @@ New models would be trained on the expanded database and acquired experimental d
 We would also work with the KSTAR team to improve PCS communication infrastructure so that accurate real-time values of injected power are available to our models.
 
 The initial success of the neural network surrogate model in detachment control motivates and corroborates similar studies, simulations, and training of other models for providing fast estimates of plasma parameters, for quick decision-making in the control room during experiments, as well as, for potential use in other control systems where important plasma properties are often not accessible directly.
-A neural network based control system approach has already been demonstrated in magnetic shape control\cite{Degrave_2022_Nature}.
-For \ac{SOL} plasma predictions, machine learning surrogate models were first pioneered using 1D UEDGE simulations\cite{Zhu_2022_JPP}, serving as the proof-of-principle study that paved the way for DivControlNN presented here, which is based on 2D UEDGE simulations.
-More recently, model based on Hermes-3\cite{Dudson_2024_CPC} simulations of MAST-U\cite{Holt_2024_NF} and neural partial differential equation solver for TCV\cite{Poels_2023_NF} have been reported and are under further development.
+A neural network based control system approach has already been demonstrated in magnetic shape control \cite{Degrave_2022_Nature}.
+For \ac{SOL} plasma predictions, machine learning surrogate models were first pioneered using 1D UEDGE simulations \cite{Zhu_2022_JPP}, serving as the proof-of-principle study that paved the way for DivControlNN presented here, which is based on 2D UEDGE simulations.
+More recently, model based on Hermes-3 \cite{Dudson_2024_CPC} simulations of MAST-U \cite{Holt_2024_NF} and neural partial differential equation solver for TCV \cite{Poels_2023_NF} have been reported and are under further development.
 
 Another major focus of future experiments would be to use noble gases in detachment control.
-N$_2$, while being excellent at cooling the SOL plasma in conventional tokamaks, would not be a good impurity to seed in tritium fueled plasma due to the formation of tritiated ammonia\cite{Pitts_2019_NME}.
+N$_2$, while being excellent at cooling the SOL plasma in conventional tokamaks, would not be a good impurity to seed in tritium fueled plasma due to the formation of tritiated ammonia \cite{Pitts_2019_NME}.
 Such tritiated ammonia would require additional tritium reclaiming processes which would reduce the duty cycle of reactors, as well as, pose additional risks in handling a radioactive gas.
 % \textcolor{red}{Check whether it's actually more dangerous than any other tritium contamination or just much harder to process to reclaim the precious tritium. And yes, more tritium processing is more opportunity for something to go wrong, so technically it might increase the danger level, but this isn't necessarily by a lot. Is that really significant? I would check to be sure before talking about danger.}
 We are in the process of testing Ne and Ar as alternate cooling gases.
