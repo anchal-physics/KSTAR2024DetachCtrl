@@ -52,7 +52,7 @@ Normalized $\beta$ plotted versus degree of detachment $DOD=1/A_{frac}$.
 $A_{frac}$ has been renormalized so that all shots have the same empirical correction factor.
 For seeded shots, the time range is from $t=6.0$~s until $I_p$ begins to drop.
 For unseeded shots, values are averaged over $6.0<t<8.0$~s.
-Vertical lines are placed as guides at $DOD = 1, 2, 5, and 9$, corresponding to guides and the axis limit of figure 12 of \cite{Eldon_2022_PPCF}.
+Vertical lines are placed as guides at $DOD = 1, 2, 5$, and 9, corresponding to guides and the axis limit of figure 12 of \cite{Eldon_2022_PPCF}.
 Horizontal black lines mark typical $\beta_N$ values of attached shots in this scenario as well as various levels of degradation (see legend).
 Unseeded shots are marked by opaque diamonds giving their average values over a period of steady performance during the $I_p$ flattop.
 }
@@ -65,6 +65,13 @@ However, the initial loss of $\beta$ at $DOD\approx 2$ is greater at $\approx 15
 We note that detachment control with deuterium in the carbon divertor resulted in $\beta_N$ dropping in $\approx 15$--$20$\% at $DOD=2$, and attribute this faster initial drop to deuterium puffing as a less efficient actuator for detachment than impurity seeding.
 %Some shots (\#36161 and \#36162) start at lower $\beta_N$ (prior to any seeding) than the unseeded baseline shot of the same day (\#36159) or any of the other shots shown.
 Perhaps lack of a local carbon sputtering source at the strike point requires more nitrogen be added to initiate detachment, but deeper detachment levels are similar as both cases (C and W divertors) have nitrogen as the dominant impurity by then, and also sputtering of carbon at the strike point will be reduced by detachment.
+The general trend of performance changes during detachment seems to be dominated by the core scenario, as seen in figure~5 of \cite{wang_2021_pop}.
+Isolated detachment control systems like the ones presented here primarily control motion along the $\beta$ vs $DOD$ curves set by the scenario, although some hysteresis is evident in the discharges that used feed-forward control (magenta and purple).
+In \#35853, returning from $DOD>10$ to $DOD\sim5$ did not proceed along the original curve, but instead some permanent loss of $\beta$ occurred.
+A simple, single-in, single-out controller (SISO), if properly configured, should be able to prevent deleterious changes to the core scenario like this by avoiding unnecessarily deep detachment and over seeding.
+SISO controllers were used to control detachment in the high $\beta_p$ scenario shown in \cite{wang_2021_pop} figure~5, and consistent with the trends shown in that figure, they delivered deep detachment without confinement degradation (but with a problematic level of fuel dilution) \cite{Eldon_2021_NME}.
+It may be possible for an isolated detachment controller to change the $\beta$ vs $DOD$ curve by injeting fuel in addition to an impurity species in a single-in, multi-out scheme.
+This strategy may be able to increase the dissipation efficiency of the seeded impurity and reduce fuel dilution and undesirable side effects of impurity-induced detachment because $P_{rad}=n_e n_Z L_Z(T_e)$: impurity density $n_Z$ is not the only tool at our disposal.
 
 
 % In the past it has been seen that puffing deuterium is sufficient to attain partial detachment \cite{Loarte_1998_NF, Eldon_2017_NF} when the plasma facing wall is made of carbon.

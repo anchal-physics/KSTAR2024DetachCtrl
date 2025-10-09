@@ -22,6 +22,7 @@ We have not studied how the shape control response times of machines with high t
 % \textcolor{red}{Do you want to mention that we attempted real-time empirical profile analysis with strike point sweeps, but found that KSTAR's coils could make big+fast enough sweeps? This would probably work at d3d, but now who cares because it won't work in the long pulse devices. I am in favor of documenting good ideas that don't work so others don't try them without expanding them to solve the issues we found. It also shows we prepared/tried to prepare for a lot of possible gotchas. Things got weird but we really did think a lot of things through in our designs.}
 
 It should be noted that in the application of \Afrac{} controller method on KSTAR, tuning the overall factor to \Afrac{} so that it reports 1.0 when fully attached was trickier than the case for full carbon environment KSTAR \cite{Eldon_2022_PPCF}.
+\fixme{Rethink this statement. The new beta vs dod figure works out when all shots are renormalized so afrac has the same correction factor, so we apparently did not need to keep changing that thing. So what actually happened? Tons of noise early in the shot? Weird strike point drifts? Some shots just started semi detached due to residual nitrogen and we got spooked and tried to fix them?}
 We noticed offsets in the outputs of Langmuir probes which changed from shot to shot, and thus ensuring the correct normalizing factor for \Afrac{} became harder.
 This was the reason why we had to change the factor for \Afrac{} after shot \#35853 as also mentioned in the caption of Fig.\ref{fig:sysid_afrac}.
 After this experience, we have now added an online offset estimator and subtraction for all probe signals, which measures the offset before the plasma breakdown and ensures that the zero offset is correct on the probes.
@@ -73,3 +74,4 @@ In the KSTAR scenarios investigated so far, the effect of Ne on detachment has b
 % \textcolor{red}{Who's doing impurity pellets? The disruption mitigation ones don't count.} 
 Increased challenges when trying to form radiative divertors or execute detachment control have been noted by other studies \cite{eldon_2025_ppcf}, with possible explanations including differences in penetration and ionization potential compared to other species \cite{casali_2020_pop,casali_2022_nf}.
 Some of the issues surrounding use of neon as a radiator have been mitigated by using it in conjunction with another impurity species \cite{Eldon_2023_NME}.
+
