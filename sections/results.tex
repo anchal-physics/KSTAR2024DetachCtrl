@@ -44,6 +44,29 @@ The impurity fraction calculation as mentioned in Sec.\ref{sec:control_variables
 Thus the model was unable to respond directly to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density, input power, and plasma current as real-time inputs.
 Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model-based controller for detachment control in future reactors.
 
+\begin{figure*}[!ht]
+\centering
+\includegraphics[width=\textwidth]{figures/beta_vs_dod.pdf}
+\caption{
+Normalized $\beta$ plotted versus degree of detachment $DOD=1/A_{frac}$.
+$A_{frac}$ has been renormalized so that all shots have the same empirical correction factor.
+For seeded shots, the time range is from $t=6.0$~s until $I_p$ begins to drop.
+For unseeded shots, values are averaged over $6.0<t<8.0$~s.
+Vertical lines are placed as guides at $DOD = 1, 2, 5, and 9$, corresponding to guides and the axis limit of figure 12 of \cite{Eldon_2022_PPCF}.
+Horizontal black lines mark typical $\beta_N$ values of attached shots in this scenario as well as various levels of degradation (see legend).
+Unseeded shots are marked by opaque diamonds giving their average values over a period of steady performance during the $I_p$ flattop.
+}
+\label{fig:beta_vs_dod}
+\end{figure*}
+
+Figure~\ref{fig:beta_vs_dod} shows how detachment with nitrogen seeding affects core plasma performance.
+As this scenario is based on the previous scenario used with the carbon divertor, trends are similar: 20\% drop in $\beta_N$ at $DOD\approx 5$ and 30\% drop at $DOD\sim 9$ compared to the average $\beta_N$ value for unseeded shots.
+However, the initial loss of $\beta$ at $DOD\approx 2$ is greater at $\approx 15$\% in these recent shots in the tungsten vertical divertor compared to $\approx 10$\% for nitrogen-seeded shots at $DOD=2$ in the carbon central-slant divertor.
+We note that detachment control with deuterium in the carbon divertor resulted in $\beta_N$ dropping in $\approx 15$--$20$\% at $DOD=2$, and attribute this faster initial drop to deuterium puffing as a less efficient actuator for detachment than impurity seeding.
+%Some shots (\#36161 and \#36162) start at lower $\beta_N$ (prior to any seeding) than the unseeded baseline shot of the same day (\#36159) or any of the other shots shown.
+Perhaps lack of a local carbon sputtering source at the strike point requires more nitrogen be added to initiate detachment, but deeper detachment levels are similar as both cases (C and W divertors) have nitrogen as the dominant impurity by then, and also sputtering of carbon at the strike point will be reduced by detachment.
+
+
 % In the past it has been seen that puffing deuterium is sufficient to attain partial detachment \cite{Loarte_1998_NF, Eldon_2017_NF} when the plasma facing wall is made of carbon.
 % Such wall can create an intrinsic source of carbon due to sputtering due to ELMS.
 % Such intrinsic impurity population can drive detachment through increased electron density as radiated power due to impurity is given by $P_{rad}=n_e n_Z L_Z(T_e)$ where $n_e$ is electron density, $n_Z$ is ion density, and $L_Z(T_e)$ is the radiative loss function for the impurity ion.

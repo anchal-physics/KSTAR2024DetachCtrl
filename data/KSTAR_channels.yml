@@ -199,6 +199,7 @@ trees:
     - DVSMJSATF
     - DVSAJSAT          # Attached ion saturation current density model
     - DVSAJSATF         # Attached ion saturation current density model (low-pass filtered)
+    - DVTAJSATC         # Empirical correction factor
     - DVSLAMBDAQ        # SOL power width lambda_q at OMP from scaling law or manual input
     - DVSQPAROMP        # Peak parallel heat flux at OMP
     - DVSAFRAC          # Attachment Fraction Siganl
@@ -331,6 +332,7 @@ trees:
     - RXPT1             # X point R coordinate
     - ZXPT1             # X point Z coordinate
     - PSIRZ             # 2D Distribution of Psi
+    - BETAN             # Normalized beta (EFIT01 should be more accurate than rt1)
   
   SPECTRO:
     # CAES
