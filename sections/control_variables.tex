@@ -56,6 +56,14 @@ For a 30~m connection length that might be reasonably found in the near SOL of K
 This is twice as fast as the DivControlNN computation time, so modeling the SOL as steady state is not a significant source of error.
 There could be issues with the part of the UEDGE model that is within the separatrix, and with properly accounting time between power being injected into the core and it flowing into the UEDGE mesh, and treatment of these should be refined as development progresses.
 
+DivControlNN is not expected to be able to properly describe the plasma state during an ELM or other fast transient event.
+This is of no great concern as controlling detachment with gas during ELMs is both impossible (they are much faster than the gas system can respond) and unnecessary (ELMs must be eliminated in reactor class device to allow adequate longevity of plasma facing components), so we must only find a reasonable way to ignore ELMs as has been done with other detachment controllers \cite{Eldon_2017_NF,Eldon_2021_NME}.
+As none of the inputs to DivControlNN---input power, plasma current, line-average density, assumed diffusion coefficients, and estimated impurity concentration*---are very sensitive to ELMs, the model effectively ignores ELMs and should function similarly to other control signals where more effort has been made to suppress perturbations due to ELMs.
+Particularly large ELMs could show as dips in average density and indeed produce a noticeable cycle of pedestal regrowth after each ELM crash, but this scenario did not produce ELMs this large and it was not necessary to treat a pedestal recovery cycle yet.
+%However, other divertor diagnostics that have been used as the basis for detachment control like Thomson scattering \cite{eldon_2017_nf} and Langmuir probes \cite{eldon_2021_nme} also suffer from inability to return useful control signals during ELMs.
+%The problem is solved by identifying and removing samples that occur during ELMs (in the case of diagnostics like Thomson scattering that return infrequent samples with short averaging windows) or lowpass filtering the signals to minimize the perturbation due to ELMs (can be viable for diagnostics that return frequent samples; in the case of foil bolometers \cite{eldon_2019_nme}, the filtering happens in the sensor itself due to its response time being slow relative to ELMs).
+
+
 DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
 The first is a multi-modal $\beta$-variational autoencoder \cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on a 2D UEDGE database into a latent space representation.
 The second stage is a multi-layer perceptron (MLP) model that maps the inputs of the 2D UEDGE simulations (which also form the inputs to the overall surrogate model).
