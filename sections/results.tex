@@ -61,9 +61,8 @@ This is explained by the relationship between predicted heat flux and input dens
 Panel (b) also has a secondary curve below the primary sequence; these samples occurred at lower input power which occurred since some heating sources were not maintained until the end of every discharge.
 The approximate alignment of one of the low power segments with the primary sequence section from $n_e=$ 3.05--3.50 is coincidental.
 The regions of insensitivity are not desirable in a control variable and probably caused the most trouble when the DivControlNN target was set close to just below 6 from $t=11.5$--13~s in \#36161; in particular, encounter with the insensitivity from 11.5--12~s lead to an inappropriate excess in the gas command and subsequent overshooting when the heat flux output began to decrease again.
-\fixme{LLNL CHECK THIS FOLLOWING STATEMENT PLEASE!!!!}
-The insensitive regions are due to the way UEDGE is run on a grid, with many runs at the same density boundary condition.
-If this is not resolved within UEDGE or within the neural network itself, an added layer should be added to eliminate these artifacts before the predicted heat flux reaches a controller.
+The insensitive regions reflect features observed in the UEDGE database and are being investigated.
+If this is not resolved within UEDGE or within the neural network itself, an added layer could be added to eliminate these artifacts before the predicted heat flux reaches a controller.
 Despite these limitations, this preliminary tests were able to regulate detachment as confirmed by the probes, and the limitations themselves highlight issues to watch for in subsequent iterations of DivControlNN or when constructing related tools.
 
 \begin{figure*}[!ht]
