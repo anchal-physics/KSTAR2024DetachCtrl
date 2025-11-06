@@ -59,6 +59,10 @@ trees:
     - SSIMAG            # Psi at Magnetic Axis
     - SSIBRY            # Psi at Boundary
     - LIM
+    - RXPT1
+    - ZXPT1
+    - RXPT2
+    - ZXPT2
 
 out_filename: KSTAR_detach_ctrl_Psi_data.h5
 server: guptaa@203.230.126.231:8005
