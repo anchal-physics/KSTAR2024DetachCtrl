@@ -101,8 +101,8 @@ def analyze(shot, save=False):
     power[~within_lim] = np.nan
 
     incore = (psin < core_max_psin) & within_lim
-    indivl = (z3d < (zxl+xpoint_margin)[:, np.newaxis, np.newaxis]) & within_lim
-    indivu = (z3d > (zxu-xpoint_margin)[:, np.newaxis, np.newaxis]) & within_lim
+    indivl = (z3d <= (zxl+xpoint_margin)[:, np.newaxis, np.newaxis]) & within_lim
+    indivu = (z3d >= (zxu-xpoint_margin)[:, np.newaxis, np.newaxis]) & within_lim
     nearaxis = (psin < near_axis_psin) & incore
     if geometry == 'lower_null':
         incore &= (z3d > (zxl+xpoint_margin)[:, np.newaxis, np.newaxis])
