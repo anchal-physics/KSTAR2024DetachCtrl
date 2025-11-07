@@ -16,6 +16,8 @@
 
 \input{figures/SM_LoopStability}
 
+\fixme{should we add a note about multi-sine sys id? to acknowledge that that is also a thing}
+
 Before we attempted detachment control experiments, we took two system identification shots.
 The data from the first system identification shot \#35853 is shown in Fig.\ref{fig:sysid_afrac}.
 In this shot, we puffed in N$_2$ gas in steps of 1.0~V, 2.5~V, and 4.0~V with puff duration of 1.5~s each.
@@ -70,6 +72,13 @@ Due to limitations of the initial DivControlNN deployment, its absolute calibrat
 Furthermore, the infrared thermography diagnostic was not functional at the time of this experiment and independent divertor heat flux profiles are not available for comparison.
 Therefore, although DivControlNN reports divertor heat flux in MW m$^{-2}$, we have listed them as arbitrary units to reflect mistrust in its absolute calibration.
 %Note that we have not yet calibrated the DivControlNN model with any experimental data, so we treated the output as arbitrary units and later attempted to control the detachment with estimated changes to this arbitrary output.
+
+Fig.\ref{fig:sysid_sm} includes IRVB radiated power data in the form of $f_{rad} = P_{rad} / P_{input}$.
+2D $P_{rad}$ data from reconstructions have been divided into various zones: the core zone is $\psi_N < 1.0$ and $Z > (Z_{X-point} + 0.2 \mathrm{m})$.
+The divertor zone is $Z \leq (Z_{X-point} + 0.2 \mathrm{m})$.
+These definitions are commonly used to describe radiation distributions at \mbox{DIII-D} \cite{leonard_1995_rsi, eldon_2025_ppcf}.
+Additionally, the near-axis zone is defined by $\psi_N < 0.2$ and the SOL is the remainder falling outside of the core and divertor zones.
+Although there is a prominent peak in radiation as will be seen later in 2D $P_{rad}$ distributions, the larger volume of the core results in more total radiation coming from the core than the divertor.
 
 Fig.\ref{fig:SM_inputs_35854} shows the time-varying inputs to DivControlNN along with the heat flux output from the model.
 Here, note that the impurity fraction input to the model malfunctioned, and a constant zero impurity fraction was fed to the model even though we puffed in N$_2$ in this system identification test. During the test part from 7.5~s onwards, we can see that most inputs to the model remained mostly constant, and only the line-averaged electron density showed considerable changes.
