@@ -2,22 +2,119 @@ import h5py
 import numpy as np
 import mat4py
 import scipy
+import scipy.interpolate
 import matplotlib
 import matplotlib.pyplot as plt
 import shapely
 import shapely.geometry
 import copy
+import warnings
 
 efit_filename = '../data/KSTAR_detach_ctrl_Psi_data.h5'
 efittree = 'EFIT01'
+data_filename = '../data/KSTAR_detach_ctrl_data.h5'
+
 
 xpoint_margin = 0.2  # m
 core_max_psin = 1
 near_axis_psin = 0.2
-show_figures = False
+show_figures = True
 geometry = 'lower_null'
 
 shots = [35853, 35854, 35857, 36161, 36162]
+
+def get_offline_power(shot, tpower=None, include_wdot=True, include_pohm=True):
+    sn = f'{shot}'
+    offline_power = 0
+    with h5py.File(data_filename, 'r') as h5:
+        for i, item in enumerate(['NB11_PNB', 'NB12_PNB', 'NB13_PNB', 'NB2A_PNB', 'NB2B_PNB']):
+            a = h5[sn]['KSTAR'][item]
+            if tpower is None:
+                tpower = a['dim0'][:]
+            offline_power += scipy.interpolate.interp1d(a['dim0'][:], a['data'][:])(tpower)
+        for i in range(2,9):
+            b = f'EC{i}_PWR'
+            if b in h5[sn]['KSTAR']:
+                a = h5[sn]['KSTAR'][b]
+                offline_power += scipy.interpolate.interp1d(a['dim0'], a['data'][:]*1e-3)(tpower)
+        if include_wdot:
+            a = h5[sn]['PCS_KSTAR']['DVSWDOTF']
+            offline_power += scipy.interpolate.interp1d(a['dim0'], a['data'][:])(tpower)
+        if include_pohm:
+            a = h5[sn]['PCS_KSTAR']['DVSPOHM']
+            offline_power += scipy.interpolate.interp1d(a['dim0'], a['data'][:])(tpower)
+
+    return tpower, offline_power
+
+def butter_smooth(xx, yy, timescale=None, cutoff=None, laggy=False, order=1, nan_screen=True, btype='low'):
+    """
+    Butterworth smoothing lowpass filter.
+
+    Similar to firFilter, but with a notable difference in edge effects
+    (butter_smooth may behave better at the edges of an array in some cases).
+
+    :param xx: 1D array
+        Independent variable. Should be evenly spaced for best results.
+
+    :param yy: array matching dimension of xx
+
+    :param timescale: float
+        [specifiy either timescale or cutoff]
+        Smoothing timescale. Units should match xx.
+
+    :param cutoff: float
+        [specify either timescale or cutoff]
+        Cutoff frequency. Units should be inverse of xx. (xx in seconds, cutoff in Hz; xx in ms, cutoff in kHz, etc.)
+
+    :param laggy: bool
+        True: causal filter: smoothed output lags behind input
+        False: acausal filter: uses information from the future so that smoothed output doesn't lag input
+
+    :param order: int
+        Order of butterworth filter.
+        Lower order filters seem to have a longer tail after the ELM which is helpful for detecting the tail of the ELM.
+
+    :param nan_screen: bool
+        Perform smoothing on only the non-NaN part of the array, then pad the result out with NaNs to maintain length
+
+    :param btype: string
+        low or high. For smoothing, always choose low.
+        You can do a highpass filter instead of lowpass by choosing high, though.
+
+    :return: array matching dimension of xx
+        Smoothed version of yy
+    """
+
+    if nan_screen:
+        ok = ~np.isnan(xx) & ~np.isnan(yy)
+        yout = np.empty(np.shape(yy))
+        yout[:] = np.nan
+        xx = xx[ok]
+        yy = yy[ok]
+    else:
+        yout = ok = None
+
+    cutoff = 1.0 / timescale if cutoff is None else cutoff
+    dx = np.mean(np.diff(xx))
+    nyquist = 0.5 / dx
+    cutoff_norm = cutoff / nyquist
+    cutoff_norm = 0.9 if cutoff_norm > 0.9 else cutoff_norm
+    b, a = scipy.signal.butter(order, cutoff_norm, btype=btype, analog=False)
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message="Using a non-tuple sequence for multidimensional indexing is deprecated")
+        warnings.filterwarnings("ignore", message="underflow encountered in multiply")
+        if laggy:
+            zi = scipy.signal.lfilter_zi(b, a)
+            ys, _ = scipy.signal.lfilter(b, a, yy, zi=zi * yy[0])  # This one lags (the lag actually can help!)
+        else:
+            ys = scipy.signal.filtfilt(b, a, yy)  # This one doesn't lag
+
+    if nan_screen:
+        yout[ok] = ys
+        return yout
+    else:
+        return ys
+
 
 def get_psin_rz(shot):
     with h5py.File(efit_filename, 'r') as h5:
@@ -135,14 +232,17 @@ def analyze(shot, save=False):
         ax = axs[0, 0]
         ax.pcolormesh(r, z, power2d)
         ax.set_aspect('equal')
+        ax.set_title('Interpolated and cut Prad')
         ax = axs[1, 0]
         ax.pcolormesh(rp, zp, power_raw[ip])
         ax.set_aspect('equal')
+        ax.set_title('Raw Prad')
         ax = axs[0, 1]
         power_div = copy.deepcopy(power)
         power_div[~indivl] = np.nan
         ax.pcolormesh(r, z, power_div[i, :, :])
         ax.set_aspect('equal')
+        ax.set_title('Divertor only')
         ax = axs[1, 1]
         power_core = copy.deepcopy(power)
         power_core[~incore] = np.nan
@@ -151,31 +251,57 @@ def analyze(shot, save=False):
         divl_power_slice = np.nansum(power_div[i, :, :])
         print(f'{core_power_slice=}, {divl_power_slice=}, {core_vol[i]=}, {divl_vol[i]=}, {axis_vol[i]=}')
         ax.set_aspect('equal')
+        ax.set_title('Core only; near-axis is part of core')
         for ax in axs.flatten():
             ax.axhline(zxl[i]+xpoint_margin, color='white', ls='--')
             ax.axhline(zxu[i]-xpoint_margin, color='white', ls='--')
             ax.contour(r, z, psin[i, :, :], levels=[near_axis_psin, core_max_psin], colors=['white'])
             ax.plot(limx, limy, color='white')
+            ax.plot(rx1[i], zx1[i], color='white', marker='x')
+            ax.plot(rx2[i], zx2[i], color='white', marker='x')
+        for ax in axs[:, 0]:
+            ax.set_ylabel('Z / m')
+        for ax in axs[-1, :]:
+            ax.set_xlabel('R / m')
+        axs[0,0].text(0.98, 0.02, f'KSTAR#{shot} @ {tselect} s', transform=fig.transFigure, ha='right', va='bottom')
+
 
 
     if show_figures:
-        fig2, axs = plt.subplots(2)
+        fig2, axs = plt.subplots(3, sharex=True)
+        axs[0].text(0.98, 0.02, f'KSTAR#{shot}', transform=fig2.transFigure, ha='right', va='bottom')
+        axs[-1].set_xlabel('Time / s')
         ax = axs[0]
         ax.plot(t, zx1, label='1')
         ax.plot(t, zx2, label='2')
-        ax.plot(t, zxl, label='L', ls='--')
-        ax.plot(t, zxu, label='U', ls='--')
+        ax.plot(t, zxl, label='Lower', ls='--')
+        ax.plot(t, zxu, label='Upper', ls='--')
+        ax.set_ylabel('X-point height / m')
         ax.legend()
 
         ax = axs[1]
-        ax.plot(t, prad_core, label='core')
-        ax.plot(t, prad_divl, label='divl')
-        ax.plot(t, prad_divu, label='divu')
-        ax.plot(t, prad_tot, label='total')
-        ax.plot(tp, prad_tot_official, label='official total', color='k', ls='--')
-        ax.plot(t, prad_sol, label='sol')
-        ax.plot(t, prad_axis, label='near axis')
+        t_, power_in_raw = get_offline_power(shot, tpower=t)
+        power_in = butter_smooth(t, power_in_raw, 0.5)
+        ax.plot(t, power_in_raw, label='Input (raw)', alpha=0.25)
+        ax.plot(t, power_in, label='Input (smoothed)')
+        ax.plot(t, prad_core, label='Core $P_{rad}$')
+        ax.plot(t, prad_divl, label='divl $P_{rad}$', lw=3)
+        ax.plot(t, prad_divu, label='divu $P_{rad}$')
+        ax.plot(t, prad_tot, label='total $P_{rad}$')
+        ax.plot(tp, prad_tot_official, label='official total $P_{rad}$', color='k', ls='--')
+        ax.plot(t, prad_sol, label='SOL $P_{rad}$')
+        ax.plot(t, prad_axis, label='near axis $P_{rad}$')
+        ax.set_ylabel('Power / MW')
         ax.legend()
+
+        ax = axs[2]
+        psol = power_in - prad_core
+        ax.plot(t, psol, label='$P_{SOL} = P_{in} - P_{rad,core}$')
+        ax.plot(t, prad_divl, label='$P_{rad,div,L}$')
+        ax.legend()
+        ax.set_ylabel('Power / MW')
+
+
 
     if save:
         h5out_filename = f'../data/kstar_prad_analysis_{shot}.h5'

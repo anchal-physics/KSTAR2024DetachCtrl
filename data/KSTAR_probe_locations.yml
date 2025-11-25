@@ -54,25 +54,113 @@ shot_numbers:
                             # Surrogate model output showed  unexplained change in offset level because of which target was set too high. Still attachment fraction <= 0.2 maintained.
 
 trees:
-  PCS_KSTAR:
-    - GVSPVBLN2         # N2
-    - DVSAFRAC          # Attachment Fraction Siganl
-    - DVTAFRAC          # Attachment Fraction Target set for control Attachment fraction ready to use in gas category (should match DVSAFRAC unless problem)
-    - DVIIOVRRDE
-    - SYCDA7
-
   KSTAR:
-    # Dalpha / ELM detection and assessment
-    - POL_HA03
-    # Other spectroscopy that is different from spectro tree?
-    - POL_VB59:FOO  # CIII (464.7 nm)
-    - POL_VB60:FOO  # W I line (400.9 nm)
-    - POL_HA57:FOO  # W I line near inboard divertor
+    - LP_D_ID01:Z
+    - LP_D_ID02:Z     # Not available in some or all shots
+    - LP_D_ID03:Z     # Not available in some or all shots
+    - LP_D_ID04:Z     # Not available in some or all shots
+    - LP_D_ID05:Z
+    - LP_D_ID06:Z     # Not available in some or all shots
+    - LP_D_ID07:Z
+    - LP_D_ID08:Z     # Not available in some or all shots
+    - LP_D_ID09:Z     # Not available in some or all shots
+    - LP_D_ID10:Z     # Not available in some or all shots
+    - LP_D_ID11:Z     # Not available in some or all shots
+    - LP_D_ID12:Z     # Not available in some or all shots
+    - LP_D_ID13:Z     # Not available in some or all shots
+    - LP_D_ID14:Z     # Not available in some or all shots
+    - LP_D_ID15:Z
+    - LP_D_ID16:Z     # Not available in some or all shots
+    - LP_D_CD01:Z     # Not available in some or all shots
+    - LP_D_CD02:Z     # Not available in some or all shots
+    - LP_D_CD03:Z     # Not available in some or all shots
+    - LP_D_CD04:Z     # Not available in some or all shots
+    - LP_D_CD05:Z     # Not available in some or all shots
+    - LP_D_CD06:Z     # Not available in some or all shots
+    - LP_D_CD07:Z     # Not available in some or all shots
+    - LP_D_CD08:Z
+    - LP_D_CD09:Z
+    - LP_D_CD10:Z     # Not available in some or all shots
+    - LP_D_CD11:Z     # Not available in some or all shots
+    - LP_D_CD12:Z     # Not available in some or all shots
+    - LP_D_CD13:Z     # Not available in some or all shots
+    - LP_D_CD14:Z     # Not available in some or all shots
+    - LP_D_CD15:Z
+    - LP_D_CD16:Z
+    - LP_D_CD17:Z     # Not available in some or all shots
+    - LP_D_CD18:Z     # Not available in some or all shots
+    - LP_D_OD01:Z     # Not available in some or all shots
+    - LP_D_OD02:Z
+    - LP_D_OD03:Z     # Not available in some or all shots
+    - LP_D_OD04:Z
+    - LP_D_OD05:Z     # Not available in some or all shots
+    - LP_D_OD06:Z     # Not available in some or all shots
+    - LP_D_OD07:Z     # Not available in some or all shots
+    - LP_D_OD08:Z     # Not available in some or all shots
+    - LP_D_OD09:Z     # Not available in some or all shots
+    - LP_D_OD10:Z
+    - LP_D_OD11:Z     # Not available in some or all shots
+    - LP_D_OD12:Z
+    - LP_D_OD13:Z     # Not available in some or all shots
+    - LP_D_OD14:Z
+    - LP_D_OD15:Z     # Not available in some or all shots
+    - LP_D_OD16:Z
+    - LP_D_OD17:Z
+    - LP_D_OD18:Z
 
-# Rescale for different time axis trees
-rescale:                      
-  EFIT01: 1e-3                # EFIT01 writes dim0 in ms
+    - LP_D_ID01:R
+    - LP_D_ID02:R     # Not available in some or all shots
+    - LP_D_ID03:R     # Not available in some or all shots
+    - LP_D_ID04:R     # Not available in some or all shots
+    - LP_D_ID05:R
+    - LP_D_ID06:R     # Not available in some or all shots
+    - LP_D_ID07:R
+    - LP_D_ID08:R     # Not available in some or all shots
+    - LP_D_ID09:R     # Not available in some or all shots
+    - LP_D_ID10:R     # Not available in some or all shots
+    - LP_D_ID11:R     # Not available in some or all shots
+    - LP_D_ID12:R     # Not available in some or all shots
+    - LP_D_ID13:R     # Not available in some or all shots
+    - LP_D_ID14:R     # Not available in some or all shots
+    - LP_D_ID15:R
+    - LP_D_ID16:R     # Not available in some or all shots
+    - LP_D_CD01:R     # Not available in some or all shots
+    - LP_D_CD02:R     # Not available in some or all shots
+    - LP_D_CD03:R     # Not available in some or all shots
+    - LP_D_CD04:R     # Not available in some or all shots
+    - LP_D_CD05:R     # Not available in some or all shots
+    - LP_D_CD06:R     # Not available in some or all shots
+    - LP_D_CD07:R     # Not available in some or all shots
+    - LP_D_CD08:R
+    - LP_D_CD09:R
+    - LP_D_CD10:R     # Not available in some or all shots
+    - LP_D_CD11:R     # Not available in some or all shots
+    - LP_D_CD12:R     # Not available in some or all shots
+    - LP_D_CD13:R     # Not available in some or all shots
+    - LP_D_CD14:R     # Not available in some or all shots
+    - LP_D_CD15:R
+    - LP_D_CD16:R
+    - LP_D_CD17:R     # Not available in some or all shots
+    - LP_D_CD18:R     # Not available in some or all shots
+    - LP_D_OD01:R     # Not available in some or all shots
+    - LP_D_OD02:R
+    - LP_D_OD03:R     # Not available in some or all shots
+    - LP_D_OD04:R
+    - LP_D_OD05:R     # Not available in some or all shots
+    - LP_D_OD06:R     # Not available in some or all shots
+    - LP_D_OD07:R     # Not available in some or all shots
+    - LP_D_OD08:R     # Not available in some or all shots
+    - LP_D_OD09:R     # Not available in some or all shots
+    - LP_D_OD10:R
+    - LP_D_OD11:R     # Not available in some or all shots
+    - LP_D_OD12:R
+    - LP_D_OD13:R     # Not available in some or all shots
+    - LP_D_OD14:R
+    - LP_D_OD15:R     # Not available in some or all shots
+    - LP_D_OD16:R
+    - LP_D_OD17:R
+    - LP_D_OD18:R
 
-out_filename: KSTAR_detach_ctrl_data_full_res.h5
+out_filename: KSTAR_probe_locations.h5
 server: guptaa@203.230.126.231:8005
 verbose: true

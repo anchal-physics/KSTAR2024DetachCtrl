@@ -145,6 +145,13 @@ trees:
     - DH_AFLOW_OUT:FOO  # Ar
     - DH_KFLOW_OUT:FOO  # Kr
 
+    # Dalpha / ELM detection and assessment
+    - POL_HA03
+    # Other spectroscopy that is different from spectro tree?
+    - POL_VB59:FOO  # CIII (464.7 nm)
+    - POL_VB60:FOO  # W I line (400.9 nm)
+    - POL_HA57:FOO  # W I line near inboard divertor
+
   PCS_KSTAR:
     # Gas Flow signals in PCS
     # L port (Only intended port to be used)
@@ -204,6 +211,8 @@ trees:
     - DVSQPAROMP        # Peak parallel heat flux at OMP
     - DVSAFRAC          # Attachment Fraction Siganl
     - DVTAFRAC          # Attachment Fraction Target set for control Attachment fraction ready to use in gas category (should match DVSAFRAC unless problem)
+    - DVSWDOTF
+    - DVSPOHM
 
     # IRVB Processed quantities
     - DVSPALLIR         # Sum of all IRVB inverted regions
