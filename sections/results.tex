@@ -33,14 +33,31 @@ Increases in core radiated power seen in \ref{fig:detctrl_sm}(e) may indicate a 
 The decrease in power being conducted across the last closed flux surface does not help the controller follow the target back to higher heat flux, although the change in $P_{rad,core}$ is not so severe as to fully explain this.
 %In post-analysis of IRVB inverted data as shown in Fig.\ref{fig:prad_2d}, we can see that the core started radiating a lot of power after the last railed impulse of gas input between 10.8~s to 12~s (Fig.\ref{fig:prad_2d}c), whereas \#36161 with DivControlNN heat flux control was similar to \#35857 with \Afrac{} control prior to that (Fig.\ref{fig:prad_2d}b vs Fig.\ref{fig:prad_2d}a).
 %This would have reduced $P_{SOL}$ (power entering SOL from core) and started to starve the divertor of power, contributing to the failure to follow the rising heat flux target shown in Fig.\ref{fig:detctrl_sm}b between 13 and 15~s.
-A stronger driver for the failure to reattach when the heat flux target was increased is probably that the walls were saturated with nitrogen under heavy puffing.
+
+\begin{figure*}[!ht]
+\includegraphics[width=\linewidth]{figures/elm_exam_36161.pdf}
+\caption{Changes in ELM properties during progression into deep detachment. Top row: D$_\alpha$ light emission, which spikes up during an ELM. Middle row: $A_{frac}$. Bottom row: Nitrogen gas command. A long time history is shown in the left column, and the four other columns zoom in at key times to show samples of individual ELMs.}
+\label{fig:elms}
+\end{figure*}
+
+The failure to reattach and other behavior after reaching deepest detachment at around 12~s in \#36161 is likely due to a combination of nitrogen wall loading and changes to the ELM cycle.
+%A stronger driver for the failure to reattach when the heat flux target was increased is probably that the walls were saturated with nitrogen under heavy puffing.
 Clean walls are effective at pumping nitrogen as it sticks to them, but heavily saturated walls release nitrogen and can act as a source after gas flow is turned off.
 Even if the walls are only a weak or negligible source, they will be much less effective at particle removal and thus nitrogen inventory will not decrease quickly enough to follow a reattaching control target.
 Inefficient pumping compared to puffing is a known challenge to control that relies on gas as the primary actuator \cite{Eldon_2017_NF,eldon_2025_ppcf}.
 This type of nonlinear response also increases the risk of running an aggressive controller as periods of excess seeding may be difficult to recover from; tuning choices that could be preferable in other contexts are not necessarily the best for detachment control.
-\fixme{Check for changes in ELMs that might have increased tungsten influx to the core; this peaked on-axis radiation looks like tungsten. Detaching more deeply shouldn't increase tungsten sputtering, but messing with the pedestal could increase penetration of tungsten that's floating around the edge, anyway. Or reduce flushing of tungsten that penetrates.}
+%\fixme{Check for changes in ELMs that might have increased tungsten influx to the core; this peaked on-axis radiation looks like tungsten. Detaching more deeply shouldn't increase tungsten sputtering, but messing with the pedestal could increase penetration of tungsten that's floating around the edge, anyway. Or reduce flushing of tungsten that penetrates.}
+In addition to pumping issues, figure~\ref{fig:elms} shows that progression into deeper detachment is associated with changes in ELM properties.
+The figure shows four time windows of equal length which are color coded;
+red: prior to seeding with relatively large ELMs,
+magenta: at moderate ($A_{frac} \approx 0.3$) detachment with smaller but more frequent ELMs,
+blue: at deepest detachment with very weak and infrequent ELMs,
+and green: after slight recovery with ELMs approaching the size seen in the magenta window.
+The last two windows align with times shown in figure~\ref{fig:prad_2d}(b) and (c).
+The weak ELMs at 12~s represent loss of impurity flushing across the pedestal, which is consistent with core impurity accumulation seen in figures~\ref{fig:prad_2d}(c) and \ref{fig:detctrl_sm}(e).
 % \textcolor{red}{Comment on hysteresis stemming from interaction between core and impurity seeding for divertor management? I'll write something if I can find the right words.}
-There is no surprise with the fact that setting target values for an uncalibrated output is not always deterministic and would cause issues as we faced.
+%There is no surprise with the fact that setting target values for an uncalibrated output is not always deterministic and would cause issues as we faced.
+
 
 \begin{figure}
 \centering
