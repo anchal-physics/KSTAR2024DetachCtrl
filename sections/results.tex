@@ -18,10 +18,6 @@ The accumulated offset from the target eventually caused the integral term to se
 For the rest of the shot, small nitrogen puffs were required to correct the drifting \Afrac{} and keep it on the target.
 The total radiated power from the plasma as measured by KSTAR \ac{IRVB} remained below 3.5~MW ($\approx$65\% of injected power) and as can be seen in Fig.\ref{fig:prad_2d}a (snapshot taken at around the time of maximum radiation), there is a prominent concentration of radiation near the X-point.
 
-%as can be seen in Fig.\ref{fig:prad_2d}a (snapshot taken at around the time of maximum radiation), the majority of the radiation was coming from the divertor region and the core region was not losing power through radiation.
-%\fixme{This statement needs backing; just looking at the heatmap isn't enough. We should have pradcore and praddiv traces to make such a statement. Also, the core literally is losing some power. Just maybe not as much? But the volume is so much bigger that even with lower radiation density, it could be significant.}
-%This further validated, that \Afrac{} controller strategy first devised in Ref.\cite{Eldon_2022_PPCF} is a viable option for detachment control even with the tungsten divertor in KSTAR.
-
 Since \Afrac{} controller has been demonstrated in the past as well, we decided to utilize the remaining allotted runtime on KSTAR to test the DivControlNN prototype-based controller.
 Fig.\ref{fig:detctrl_sm} shows the results from shot \#36161 where we deployed this controller.
 An immediate issue was seen with DivControlNN output that the initial heat flux calculation had a different starting value than what we saw in reference shots and system identification shot \#35854 (this shot appeared in figures~\ref{fig:sysid_sm} and \ref{fig:SM_inputs_35854}).
@@ -31,8 +27,6 @@ In the next ramp-down of the target from 10.5~s to 11.5~s, more impurity was inj
 It can be seen from \Afrac{} in Fig.\ref{fig:detctrl_sm}d that the system reached deep detachment by this point and the ion saturation current measurements (Fig.\ref{fig:detctrl_sm}a) were in the range where low sensitivity to further evolution would be expected beyond 12~s.
 Increases in core radiated power seen in \ref{fig:detctrl_sm}(e) may indicate a change in core plasma state from which recovery is not observed, as core $P_{rad}$ does not decrease later.
 The decrease in power being conducted across the last closed flux surface does not help the controller follow the target back to higher heat flux, although the change in $P_{rad,core}$ is not so severe as to fully explain this.
-%In post-analysis of IRVB inverted data as shown in Fig.\ref{fig:prad_2d}, we can see that the core started radiating a lot of power after the last railed impulse of gas input between 10.8~s to 12~s (Fig.\ref{fig:prad_2d}c), whereas \#36161 with DivControlNN heat flux control was similar to \#35857 with \Afrac{} control prior to that (Fig.\ref{fig:prad_2d}b vs Fig.\ref{fig:prad_2d}a).
-%This would have reduced $P_{SOL}$ (power entering SOL from core) and started to starve the divertor of power, contributing to the failure to follow the rising heat flux target shown in Fig.\ref{fig:detctrl_sm}b between 13 and 15~s.
 
 \begin{figure*}[!ht]
 \includegraphics[width=\linewidth]{figures/elm_exam_36161.pdf}
@@ -41,12 +35,10 @@ The decrease in power being conducted across the last closed flux surface does n
 \end{figure*}
 
 The failure to reattach and other behavior after reaching deepest detachment at around 12~s in \#36161 is likely due to a combination of nitrogen wall loading and changes to the ELM cycle.
-%A stronger driver for the failure to reattach when the heat flux target was increased is probably that the walls were saturated with nitrogen under heavy puffing.
 Clean walls are effective at pumping nitrogen as it sticks to them, but heavily saturated walls release nitrogen and can act as a source after gas flow is turned off.
 Even if the walls are only a weak or negligible source, they will be much less effective at particle removal and thus nitrogen inventory will not decrease quickly enough to follow a reattaching control target.
 Inefficient pumping compared to puffing is a known challenge to control that relies on gas as the primary actuator \cite{Eldon_2017_NF,eldon_2025_ppcf}.
 This type of nonlinear response also increases the risk of running an aggressive controller as periods of excess seeding may be difficult to recover from; tuning choices that could be preferable in other contexts are not necessarily the best for detachment control.
-%\fixme{Check for changes in ELMs that might have increased tungsten influx to the core; this peaked on-axis radiation looks like tungsten. Detaching more deeply shouldn't increase tungsten sputtering, but messing with the pedestal could increase penetration of tungsten that's floating around the edge, anyway. Or reduce flushing of tungsten that penetrates.}
 In addition to pumping issues, figure~\ref{fig:elms} shows that progression into deeper detachment is associated with changes in ELM properties.
 The figure shows four time windows of equal length which are color coded;
 red: prior to seeding with relatively large ELMs,
@@ -55,9 +47,6 @@ blue: at deepest detachment with very weak and infrequent ELMs,
 and green: after slight recovery with ELMs approaching the size seen in the magenta window.
 The last two windows align with times shown in figure~\ref{fig:prad_2d}(b) and (c).
 The weak ELMs at 12~s represent loss of impurity flushing across the pedestal, which is consistent with core impurity accumulation seen in figures~\ref{fig:prad_2d}(c) and \ref{fig:detctrl_sm}(e).
-% \textcolor{red}{Comment on hysteresis stemming from interaction between core and impurity seeding for divertor management? I'll write something if I can find the right words.}
-%There is no surprise with the fact that setting target values for an uncalibrated output is not always deterministic and would cause issues as we faced.
-
 
 \begin{figure}
 \centering
@@ -104,7 +93,6 @@ Figure~\ref{fig:beta_vs_dod} shows how detachment with nitrogen seeding affects 
 As this scenario is based on the previous scenario used with the carbon divertor, trends are similar: 20\% drop in $\beta_N$ at $DOD\approx 5$ and 30\% drop at $DOD\sim 9$ compared to the average $\beta_N$ value for unseeded shots.
 However, the initial loss of $\beta$ at $DOD\approx 2$ is greater at $\approx 15$\% in these recent shots in the tungsten vertical divertor compared to $\approx 10$\% for nitrogen-seeded shots at $DOD=2$ in the carbon central-slant divertor.
 We note that detachment control with deuterium in the carbon divertor resulted in $\beta_N$ dropping in $\approx 15$--$20$\% at $DOD=2$, and attribute this faster initial drop to deuterium puffing as a less efficient actuator for detachment than impurity seeding.
-%Some shots (\#36161 and \#36162) start at lower $\beta_N$ (prior to any seeding) than the unseeded baseline shot of the same day (\#36159) or any of the other shots shown.
 Perhaps lack of a local carbon sputtering source at the strike point requires more nitrogen be added to initiate detachment, but deeper detachment levels are similar as both cases (C and W divertors) have nitrogen as the dominant impurity by then, and also sputtering of carbon at the strike point will be reduced by detachment.
 The general trend of performance changes during detachment seems to be dominated by the core scenario, as seen in figure~5 of \cite{wang_2021_pop}.
 Isolated detachment control systems like the ones presented here primarily control motion along the $\beta$ vs $DOD$ curves set by the scenario, although some hysteresis is evident in the discharges that used feed-forward control (magenta and purple).
@@ -113,16 +101,3 @@ A simple, single-in, single-out controller (SISO), if properly configured, shoul
 SISO controllers were used to control detachment in the high $\beta_p$ scenario shown in \cite{wang_2021_pop} figure~5, and consistent with the trends shown in that figure, they delivered deep detachment without confinement degradation (but with a problematic level of fuel dilution) \cite{Eldon_2021_NME}.
 It may be possible for an isolated detachment controller to change the $\beta$ vs $DOD$ curve by injeting fuel in addition to an impurity species in a single-in, multi-out scheme.
 This strategy may be able to increase the dissipation efficiency of the seeded impurity and reduce fuel dilution and undesirable side effects of impurity-induced detachment because $P_{rad}=n_e n_Z L_Z(T_e)$: impurity density $n_Z$ is not the only tool at our disposal.
-
-
-% In the past it has been seen that puffing deuterium is sufficient to attain partial detachment \cite{Loarte_1998_NF, Eldon_2017_NF} when the plasma facing wall is made of carbon.
-% Such wall can create an intrinsic source of carbon due to sputtering due to ELMS.
-% Such intrinsic impurity population can drive detachment through increased electron density as radiated power due to impurity is given by $P_{rad}=n_e n_Z L_Z(T_e)$ where $n_e$ is electron density, $n_Z$ is ion density, and $L_Z(T_e)$ is the radiative loss function for the impurity ion.
-% Thus, in the presence of some intrinsic impurity
-% \textcolor{red}{No, not deuterium alone. Deuterium \emph{puffing} alone can do it, if there's a carbon wall to sputter to make a carbon source to go with the deuterium puff. KSTAR still has a carbon main wall that could do it. Also, $P_{rad}=n_e n_Z L_Z(T_e)$, so changing $n_e$ when you have some background impurity will do it. So yes, puffing deuterium in the presence of some fixed impurity population will drive detachment, even if the D2 doesn't trigger any additional sputtering related impurity influx. The ELMs will have knocked carbon off the main chamber wall. Then increasing deuterium density in the divertor will increase $n_e$ and therefore $P_{rad}$. Be precise about these things. The results you quoted were from carbon-walled devices. Not for this paper per se but for fun, check ASDEX Upgrade results to see if detachment can be achieved with D2 only puffing in full tungsten.}
-% This might be the case with shot \#36161, that the model inference with zero impurity fraction input still reported a decrease in estimated heat flux as the electron density input increased with N$_2$ puffing.
-% % \textcolor{red}{Did they put background carbon in? Although the seeded impurity (neon I think in that version of DivControlNN) may have been 0, the intrinsic impurity might not have been.} No there was no intrinsic impurity in the sims
-% The only other changeable input, input power, mostly remained constant during flat top of the shot.
-% However, as the amount of total puffed N$_2$ increased, the pure deuterium plasma case from which the model must be infering the heat flux would deviate and thus the control is not very good beyond 11s.
-% \textcolor{red}{I don't think this logic holds up. The control variable might not correlate well with reality if changes in impurity fraction become too large, but if it still responds similarly to the control actuator, that shouldn't be a barrier to control. It's not clear that you can blame deficiencies in control performance on this.}
-% Despite these limitations, this preliminary test sheds light on the potential of using such a surrogate model-based controller for detachment control in future reactors.

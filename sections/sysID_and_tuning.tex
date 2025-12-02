@@ -16,7 +16,6 @@
 
 \input{figures/SM_LoopStability}
 
-%\fixme{should we add a note about multi-sine sys id? to acknowledge that that is also a thing} % no time
 
 Before we attempted detachment control experiments, we took two system identification shots.
 The data from the first system identification shot \#35853 is shown in Fig.\ref{fig:sysid_afrac}.
@@ -37,7 +36,6 @@ Note that only the part of the time series data that was used in fit is shown fo
 This fit was performed in the inter-shot interval during the experiment and has not been improved or modified after the experiment.
 
 The controller gains were chosen by visualizing \ac{CLTF} of the system with chosen PI gains as shown in Fig.\ref{fig:cltf_afrac}.
-%Transfer functions describe relationships between system output and system input, and the \aq{CLTF} in particular describes how system output will relate to the control target.
 Here, the frequency domain response of the plant model ($G(s)$) and PI controller ($T_{PI}(s)$) are plotted together.
 When connected in series, this forms the \ac{OLTF} of the system ($O(s) = G(s) T_{PI}(s)$).
 The frequency where \ac{OLTF} becomes 1.0 is called \ac{UGF}).
@@ -71,7 +69,6 @@ The strike point was maintained within the real-time \ac{LP}  array (Fig.\ref{fi
 Due to limitations of the initial DivControlNN deployment, its absolute calibration is not trusted.
 Furthermore, the infrared thermography diagnostic was not functional at the time of this experiment and independent divertor heat flux profiles are not available for comparison.
 Therefore, although DivControlNN reports divertor heat flux in MW m$^{-2}$, we have listed them as arbitrary units to reflect mistrust in its absolute calibration.
-%Note that we have not yet calibrated the DivControlNN model with any experimental data, so we treated the output as arbitrary units and later attempted to control the detachment with estimated changes to this arbitrary output.
 
 Fig.\ref{fig:sysid_sm} includes IRVB radiated power data in the form of $f_{rad} = P_{rad} / P_{input}$.
 2D $P_{rad}$ data from reconstructions have been divided into various zones: the core zone is $\psi_N < 1.0$ and $Z > (Z_{X-point} + 0.2 \mathrm{m})$.
