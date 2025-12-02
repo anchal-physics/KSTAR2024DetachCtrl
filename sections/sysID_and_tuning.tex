@@ -83,7 +83,7 @@ Although there is a prominent peak in radiation as will be seen later in 2D $P_{
 Fig.\ref{fig:SM_inputs_35854} shows the time-varying inputs to DivControlNN along with the heat flux output from the model.
 Here, note that the impurity fraction input to the model malfunctioned, and a constant zero impurity fraction was fed to the model even though we puffed in N$_2$ in this system identification test. During the test part from 7.5~s onwards, we can see that most inputs to the model remained mostly constant, and only the line-averaged electron density showed considerable changes.
 It can be seen thus that at this time, DivControlNN solely relied on changes in the electron density to estimate heat flux at the outer divertor.
-\fixme{Statement about divertor cooling being a reasonable response to gas puffing, even for attached plasma?}
+This trend is consistent with the UEDGE database and the physical mechanism here is power loss due to deuterium neutral ionization, line radiation, bremsstrahlung radiation, and recombination \cite{Zhao_2025_arxiv}.
 The malfunctioning of the impurity fraction was detected in the post-processing of the data, and thus, during the experiment, we continued to try to use this model as it was.
 
 We again fitted this system with a first-order system with a delay as described in Eq.\ref{eq:sysid}.
