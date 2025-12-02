@@ -233,7 +233,7 @@ It turned out that even this estimator did not work correctly during the shots a
 Additionally at KSTAR, the total input power from NBI and ECH sources is not completely available in real-time PCS and we had to input a feedforward signal matching the programmed rate of some sources that got summed with the other sources whose power was available in real-time.
 Such feedforward programming is vulnerable to changes in actual power delivered during the shot including timing mismatch of on/off commands of NBI sources as well as power drop out when a source fails during the shot.
 The error incurred by not capturing unplanned heating changes is mitigated by discharges suffering from these effects tending to disrupt.
-The ohmic power contribution is also prone to errors as a simple production $P_{ohm} \approx I_p \cdot V_{loop}$ is used in real-time which assumes that all $I_p$ is inductively driven and ignores current drive due to other sources; however, ohmic power is a small fraction of the total.
+The Ohmic power contribution is also prone to errors as a simple production $P_{ohm} \approx I_p \cdot V_{loop}$ is used in real-time which assumes that all $I_p$ is inductively driven and ignores current drive due to other sources; however, ohmic power is a small fraction of the total.
 Finally, the diffusion coefficient scaling factor was set to 1.0 for lack of any better real-time information on it.
 Despite these limitations, we attempted to use this model as a preliminary test for using such a surrogate model in real time and identify major obstacles before testing an improved and more relevant version in the future.
 
@@ -402,8 +402,9 @@ Although there is a prominent peak in radiation as will be seen later in 2D $P_{
 
 Fig.\ref{fig:SM_inputs_35854} shows the time-varying inputs to DivControlNN along with the heat flux output from the model.
 Here, note that the impurity fraction input to the model malfunctioned, and a constant zero impurity fraction was fed to the model even though we puffed in N$_2$ in this system identification test. During the test part from 7.5~s onwards, we can see that most inputs to the model remained mostly constant, and only the line-averaged electron density showed considerable changes.
-It can be seen thus that at this time, DivControlNN solely relied on changes in the electron density to estimate heat flux at the outer divertor.
+It can be seen thus that at this time, DivControlNN primarily relied on changes in the electron density to estimate heat flux at the outer divertor.
 This trend is consistent with the UEDGE database and the physical mechanism here is power loss due to deuterium neutral ionization, line radiation, bremsstrahlung radiation, and recombination \cite{Zhao_2025_arxiv}.
+From the brief drops in input power, it can be seen that the model heat flux is also sensitive to power as expected.
 The malfunctioning of the impurity fraction was detected in the post-processing of the data, and thus, during the experiment, we continued to try to use this model as it was.
 
 We again fitted this system with a first-order system with a delay as described in Eq.\ref{eq:sysid}.
@@ -514,16 +515,14 @@ Times are from 6.2~s to the end of each shot.
 \end{figure}
 
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
-%The impurity fraction calculation as mentioned in Sec.\ref{sec:control_variables} malfunctioned and sent a constant zero input to the model (see Fig.\ref{fig:SM_inputs_35854}e).
-%Thus the model was unable to respond directly to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density, input power, and plasma current as real-time inputs.
 Figure~\ref{fig:correlation}(a) shows the correlation between $A_{frac}$ and DivControlNN heat flux, showing that indeed the lowest heat flux values go with the lowest $A_{frac}$, and the highest heat flux samples are the most attached.
 In the middle, however, there is an awkward step-like quality which may have been perceptible in figure~\ref{fig:detctrl_sm}(b).
 This is explained by the relationship between predicted heat flux and input density in figure~\ref{fig:correlation}(b) as two regions of insensitivity to $n_e$ are apparent from about $n_e=$ 2.85--3.05 and 3.50--3.85.
 Panel (b) also has a secondary curve below the primary sequence; these samples occurred at lower input power as some heating sources were not maintained until the end of every discharge.
 The approximate alignment of one of the low power segments with the primary sequence section from $n_e=$ 3.05--3.50 is coincidental.
 The regions of insensitivity are not desirable in a control variable and probably caused the most trouble when the DivControlNN target was set to just below 6 from $t=11.5$--13~s in \#36161; in particular, encounter with the insensitivity from 11.5--12~s lead to an inappropriate excess in the gas command and subsequent overshooting when the heat flux output began to decrease again.
-The insensitive regions reflect features observed in the UEDGE database and are being investigated.
-If this is not resolved within UEDGE or within the neural network itself, an added layer could be added to eliminate these artifacts before the predicted heat flux reaches a controller.
+The insensitive regions reflect features observed in the current UEDGE database and are being investigated.
+If these features are determined to be artifacts and cannot be resolved within UEDGE or within the neural network itself, an added layer could be added to eliminate these effects before the predicted heat flux reaches a controller.
 Despite these limitations, this preliminary tests were able to regulate detachment as confirmed by the probes, and the limitations themselves highlight issues to watch for in subsequent iterations of DivControlNN or when constructing related tools.
 
 \begin{figure*}[!ht]
