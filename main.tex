@@ -79,7 +79,7 @@ We present interesting insights from these experiments including a systematic ap
 Burning plasma tokamaks such as ITER \cite{Holtkamp_2007_FED}, SPARC \cite{Creely_2020_JPP}, and the various DEMO \cite{Federici_2014_FED} and \ac{FPP} \cite{Buttery_2021_NF} concepts are estimated to exhaust very high heat flux in the \ac{SOL} towards the divertor target.
 Heat exhausted from the core plasma is rapidly conducted along the open field lines in the \ac{SOL} toward the divertor targets.
 To withstand the high heat flux, the divertor target plates are planned to be made out of tungsten, which has a high melting point, good resilience against erosion by the plasma, and relatively low tritium retention compared to other well-studied materials like carbon.
-Using ITER's tungsten divertor as an example, it is estimated that for steady-state operation, the constant heat flux reaching the divertor target has to be below 10-15 MW/m$^2$ \cite{Pitts_2019_NME} to avoid surface melting and structural damage to the divertor plates.
+Using ITER's tungsten divertor as an example, it is estimated that the steady-state heat flux reaching the divertor target has to be below 10-15 MW/m$^2$ \cite{Pitts_2019_NME} to avoid surface melting and structural damage to the divertor plates.
 Additionally, tungsten being a very high-Z material poses contamination challenges for the core plasma and it is important to develop operation strategies that limit the tungsten sputtering, especially in the divertor region where hot plasma interacts with the tungsten surface in a very narrow region of the order of a few mm \cite{Eich_2013_NF}.
 Therefore, the electron temperature at the target plate must be below the tungsten sputtering threshold, which is 8~eV \cite{Brezinsek_2019_NF} for sputtering by deuterium but lower for heavier ions, to minimize contamination of the core plasma.
 Thus, experimental reactors such as KSTAR are in the process of changing their divertor and main chamber walls from carbon to tungsten to facilitate study of plasma scenarios, operations, and control in the presence of a reactor-relevant wall.
@@ -87,7 +87,7 @@ Thus, experimental reactors such as KSTAR are in the process of changing their d
 The heat flux reaching the divertor as well as $T_e$ near the target are both typically reduced by puffing in gas in the \ac{SOL} region to dissipate energy and momentum from the exhaust plasma through ionization, charge exchange, and radiation.
 As fuel and helium ash ions are weak radiators, more efficient radiating impurity species such as noble gases will be seeded to increase radiated power and thus decrease heat load conducted to the divertor target.
 Additionally, sufficiently high density dissipates momentum and reduces the total ion flux which impinges on the divertor.
-When these dissipation process become significant, recombination occurs and the divertor begins to be shielded from the plasma by a population of neutrals: the primary plasma-neutral interaction zone \emph{detaches} from the solid target plate.
+When these dissipation processes become significant, recombination occurs and the divertor begins to be shielded from the plasma by a population of neutrals: the primary plasma-neutral interaction zone \emph{detaches} from the solid target plate.
 When only part of the surface is detached, the plasma is said to be partially detached, while if the ion flux is almost completely stopped with higher neutral gas pressure, it is said to be fully detached.
 
 It is important though to keep the amount of impurity gases injected into the vessel to a minimum as higher gas injection eventually leads to more impurity reaching in the pedestal region of the plasma.
@@ -109,15 +109,16 @@ using divertor plate temperature measurements with surface thermocouples in Alca
 using surface electron temperature measurements with triple-tip Langmuir probes in EAST \cite{Eldon_2021_NME} or $T_e$ very close to the surface with divertor Thomson scattering in DIII-D \cite{Eldon_2017_NF},
 using ion saturation current measurements from embedded Langmuir probes in JET \cite{Guillemaut_2017_PPCF}, EAST \cite{Yuan_2020_FED}, \mbox{DIII-D} \cite{Eldon_2021_NME}, and COMPASS \cite{Khodunov_2021_PPCF}.
 In KSTAR, the ion saturation current measurements along with core electron density, injected power, and local magnetic field were used to calculate a derived control variable, \ac{Afrac}, which was used to control the detachment \cite{Eldon_2022_PPCF}.
-This technique has the added benefit that the rollover ion saturation current does not need to be calculated or estimated prior to the shot and thus this technique has the potential for wider applicability in different scenarios and other machines.
+%This technique has the added benefit that the ion saturation current value at detachment onset does not need to be calculated or estimated prior to the shot and thus this technique has the potential for wider applicability in different scenarios and other machines.
 In this work, we have re-used this technique in our experiments at KSTAR with a tungsten divertor to test the robustness of this control variable in the presence of high-Z contamination from tungsten.
 
-In this work, we have also tested a new technique that uses a machine-learning-based surrogate model, DivControlNN \cite{zhu_2025_pop}.
+We have also tested a new technique that uses a machine-learning-based surrogate model, DivControlNN \cite{zhu_2025_pop}.
 This model integrates measurements from several real-time inputs to run through a large database of 2D UEDGE \cite{Rognlien_1999_PP} simulations and provide a real-time estimate of the heat flux reaching the divertor plates along with several other key plasma parameters upstream in \ac{SOL} and at the two divertors.
 We tested a prototype of this model with training and input limitations in KSTAR and demonstrated detachment control for the first time using such a surrogate model.
 Despite shortcomings in the preliminary implementation, DivControlNN was able to offer a usable proxy for divertor status that supported regulation of detachment as it captured the general trend of divertor cooling at higher density.
 Several of the most severe errors were known before deployment of the tool or were readily identified following the experiment, meaning there are accessible ways to quickly improve output quality---this tool already has some utility and it will only get better with further work as detailed in the rest of this paper.
-This paves the way for utilizing such models in future reactors that will have a very limited set of sensors available for control systems.
+The level of quality needed for a proxy measurement to be useful for control is a critical open question, so this demonstration of control despite flaws in the proxy is important on its own.
+Taken together with the potential for improvement of the DivControlNN tool, it paves the way for utilizing such models in future reactors that will have a very limited set of sensors available for control systems.
 
 This paper is organized as follows.
 In Sec.\ref{sec:control_variables}, we describe the experimental setup and the definition of different control variables used for detachment control.
@@ -155,7 +156,7 @@ The black dotted lines represent the rough estimate for width of strike point io
 \end{figure}
 
 The experiment was conducted on a standard lower single null H-mode plasma profile with reference shot KSTAR \#35851 with the equilibrium profile as shown in Fig.\ref{fig:ref_shot}.
-The plasma shaping steps commenced by 7~s and the shot was programmed for flat-top up to 17~s providing a 10~s long window for the detachment control experiment.
+The plasma shaping steps commenced by 7~s and the shot was programmed for $I_p$ flat-top up to 17~s providing a 10~s long window for the detachment control experiment.
 For heat flux control, N$_2$ gas puffing was used.
 The heat flux control variable was tested with several different inputs.
 
@@ -173,8 +174,8 @@ $I_{sat, attached}$ is estimated using Eq.(13) from \cite{Eldon_2022_PPCF}:
 Here, $C$ is a calibration constant determined during reference shots so that \ac{Afrac} is 1.0 when \ac{SOL} plasma is fully attached to the divertor, $\langle n_{e} \rangle$ is the line-averaged electron density measured by interferometer and $q_{||, a}$ is the heat flux density at the outer mid-plane which is estimated using Eq.(15) from \cite{Eldon_2022_PPCF}.
 The calibration constant $C$ accounts for gaps in real-time data availability on KSTAR and may be removed if more measurements become available in the future.
 \ac{Afrac} is a convenient choice of control variable that is easily available in most tokamaks and allows for cross-comparison among machines.
-If the strike point on the divertor tile is fixed in position well enough by the shape control system, a single close-by Langmuir probe is enough to provide the ion saturation current required for \ac{Afrac} calculation.
-However, if the strike point control is not good enough, or if it is required to leave it as a free variable to allow for controlling other parameters in the shape control loop (as was the case in our experiments), then it is required to estimate the true ion saturation current through measurements made by a Langmuir probe array.
+If the strike point on the divertor tile is fixed in position well enough by the shape control system, a single close-by Langmuir probe is enough to provide the peak ion saturation current required for \ac{Afrac} calculation.
+However, if the strike point position control is not good enough, or if it is required to leave it as a free variable to allow for controlling other parameters in the shape control loop (as was the case in our experiments), then it is required to estimate the true peak ion saturation current through measurements made by a Langmuir probe array.
 In our experiments, we chose the peak value from the Langmuir probe array as the input to the ion saturation current at the strike point.
 Fig.\ref{fig:strike_point_width} plots the data from this Langmuir probe array for our reference shot.
 The horizontal axis in this figure has been referenced from the EFIT reported \ac{OSP} position.
@@ -187,16 +188,17 @@ Assuming that the strike point stays for equal amount of time in any location be
 This estimation in turn sets goals for a potential future strike point controller, to bound the strike point movement within 6.25~mm of the probe location to achieve above mentioned uncertainties.
 If such a strike point controller can keep the strike point motion within 2.35~mm, the mean error would go below 2\% which would already be better than the other sources of error in the ion saturation current measurement.
 
-Langmuir probes would not be able to survive high heat flux in burning plasma future reactors.
-In general, such reactors would be severely limited in the number of real-time sensors available for control systems because of high neutron fluence and heat flux in vacuum vessels, and thus alternate control variables need to be searched for.
+There is doubt as to whether Langmuir probes would be able to survive high heat flux in burning plasma future reactors.
+In general, such reactors would be severely limited in the number of real-time sensors available for control systems, both because of high neutron fluence and heat flux from the plasma and because of the need to reserve a very high fraction of the wall for the tritium breeding blanket rather than ports for sensors.
+Thus, control variables that will be viable in the sensor-poor environment are needed.
 Toward this goal, we tested a prototype of a machine-learning-based surrogate model of 2D UEDGE, DivControlNN.
 The employed version of DivControlNN is trained on approximately 70,000 2D UEDGE simulations of KSTAR.
-The training dataset scanned core electron density ($1.5 \times 10^{19} - 7.0 \times 10^{19}$ m$^{-3}$), plasma current ($600-800$ kA), total input power split evenly between ion and electron channels ($1-8$ MW), impurity fraction with respect to Deuterium density ($0-0.04$), and scaling of diffusion coefficient profile with a factor ($0.6 - 2$).
+The training dataset scanned core electron density (1.5~$\times~10^{19}$ -- 7.0~$\times~10^{19}$~m$^{-3}$), plasma current (600~--~800 kA), total input power split evenly between ion and electron channels (1~--~8 MW), impurity fraction with respect to Deuterium density (0~--~0.04), and scaling of diffusion coefficient profile with a factor (0.6~--~2).
 The diffusion coefficient profile is assumed for a typical H-mode shot which can be scaled as an input to the model.
 This provided a widely applicable surrogate model that gives steady-state values of heat flux, ion saturation current, and electron temperature along the two divertors, electron density and temperature at the upstream point of the midplane, and total radiated power, power fraction radiated from divertor, and peak radiation power location in the poloidal cross-section of the device.
-Values are relative to local profiles (peaks) or relative to magnetic geometry (1D profiles could be extracted, or values at the separatrix), so minor deviations to the plasma boundary shape are likely to be minor sources of error.
-Even larger departures from the model plasma shape will not cause errors directly due to mis-mapping positions, although other plasma behaviors would be expected to have some sensitivity to boundary shape.
-The model generates output within 20\% error from the 2D UEDGE output.
+DivControlNN outputs 1D profiles relative to the magnetic geometry, from which scalar values like maxima or values at the separatrix can be extracted.
+Because the profiles are relative to magnetic geometry, deviations to the plasma boundary shape do not directly cause errors due to sampling the wrong position and would only have an effect via how the changed shape affects plasma behavior.
+The NN surrogate model generates output within 20\% error from the 2D UEDGE output.
 
 The model runs in the UEDGE database are all converged to steady state, yet we are operating a controller that deals with plasma dynamics.
 The reason we propose this is acceptable is because the model is being used to relate upstream conditions to divertor conditions, and the timescale of the SOL is very fast: we would expect most changes to the SOL to propagate at the ion acoustic speed $c_s$ and thus equilibrate much faster than any other timescale in the problem.
@@ -208,7 +210,7 @@ There could be issues with the part of the UEDGE model that is within the separa
 DivControlNN is not expected to be able to properly describe the plasma state during an ELM or other fast transient event.
 This is of no great concern as controlling detachment with gas during ELMs is both impossible (they are much faster than the gas system can respond) and unnecessary (ELMs must be eliminated in reactor class device to allow adequate longevity of plasma facing components), so we must only find a reasonable way to ignore ELMs as has been done with other detachment controllers \cite{Eldon_2017_NF,Eldon_2021_NME}.
 As none of the inputs to DivControlNN---input power, plasma current, line-average density, assumed diffusion coefficients, and estimated impurity concentration*---are very sensitive to ELMs, the model effectively ignores ELMs and should function similarly to other control signals where more effort has been made to suppress perturbations due to ELMs.
-Particularly large ELMs could show as dips in average density and indeed produce a noticeable cycle of pedestal regrowth after each ELM crash, but this scenario did not produce ELMs this large and it was not necessary to treat a pedestal recovery cycle yet.
+Particularly large ELMs could show as dips in average density and indeed produce a noticeable cycle of pedestal regrowth after each ELM crash, but this scenario did not produce very large ELMs and it was not necessary to treat a pedestal recovery cycle yet.
 
 DivControlNN was originally developed and trained using Python's TensorFlow package and consists of two different models working in tandem.
 The first is a multi-modal $\beta$-variational autoencoder \cite{Higgins_2017_ICLR} model to compress various quantities of interest coming from synthetic diagnostics on a 2D UEDGE database into a latent space representation.
@@ -385,15 +387,15 @@ The resulting PI controller transfer function is given by Eq.\ref{eq:PI}:
 Unfortunately, the surrogate model was not configured properly in this system identification shot due to technical errors, so we repeated a system identification but this time we decided to keep the nitrogen valve in the constant open position, to look for any deviation in the behavior.
 The data from this second system identification shot is shown in Fig.\ref{fig:sysid_sm}.
 Despite all the limitations of DivControlNN as listed earlier, we still saw a good correlation in the DivControlNN heat flux output at the outer divertor with the injected gas as seen in Fig.\ref{fig:sysid_sm}b (the spikes down in heat flux correspond to brief interruptions in NBI power; see Fig.\ref{fig:SM_inputs_35854}).
-This is validated by estimated \Afrac{} in Fig.\ref{fig:sysid_sm}d showing deepening detachment level (decreasing \Afrac{}) as the predicted output heat flux decreases.
+This is validated by \Afrac{} in Fig.\ref{fig:sysid_sm}d showing deepening detachment level (decreasing \Afrac{}) as the predicted output heat flux decreases.
 The strike point was maintained within the real-time \ac{LP}  array (Fig.\ref{fig:sysid_sm}a) validating the output of \Afrac{}.
 Due to limitations of the initial DivControlNN deployment, its absolute calibration is not trusted.
 Furthermore, the infrared thermography diagnostic was not functional at the time of this experiment and independent divertor heat flux profiles are not available for comparison.
 Therefore, although DivControlNN reports divertor heat flux in MW m$^{-2}$, we have listed them as arbitrary units to reflect mistrust in its absolute calibration.
 
 Fig.\ref{fig:sysid_sm} includes IRVB radiated power data in the form of $f_{rad} = P_{rad} / P_{input}$.
-2D $P_{rad}$ data from reconstructions have been divided into various zones: the core zone is $\psi_N < 1.0$ and $Z > (Z_{X-point} + 0.2 \mathrm{m})$.
-The divertor zone is $Z \leq (Z_{X-point} + 0.2 \mathrm{m})$.
+2D $P_{rad}$ data from reconstructions have been divided into various zones: the core zone is $\psi_N < 1.0$ and $Z > (Z_{X-point} + 0.2~\mathrm{m})$.
+The divertor zone is $Z \leq (Z_{X-point} + 0.2~\mathrm{m})$.
 These definitions are commonly used to describe radiation distributions at \mbox{DIII-D} \cite{leonard_1995_rsi, eldon_2025_ppcf}.
 Additionally, the near-axis zone is defined by $\psi_N < 0.2$ and the SOL is the remainder falling outside of the core and divertor zones.
 Although there is a prominent peak in radiation as will be seen later in 2D $P_{rad}$ distributions, the larger volume of the core results in more total radiation coming from the core than the divertor.
@@ -488,6 +490,7 @@ Clean walls are effective at pumping nitrogen as it sticks to them, but heavily 
 Even if the walls are only a weak or negligible source, they will be much less effective at particle removal and thus nitrogen inventory will not decrease quickly enough to follow a reattaching control target.
 Inefficient pumping compared to puffing is a known challenge to control that relies on gas as the primary actuator \cite{Eldon_2017_NF,eldon_2025_ppcf}.
 This type of nonlinear response also increases the risk of running an aggressive controller as periods of excess seeding may be difficult to recover from; tuning choices that could be preferable in other contexts are not necessarily the best for detachment control.
+
 In addition to pumping issues, figure~\ref{fig:elms} shows that progression into deeper detachment is associated with changes in ELM properties.
 The figure shows four time windows of equal length which are color coded;
 red: prior to seeding with relatively large ELMs,
@@ -511,14 +514,14 @@ Times are from 6.2~s to the end of each shot.
 \end{figure}
 
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
-The impurity fraction calculation as mentioned in Sec.\ref{sec:control_variables} malfunctioned and sent a constant zero input to the model (see Fig.\ref{fig:SM_inputs_35854}e).
-Thus the model was unable to respond directly to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density, input power, and plasma current as real-time inputs.
+%The impurity fraction calculation as mentioned in Sec.\ref{sec:control_variables} malfunctioned and sent a constant zero input to the model (see Fig.\ref{fig:SM_inputs_35854}e).
+%Thus the model was unable to respond directly to large amounts of impurity that were injected into the system and was only relying on data from line-integrated core electron density, input power, and plasma current as real-time inputs.
 Figure~\ref{fig:correlation}(a) shows the correlation between $A_{frac}$ and DivControlNN heat flux, showing that indeed the lowest heat flux values go with the lowest $A_{frac}$, and the highest heat flux samples are the most attached.
 In the middle, however, there is an awkward step-like quality which may have been perceptible in figure~\ref{fig:detctrl_sm}(b).
 This is explained by the relationship between predicted heat flux and input density in figure~\ref{fig:correlation}(b) as two regions of insensitivity to $n_e$ are apparent from about $n_e=$ 2.85--3.05 and 3.50--3.85.
-Panel (b) also has a secondary curve below the primary sequence; these samples occurred at lower input power which occurred since some heating sources were not maintained until the end of every discharge.
+Panel (b) also has a secondary curve below the primary sequence; these samples occurred at lower input power as some heating sources were not maintained until the end of every discharge.
 The approximate alignment of one of the low power segments with the primary sequence section from $n_e=$ 3.05--3.50 is coincidental.
-The regions of insensitivity are not desirable in a control variable and probably caused the most trouble when the DivControlNN target was set close to just below 6 from $t=11.5$--13~s in \#36161; in particular, encounter with the insensitivity from 11.5--12~s lead to an inappropriate excess in the gas command and subsequent overshooting when the heat flux output began to decrease again.
+The regions of insensitivity are not desirable in a control variable and probably caused the most trouble when the DivControlNN target was set to just below 6 from $t=11.5$--13~s in \#36161; in particular, encounter with the insensitivity from 11.5--12~s lead to an inappropriate excess in the gas command and subsequent overshooting when the heat flux output began to decrease again.
 The insensitive regions reflect features observed in the UEDGE database and are being investigated.
 If this is not resolved within UEDGE or within the neural network itself, an added layer could be added to eliminate these artifacts before the predicted heat flux reaches a controller.
 Despite these limitations, this preliminary tests were able to regulate detachment as confirmed by the probes, and the limitations themselves highlight issues to watch for in subsequent iterations of DivControlNN or when constructing related tools.
@@ -548,7 +551,7 @@ Isolated detachment control systems like the ones presented here primarily contr
 In \#35853, returning from $DOD>10$ to $DOD\sim5$ did not proceed along the original curve, but instead some permanent loss of $\beta$ occurred.
 A simple, single-in, single-out controller (SISO), if properly configured, should be able to prevent deleterious changes to the core scenario like this by avoiding unnecessarily deep detachment and over seeding.
 SISO controllers were used to control detachment in the high $\beta_p$ scenario shown in \cite{wang_2021_pop} figure~5, and consistent with the trends shown in that figure, they delivered deep detachment without confinement degradation (but with a problematic level of fuel dilution) \cite{Eldon_2021_NME}.
-It may be possible for an isolated detachment controller to change the $\beta$ vs $DOD$ curve by injeting fuel in addition to an impurity species in a single-in, multi-out scheme.
+It may be possible for an isolated detachment controller to change the $\beta$ vs $DOD$ curve by injecting fuel in addition to an impurity species in a single-in, multi-out scheme.
 This strategy may be able to increase the dissipation efficiency of the seeded impurity and reduce fuel dilution and undesirable side effects of impurity-induced detachment because $P_{rad}=n_e n_Z L_Z(T_e)$: impurity density $n_Z$ is not the only tool at our disposal.
 
 
@@ -586,9 +589,9 @@ This issue is likely due to electrical connectivity problems with the probes whi
 
 Another point of uncertainty in \Afrac{} model could be the magnetic connection length between the upstream (outboard midplane) and divertor in the 2PM \cite{Leonard_2018_PPCF}.
 This length is kept fixed in the model and while we did not change the plasma boundary shape much from the previous test \cite{Eldon_2022_PPCF} in carbon divertor KSTAR, it still makes it a potential source of error in wider usage in future.
-The real-time equilibrium calculations during shot provided by RTEFIT is being upgraded to also output this magnetic connection length so that in future the model gets more accurate and time varying information about this important parameter.
+The real-time equilibrium calculations provided by RTEFIT are being upgraded to also output this magnetic connection length so that in future the model gets more accurate and time-varying information about this important parameter.
 
-Although Langmuir probes might not be able to survive future burning plasma experiments, they are still a valuable tool for studying detachment control experiments for ease of installation and operation in experimental devices.
+Although Langmuir probes might not be able to survive future burning plasma experiments, they are still a valuable tool for studying detachment control experiments due to ease of installation and operation in experimental devices.
 Even in burning plasma devices, sacrificial Langmuir probes can be used in initial device commissioning and preparation of base scenarios at low power, although they are expected to fail shortly after exposure to the intensity of full heat and neutron fluxes.
 Knowing what a stable detached scenario should be like could significantly decrease the time required to commission controllers based on other control variables, and give a baseline level of detachment control performance to compare them to.
 Thus, Langmuir probe based control might provide a foothold in future device commissioning, as it has been shown to be useful on many devices \cite{Eldon_2021_NME, Guillemaut_2017_PPCF, Yuan_2020_FED, Khodunov_2021_PPCF}.
@@ -600,7 +603,7 @@ This is an important step in the direction of achieving detachment control in fu
 
 We have identified critical weak points in the prototype of DivControlNN and the control infrastructure required to utilize this model, and we are working on improving these aspects for future tests.
 One likely mistake we made during the experiments was treating the long dead time reported by DivControlNN heat flux output in response to gas puff (Fig.\ref{fig:sysid_sm}) as an overestimate.
-Since DivControlNN had a constant zero impurity fraction concentration, it was solely relying on line integrated core electron density information for responding to changes.
+Since DivControlNN received a constant zero impurity fraction concentration due to an error, it was solely relying on line integrated core electron density information for responding to changes.
 While ion saturation currents provide local divertor information fast, the core electron density response to gas puff would have additional transport timescales and thus DivControlNN output might truly have a larger daed time.
 This could have resulted in the high controller gain that saturated the gas response in the test (Fig.\ref{fig:detctrl_sm}).
 
@@ -620,7 +623,7 @@ N$_2$, while being excellent at cooling the SOL plasma in conventional tokamaks,
 Such tritiated ammonia would require additional tritium reclaiming processes which would reduce the duty cycle of reactors, as well as, pose additional risks in handling a radioactive gas.
 We are in the process of testing Ne and Ar as alternate cooling gases.
 In the KSTAR scenarios investigated so far, the effect of Ne on detachment has been hard to observe as small gas puffs do not actuate enough on the \ac{SOL} plasma but if the gas puffing is increased, we suddenly observe disruption due to too much cooling inside the separatrix.
-Increased challenges when trying to form radiative divertors or execute detachment control have been noted by other studies \cite{eldon_2025_ppcf}, with possible explanations including differences in penetration and ionization potential compared to other species \cite{casali_2020_pop,casali_2022_nf}.
+Increased challenges when trying to form radiative divertors or execute detachment control with neon have been noted by other studies \cite{eldon_2025_ppcf}, with possible explanations including differences in penetration and ionization potential compared to other species \cite{casali_2020_pop,casali_2022_nf}.
 Some of the issues surrounding use of neon as a radiator have been mitigated by using it in conjunction with another impurity species \cite{Eldon_2023_NME}.
 
 
