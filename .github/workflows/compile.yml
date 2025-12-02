@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - latexdiff
 
 permissions:
   contents: write
@@ -26,10 +27,26 @@ jobs:
         with:
           root_file: ./sub/main.tex
           work_in_root_file_dir: True
+      - name: Compare to previous submission
+        run: |
+          curl -L https://cpanmin.us | perl - --sudo Algorithm::Diff
+          cp old_flat_main.tex ./sub/
+          cp latexdiff ./sub/
+          cp latexdiff-vc ./sub/
+          cd ./sub/
+          chmod +x latexdiff
+          chmod +x latexdiff-vc
+          ./latexdiff-vc --pdf old_flat_main.tex main.tex
+          cd ../
+      - name: Compile main-diff file
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ./sub/main-diff.tex
       - name: Create published directory
         run: |
           mkdir ./public
           cp ./sub/main.pdf ./public/
+          cp ./sub/main-diff.pdf ./public/
         # Add more files above to publish them if required.
       - name: Upload latest compiled output to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3

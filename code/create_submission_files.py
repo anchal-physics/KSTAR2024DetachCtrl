@@ -12,8 +12,8 @@ def copy_file_rec(file, out_dir, basedir=None, new_name=None):
             new_name = os.path.join(out_dir, basefile)
         with open(new_name, 'w') as dest:
             for line in src.readlines():
-                if line.find('\input') == -1:
-                    if line.find('\includegraphics') == -1:
+                if line.find('\\input') == -1:
+                    if line.find('\\includegraphics') == -1:
                         dest.write(line)
                     else:
                         fig_addr = line.split('{')[1].split('}')[0]
@@ -21,7 +21,7 @@ def copy_file_rec(file, out_dir, basedir=None, new_name=None):
                         shutil.copy(os.path.join(basedir, fig_addr), os.path.join(out_dir, new_fig_addr))
                         dest.write(line.replace(fig_addr, new_fig_addr))
                 else:
-                    addr = line.split('\input{')[1].split('}')[0]
+                    addr = line.split('\\input{')[1].split('}')[0]
                     if not addr.endswith('.tex'):
                         addr += '.tex'
                     addr_path = os.path.join(basedir, addr)
