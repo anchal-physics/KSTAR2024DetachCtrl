@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - latexdiff
 
 permissions:
   contents: write
