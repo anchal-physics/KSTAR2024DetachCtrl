@@ -42,6 +42,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: ./sub/main-diff.tex
+          work_in_root_file_dir: True
       - name: Create published directory
         run: |
           mkdir ./public
