@@ -10,7 +10,48 @@
 \usepackage{xcolor}
 \usepackage{amssymb}
 \usepackage{acro}
-\input{acronyms}
+%\input{acronyms}
+\DeclareAcronym{2PM}{short=2PM,long=2-Point Model}
+\DeclareAcronym{3LP}{short=3LP,long=triple-tipped Langmuir probe}
+\DeclareAcronym{Afrac}{short=A$_{frac}$\ , long=attachment fraction}
+\DeclareAcronym{afrac}{
+    short=$J_{sat}/J_{roll}$,
+    long=\ac{Jsat} normalized to its value at rollover
+}
+\DeclareAcronym{CLTF}{short=CLTF,long=closed loop transfer function}
+\DeclareAcronym{DTS}{short=DTS, long=Divertor Thomson Scattering}
+\DeclareAcronym{FOPDT}{short=FOPDT,long=First Order Plus Dead Time}
+\DeclareAcronym{GGD}{short=GGD, long=Generalized Grid Description}
+\DeclareAcronym{IDS}{short=IDS, long=Interface Data Structure}
+\DeclareAcronym{IMAS}{short=IMAS, long=ITER Integrated Modelling and Analysis Suite}
+\DeclareAcronym{IRVB}{short=IRVB, long=Infra-Red Video Bolometer}
+\DeclareAcronym{ITB}{short=ITB, long=Internal Transport Barrier}
+\DeclareAcronym{ITER}{short=ITER, long=International Thermonuclear Experimental Reactor}
+\DeclareAcronym{Jsat}{short=$J_{sat}$,long=ion saturation current density}
+\DeclareAcronym{LCFS}{short=LCFS, long={Last Closed Flux Surface}}
+\DeclareAcronym{LP}{short=LP,long=Langmuir probe}
+\DeclareAcronym{MIMO}{short=MIMO, long={multi in, multi out}}
+\DeclareAcronym{MPC}{short=MPC, long=Model Predictive Control}
+\DeclareAcronym{NBI}{short=NBI, long=neutral beam injection}
+\DeclareAcronym{OLTF}{short=OLTF,long=open loop transfer function}
+\DeclareAcronym{OSP}{short=OSP, long=outer strike point}
+\DeclareAcronym{PCS}{short=PCS,long=plasma control system}
+\DeclareAcronym{PFR}{short=PFR,long=private flux region}
+\DeclareAcronym{PID}{short=PID,long=proportional-integral-derivative}
+\DeclareAcronym{Prad}{short=$P_{rad}$,long=radiated power}
+\DeclareAcronym{Pradcore}{short=$P_{rad,core}$,long=core radiated power}
+\DeclareAcronym{PSOL}{short=$P_{SOL}$, long=power crossing into the scrape-off layer}
+\DeclareAcronym{PVLC}{short=PVLC, long=Predicted Variable Linear Controller}
+\DeclareAcronym{RT}{short=RT, long=real-time}
+\DeclareAcronym{SISO}{short=SISO, long={single in, single out}}
+\DeclareAcronym{SOPDT}{short=SOPDT,long=Second Order Plus Dead Time}
+\DeclareAcronym{SOL}{short=SOL, long=Scrape-off Layer}
+\DeclareAcronym{SOLPS-ITER}{short=SOLPS-ITER, long=Scrape-off Layer Plasma Simulator - ITER version}
+\DeclareAcronym{UGF}{short=UGF, long=unity gain frequency}
+\DeclareAcronym{ZN}{short=Z-N, long=Ziegler-Nichols}
+\DeclareAcronym{FPP}{short=FPP, long=Fusion Pilot Plant}
+
+
 \providecommand{\acroifusedTF}{\acifused}
 
 % New command for citation reminder
@@ -23,7 +64,28 @@
 
 \newcommand{\Afrac}{A$_{frac}$}
 
-\input{institutions}
+%\input{institutions}
+% Institution shortcuts
+\def\GApo{General Atomics, PO Box 85608, San Diego, CA 92186-5608, USA}
+\def\GA{General Atomics, 3550 General Atomics Ct., San Diego, CA 92121, USA}
+\def\ORAU{Oak Ridge Associated Universities, 100 ORAU Way, Oak Ridge, TN 37830, USA}
+\def\ORNL{Oak Ridge National Laboratory, Oak Ridge, TN 37831, USA}
+\def\SNL{Sandia National Laboratories, Livermore, CA, 94550, USA}
+\def\LLNL{Lawrence Livermore National Laboratory, PO Box 808, Livermore, CA 94550, USA}
+\def\PPPL{Princeton Plasma Physics Laboratory, P.O. Box 451, Princeton, NJ 08543-0451, USA}
+\def\Princeton{Princeton University, Princeton, NJ 08544, USA}
+\def\Wisc{University of Wisconsin - Madison, Madison, WI 53706, USA}
+\def\UCSD{University of California - San Diego, San Diego, CA 92093, USA}
+\def\MIT{Massachusetts Institute of Technology, 77 Massachusetts Ave, Cambridge, MA 02139, USA}
+\def\Eindhoven{Eindhoven University of Technology, Eindhoven, 5612 AZ, The Netherlands}
+\def\York{University of York, Heslington, York YO10 5DD, United Kingdom}
+\def\ASIPP{Institute of Plasma Physics, Chinese Academy of Sciences, Hefei 230031, China}
+\def\CCFE{Culham Centre for Fusion Energy, %Culham Science Centre, 
+Abingdon OX14 3EB, United Kingdom}
+\def\KFE{Korea Institute of Fusion Energy, 169-148 Gwahak-ro, Yuseong-gu, Daejeon 34133, Republic of Korea}
+\def\KAIST{Korea Advanced Institute of Science and Technology, 291 Daehak-ro, Yuseong-gu, Daejeon 34141, Republic of Korea}
+\def\UTK{University of Tennessee-Knoxville, Knoxville, TN 37996, USA}
+\def\Columbia{Columbia University, 116th and Broadway, New York, NY 10027, USA}
 
 \begin{document}
 
