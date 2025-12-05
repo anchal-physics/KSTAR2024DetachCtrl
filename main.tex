@@ -190,7 +190,7 @@ Finally, in Sec.\ref{sec:discussion}, we discuss our results, the possible contr
 %%%%%%%%%%%%%%%%%% Control variables
 \begin{figure}[!ht]
  \centering
- \includegraphics[width=\linewidth]{figures/RefShot_35851.pdf}
+ \includegraphics[width=\linewidth]{Fig1_RefShot_35851.pdf}
  \caption{
 Reference shot \#35851.
 (a) Showing last closed flux surface (solid blue) and the secondary separatrix (dotted blue) at t=8 seconds.
@@ -206,7 +206,7 @@ The magnetic shape control was programmed to keep X point fixed which provided a
 
 \begin{figure}[!ht]
  \centering
- \includegraphics[width=\linewidth]{figures/StrikePointWidth_35851.pdf}
+ \includegraphics[width=\linewidth]{Fig2_StrikePointWidth_35851.pdf}
  \caption{
 Strike point width estimation for reference shot \#35851.
 The raw data from langmuir probe array has been filtered by 4th order Butterworth filter with cut-off frequency of 50 Hz and then down sampled to 100 Hz.
@@ -301,14 +301,36 @@ Despite these limitations, we attempted to use this model as a preliminary test 
 
 %%%%%%%%% sys ID and tuning
 
-\input{code/Afrac_SysID_values}
-\input{code/Afrac_CLTF_values}
-\input{code/SM_SysID_values}
-\input{code/SM_CLTF_values}
+%\input{code/Afrac_SysID_values}
+\newcommand{\AfracK}{K = -0.275$\pm$0.002}
+\newcommand{\AfracTau}{$\tau$ = 1.00$\pm$0.02s}
+\newcommand{\AfracL}{L = 0.153$\pm$0.006s}
+
+%\input{code/Afrac_CLTF_values}
+\newcommand{\AfracKp}{K$_p$ = $-10.0$}
+\newcommand{\AfracTi}{T$_i$ = 253.0 ms}
+\newcommand{\Afracstau}{$\tau_s$ = 50.0 ms}
+\newcommand{\AfracUGF}{0.59 Hz}
+\newcommand{\AfracPhaseMargin}{14.8 $^\circ$}
+\newcommand{\AfracDelayMargin}{69 ms}
+
+%\input{code/SM_SysID_values}
+\newcommand{\SMK}{K = -0.302$\pm$0.008}
+\newcommand{\SMTau}{$\tau$ = 0.31$\pm$0.02s}
+\newcommand{\SML}{L = 0.536$\pm$0.023s}
+
+%\input{code/SM_CLTF_values}
+\newcommand{\SMKp}{K$_p$ = -3.0}
+\newcommand{\SMTi}{T$_i$ = 68.5 ms}
+\newcommand{\SMstau}{$\tau_s$ = 5.0 ms}
+\newcommand{\SMUGF}{1.01 Hz}
+\newcommand{\SMPhaseMargin}{11.9 $^\circ$}
+\newcommand{\SMDelayMargin}{33 ms}
+
 
 \begin{figure*}[!ht]
  \centering
- \includegraphics[width=\textwidth]{figures/DetCtrl_2D_35853.pdf}
+ \includegraphics[width=\textwidth]{Fig3_DetCtrl_2D_35853.pdf}
  \caption{System identification shot \#35853.
 (a) Shows the measured ion saturation current by realtime \ac{LP} array at locations marked by grey dashed lines.
 The data has been interpolated spatially using cubic spline interpolation.
@@ -328,7 +350,7 @@ We fixed this factor after this shot and this figure shows the corrected value.
 
 \begin{figure}[!ht]
  \centering
- \includegraphics[width=\linewidth]{figures/Afrac_LoopStability.pdf}
+ \includegraphics[width=\linewidth]{Fig4_Afrac_LoopStability.pdf}
  \caption{
 Closed loop transfer function analysis of the system  using \Afrac{} output with chosen PI controller with gains: \AfracKp, \AfracTi, and \Afracstau.
 The dashed grey vertical line shows the \ac{UGF} of the system.}
@@ -340,7 +362,7 @@ The dashed grey vertical line shows the \ac{UGF} of the system.}
 
 \begin{figure*}[!ht]
  \centering
- \includegraphics[width=\textwidth]{figures/DetCtrl_2D_35854.pdf}
+ \includegraphics[width=\textwidth]{Fig5_DetCtrl_2D_35854.pdf}
  \caption{System identification shot \#35854.
 (a) Shows the measured ion saturation current by realtime \ac{LP} array at locations marked by grey dashed lines.
 The data has been interpolated spatially using cubic spline interpolation.
@@ -358,7 +380,7 @@ Right axis: Shows the plasma current (I$_p$).}
 
 \begin{figure}[!ht]
  \centering
- \includegraphics[width=\linewidth]{figures/SM_inputs_35854.pdf}
+ \includegraphics[width=\linewidth]{Fig6_SM_inputs_35854.pdf}
  \caption{
 KSTAR \#35854 DivControlNN quantities.
 (a) Shows the calculated heat flux at outer divertor calculated by DivControlNN.
@@ -376,7 +398,7 @@ Apart from these inputs, diffusion scaling factor was set to a constant value of
 
 \begin{figure}[!h]
  \centering
- \includegraphics[width=\linewidth]{figures/SM_LoopStability.pdf}
+ \includegraphics[width=\linewidth]{Fig7_SM_LoopStability.pdf}
  \caption{Closed loop transfer function analysis of the system using DivControlNN heat flux at outer divertor output with chosen PI controller with gains: \SMKp, \SMTi, and \SMstau.
 The dashed grey vertical line shows the \ac{UGF} of the system.}
 \label{fig:cltf_sm}
@@ -416,7 +438,7 @@ The \ac{CLTF} is then calculated by solving the loop algebra in the Laplace doma
 
 \begin{figure*}[!ht]
  \centering
- \includegraphics[width=\textwidth]{figures/DetCtrl_2D_35857.pdf}
+ \includegraphics[width=\textwidth]{Fig8_DetCtrl_2D_35857.pdf}
  \caption{
 Detachment control shot \#35857 using \Afrac controller.
 (a) Shows the measured ion saturation current by realtime \ac{LP} array at locations marked by grey dashed lines.
@@ -488,7 +510,7 @@ We understand that the system identification procedure is fitting a more complex
 
 \begin{figure*}[!ht]
  \centering
- \includegraphics[width=\textwidth]{figures/DetCtrl_2D_36161.pdf}
+ \includegraphics[width=\textwidth]{Fig9_DetCtrl_2D_36161.pdf}
  \caption{
 Detachment control shot \#36161 using DivControlNN heat flux at outer divertor.
 (a) Shows the measured ion saturation current by realtime \ac{LP} array at locations marked by grey dashed lines.
@@ -508,7 +530,7 @@ Right axis: Shows the plasma current (I$_p$).
 
 \begin{figure}[!h]
  \centering
- \includegraphics[width=\linewidth]{figures/Prad_2D.pdf}
+ \includegraphics[width=\linewidth]{Fig10_Prad_2D.pdf}
  \caption{
 KSTAR \ac{IRVB} measured radiated power density (a.u.) inverted into 2D cross-section.
 (a) KSTAR \#35857 at 12.81s at the peak of total radiated power.
@@ -542,7 +564,7 @@ Increases in core radiated power seen in \ref{fig:detctrl_sm}(e) may indicate a 
 The decrease in power being conducted across the last closed flux surface does not help the controller follow the target back to higher heat flux, although the change in $P_{rad,core}$ is not so severe as to fully explain this.
 
 \begin{figure*}[!ht]
-\includegraphics[width=\linewidth]{figures/elm_exam_36161.pdf}
+\includegraphics[width=\linewidth]{Fig11_elm_exam_36161.pdf}
 \caption{Changes in ELM properties during progression into deep detachment. Top row: D$_\alpha$ light emission, which spikes up during an ELM. Middle row: $A_{frac}$. Bottom row: Nitrogen gas command. A long time history is shown in the left column, and the four other columns zoom in at key times to show samples of individual ELMs.}
 \label{fig:elms}
 \end{figure*}
@@ -564,7 +586,7 @@ The weak ELMs at 12~s represent loss of impurity flushing across the pedestal, w
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{figures/correlation_smq_afrac.pdf}
+\includegraphics[width=\linewidth]{Fig12_correlation_smq_afrac.pdf}
 \caption{DivControlNN heat flux versus $A_{frac}$ (a) and $n_e$ (b).
 $A_{frac}$ has been renormalized to use the same correction coefficient in all cases.
 The top legend gives Pearson $r$ values for each shot individually.
@@ -588,7 +610,7 @@ Despite these limitations, this preliminary tests were able to regulate detachme
 
 \begin{figure*}[!ht]
 \centering
-\includegraphics[width=\textwidth]{figures/beta_vs_dod.pdf}
+\includegraphics[width=\textwidth]{Fig13_beta_vs_dod.pdf}
 \caption{
 Normalized $\beta$ plotted versus degree of detachment $DOD=1/A_{frac}$.
 $A_{frac}$ has been renormalized so that all shots have the same empirical correction factor.
