@@ -302,30 +302,30 @@ Despite these limitations, we attempted to use this model as a preliminary test 
 %%%%%%%%% sys ID and tuning
 
 %\input{code/Afrac_SysID_values}
-\newcommand{\AfracK}{K = -0.275$\pm$0.002}
-\newcommand{\AfracTau}{$\tau$ = 1.00$\pm$0.02s}
-\newcommand{\AfracL}{L = 0.153$\pm$0.006s}
+\newcommand{\AfracK}{$K = -0.275\pm0.002$}
+\newcommand{\AfracTau}{$\tau = 1.00\pm0.02$~s}
+\newcommand{\AfracL}{$L = 0.153\pm0.006$~s}
 
 %\input{code/Afrac_CLTF_values}
-\newcommand{\AfracKp}{K$_p$ = $-10.0$}
-\newcommand{\AfracTi}{T$_i$ = 253.0 ms}
-\newcommand{\Afracstau}{$\tau_s$ = 50.0 ms}
-\newcommand{\AfracUGF}{0.59 Hz}
+\newcommand{\AfracKp}{$K_p = -10.0$}
+\newcommand{\AfracTi}{$T_i = 253.0$~ms}
+\newcommand{\Afracstau}{$\tau_s = 50.0$~ms}
+\newcommand{\AfracUGF}{0.59~Hz}
 \newcommand{\AfracPhaseMargin}{14.8 $^\circ$}
-\newcommand{\AfracDelayMargin}{69 ms}
+\newcommand{\AfracDelayMargin}{69~ms}
 
 %\input{code/SM_SysID_values}
-\newcommand{\SMK}{K = -0.302$\pm$0.008}
-\newcommand{\SMTau}{$\tau$ = 0.31$\pm$0.02s}
-\newcommand{\SML}{L = 0.536$\pm$0.023s}
+\newcommand{\SMK}{$K = -0.302\pm0.008$}
+\newcommand{\SMTau}{$\tau = 0.31\pm0.02$~s}
+\newcommand{\SML}{$L = 0.536\pm0.023$~s}
 
 %\input{code/SM_CLTF_values}
-\newcommand{\SMKp}{K$_p$ = -3.0}
-\newcommand{\SMTi}{T$_i$ = 68.5 ms}
-\newcommand{\SMstau}{$\tau_s$ = 5.0 ms}
-\newcommand{\SMUGF}{1.01 Hz}
+\newcommand{\SMKp}{$K_p = -3.0$}
+\newcommand{\SMTi}{$T_i = 68.5$~ms}
+\newcommand{\SMstau}{$\tau_s = 5.0$~ms}
+\newcommand{\SMUGF}{1.01~Hz}
 \newcommand{\SMPhaseMargin}{11.9 $^\circ$}
-\newcommand{\SMDelayMargin}{33 ms}
+\newcommand{\SMDelayMargin}{33~ms}
 
 
 \begin{figure*}[!ht]
@@ -410,7 +410,7 @@ The data from the first system identification shot \#35853 is shown in Fig.\ref{
 In this shot, we puffed in N$_2$ gas in steps of 1.0~V, 2.5~V, and 4.0~V with puff duration of 1.5~s each.
 A corresponding response was seen in \Afrac{} but with a delay.
 We later confirmed from post-shot EFIT data that the strike point was indeed within the real-time \ac{LP} array and thus our \Afrac{} calculation was valid.
-We fitted the measured data with a simple first-order plant model (same as first order plus dead time \cite{Eldon_2022_PPCF}) of gain K, time constant $\tau$, and time delay $L$ given by Eq.\ref{eq:sysid} (in Laplace domain):
+We fitted the measured data with a simple first-order plant model (same as first order plus dead time \cite{Eldon_2022_PPCF}) of gain $K$, time constant $\tau$, and time delay $L$ given by Eq.\ref{eq:sysid} (in Laplace domain):
 
 \begin{equation}
  G(s) = \frac{K}{\tau s + 1}e^{-L s}

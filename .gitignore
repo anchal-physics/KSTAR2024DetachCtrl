@@ -35,3 +35,6 @@ ref_fmt.ipynb
 
 # Local copies of references papers
 references/*
+
+# Other
+.DS_store
