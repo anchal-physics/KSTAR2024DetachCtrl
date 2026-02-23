@@ -611,9 +611,9 @@ The insensitive regions reflect features observed in the current UEDGE database 
 If these features are determined to be artifacts and cannot be resolved within UEDGE or within the neural network itself, an added layer could be added to eliminate these effects before the predicted heat flux reaches a controller.
 Despite these limitations, this preliminary tests were able to regulate divertor state such that detachment was reached as confirmed by the probes, and the limitations themselves highlight issues to watch for in subsequent iterations of DivControlNN or when constructing related tools.
 
-We attribute the ability of DivControlNN to provide a useful control variable despite changes in divertor geometry material to qualitative preservation of general shape of the non-linear mapping from DivControlNN inputs (power, density, ...) to divertor heat flux.
-/textcolor{red}{keep trying to assimilate LLNL comments here}
-
+We attribute the ability of DivControlNN to provide a useful control variable despite changes in divertor geometry and material to qualitative preservation of general shape of the non-linear mapping from DivControlNN inputs (power, density, ...) to divertor heat flux.
+So while the mismatch between divertors in the model and experiment can change detachment thresholds and absolute values, the key trends seem to be qualitatively similar enough to allow control to function, anyway: more gas makes density go up and heat flux go down.
+The controller can use this.
 
 \begin{figure*}[!ht]
 \centering
@@ -700,7 +700,7 @@ We are in the process of creating a new 2D UEDGE database of KSTAR with a tungst
 New models would be trained on the expanded database and acquired experimental data from this campaign, with the input of injected gas flow instead of impurity fraction to simplify the use case of these models.
 We would also work with the KSTAR team to improve PCS communication infrastructure so that accurate real-time values of injected power are available to our models.
 Accuracy would be further improved by removing core radiated power $P_{rad,core}$ from the power that is input from the core plasma to the UEDGE computation region.
-Omitting $P_{rad,core}$ is a more serious error when significant tungsten accumulates near the magnetic axis and radiates strongly there (as was seen in \ref{fig:prad_2d}c) and this should be included.
+Omitting $P_{rad,core}$ is a more serious error when significant tungsten accumulates near the magnetic axis and radiates strongly there (as was seen in \ref{fig:prad_2d}(c) and this should be included.
 
 The initial success of the neural network surrogate model in detachment control motivates and corroborates similar studies, simulations, and training of other models for providing fast estimates of plasma parameters, for quick decision-making in the control room during experiments, as well as, for potential use in other control systems where important plasma properties are often not accessible directly.
 A neural network based control system approach has already been demonstrated in magnetic shape control \cite{Degrave_2022_Nature}.
