@@ -486,7 +486,7 @@ Although there is a prominent peak in radiation as will be seen later in 2D $P_{
 Fig.\ref{fig:SM_inputs_35854} shows the time-varying inputs to DivControlNN along with the heat flux output from the model.
 Here, note that the impurity fraction input to the model malfunctioned, and a constant zero impurity fraction was fed to the model even though we puffed in N$_2$ in this system identification test. During the test part from 7.5~s onwards, we can see that most inputs to the model remained mostly constant, and only the line-averaged electron density showed considerable changes.
 It can be seen thus that at this time, DivControlNN primarily relied on changes in the electron density to estimate heat flux at the outer divertor.
-This trend is consistent with the UEDGE database and the physical mechanism here is power loss due to deuterium neutral ionization, line radiation, bremsstrahlung radiation, and recombination \cite{Zhao_2025_arxiv}.
+This trend is consistent with the UEDGE database and the physical mechanism here is power loss due to deuterium neutral ionization, line radiation, bremsstrahlung radiation, and recombination \cite{zhao_2026_nf}.
 From the brief drops in input power, it can be seen that the model heat flux is also sensitive to power as expected.
 The malfunctioning of the impurity fraction was detected in the post-processing of the data, and thus, during the experiment, we continued to try to use this model as it was.
 
@@ -695,6 +695,14 @@ One likely mistake we made during the experiments was treating the long dead tim
 Since DivControlNN received a constant zero impurity fraction concentration due to an error, it was solely relying on line integrated core electron density information for responding to changes.
 While ion saturation currents provide local divertor information fast, the core electron density response to gas puff would have additional transport timescales and thus DivControlNN output might truly have a larger daed time.
 This could have resulted in the high controller gain that saturated the gas response in the test (Fig.\ref{fig:detctrl_sm}).
+
+For more details on physical trends in DivControlNN and the underlying UEDGE database that it tracks with good accuracy, please see \cite{zhu_2025_pop} and \cite{zhao_2026_nf}:
+The agreement between downstream/target profiles, including heat flux-related quantities, in Fig.~10 of \cite{zhu_2025_pop} grounds the neural network surrogate to a physical model.
+Fig.~16(a) of \cite{zhu_2025_pop} shows qualitatively accurate reproduction of the classic \cite{loarte_1998_nf} $J_{sat}$ rollover vs. density phenomena, meaning the model and its surrogate can capture some realistic physical trends.
+Fig.~14 of \cite{zhao_2026_nf} shows additional realistic trends in the UEDGE model: $J_{sat}$ rollover robustly occurs when target $T_e$ drops to about 3--4~eV across broad parameter scans.
+So although the absolute calibration has room for improvement in some areas, it should already be reasonable in others, and it seems ready to provide qualitatively correct trends in input--output relationships, which is what is needed for control and is consistent with the PI controller being able to modify DivControlNN's heat flux output and stabilize it at the target value.
+This is also consistent with figure~\ref{fig:correlation}'s trend of high $A_{frac}$ going with high heat flux and low $A_{frac}$ with low heat flux, although the lack of absolute calibration means empirical data from previous discharges are needed to select heat flux targets so far.
+In order for this tool to be useful in the future, improvements to the model must tighten the physical link until heat flux in absolute units can be trusted and targets set based on engineering limits (or other pre-selected test values for tests on research devices where engineering are unlikely to be exceeded).
 
 We are in the process of creating a new 2D UEDGE database of KSTAR with a tungsten divertor and considering multiple charged states of additional impurities such as nitrogen, neon, and argon.
 New models would be trained on the expanded database and acquired experimental data from this campaign, with the input of injected gas flow instead of impurity fraction to simplify the use case of these models.
