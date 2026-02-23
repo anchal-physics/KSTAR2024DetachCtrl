@@ -175,8 +175,8 @@ In this work, we have re-used this technique in our experiments at KSTAR with a 
 
 We have also tested a new technique that uses a machine-learning-based surrogate model, DivControlNN \cite{zhu_2025_pop}.
 This model integrates measurements from several real-time inputs to run through a large database of 2D UEDGE \cite{Rognlien_1999_PP} simulations and provide a real-time estimate of the heat flux reaching the divertor plates along with several other key plasma parameters upstream in \ac{SOL} and at the two divertors.
-We tested a prototype of this model with training and input limitations in KSTAR and demonstrated detachment control for the first time using such a surrogate model.
-Despite shortcomings in the preliminary implementation, DivControlNN was able to offer a usable proxy for divertor status that supported regulation of detachment as it captured the general trend of divertor cooling at higher density.
+We tested a prototype of this model with training and input limitations in KSTAR and demonstrated divertor heat flux control for the first time using such a surrogate model.
+Despite shortcomings in the preliminary implementation, DivControlNN was able to offer a usable proxy for divertor status that supported regulation of heat exhaust as it captured the general trend of divertor cooling at higher density.
 Several of the most severe errors were known before deployment of the tool or were readily identified following the experiment, meaning there are accessible ways to quickly improve output quality---this tool already has some utility and it will only get better with further work as detailed in the rest of this paper.
 The level of quality needed for a proxy measurement to be useful for control is a critical open question, so this demonstration of control despite flaws in the proxy is important on its own.
 Taken together with the potential for improvement of the DivControlNN tool, it paves the way for utilizing such models in future reactors that will have a very limited set of sensors available for control systems.
@@ -600,13 +600,20 @@ Times are from 6.2~s to the end of each shot.
 Post-shot data analysis discovered further issues in our operation of the DivControlNN model.
 Figure~\ref{fig:correlation}(a) shows the correlation between $A_{frac}$ and DivControlNN heat flux, showing that indeed the lowest heat flux values go with the lowest $A_{frac}$, and the highest heat flux samples are the most attached.
 In the middle, however, there is an awkward step-like quality which may have been perceptible in figure~\ref{fig:detctrl_sm}(b).
-This is explained by the relationship between predicted heat flux and input density in figure~\ref{fig:correlation}(b) as two regions of insensitivity to $n_e$ are apparent from about $n_e=$ 2.85--3.05 and 3.50--3.85.
+This is explained by two factors:
+first, outside of the ``flat-spot'' artifacts that we will discuss in a moment, the trend in figure~\ref{fig:correlation}(b) is smooth decrease in heat flux with increasing density, in contrast to $A_{frac}$ in figure~\ref{fig:correlation}(c), which shows little response to increasing density until detachment onset is reached, followed by rapid progress into detachment and then saturation.
+Second, the relationship between predicted heat flux and input density in figure~\ref{fig:correlation}(b) has two regions of insensitivity to $n_e$ that are apparent from about $n_e=$ 2.85--3.05 and 3.50--3.85.
+Both of these are consistent with the step-like shape of the heat flux vs. $A_{frac}$ plot in panel (a).
 Panel (b) also has a secondary curve below the primary sequence; these samples occurred at lower input power as some heating sources were not maintained until the end of every discharge.
 The approximate alignment of one of the low power segments with the primary sequence section from $n_e=$ 3.05--3.50 is coincidental.
 The regions of insensitivity are not desirable in a control variable and probably caused the most trouble when the DivControlNN target was set to just below 6 from $t=11.5$--13~s in \#36161; in particular, encounter with the insensitivity from 11.5--12~s lead to an inappropriate excess in the gas command and subsequent overshooting when the heat flux output began to decrease again.
 The insensitive regions reflect features observed in the current UEDGE database and are being investigated.
 If these features are determined to be artifacts and cannot be resolved within UEDGE or within the neural network itself, an added layer could be added to eliminate these effects before the predicted heat flux reaches a controller.
-Despite these limitations, this preliminary tests were able to regulate detachment as confirmed by the probes, and the limitations themselves highlight issues to watch for in subsequent iterations of DivControlNN or when constructing related tools.
+Despite these limitations, this preliminary tests were able to regulate divertor state such that detachment was reached as confirmed by the probes, and the limitations themselves highlight issues to watch for in subsequent iterations of DivControlNN or when constructing related tools.
+
+We attribute the ability of DivControlNN to provide a useful control variable despite changes in divertor geometry material to qualitative preservation of general shape of the non-linear mapping from DivControlNN inputs (power, density, ...) to divertor heat flux.
+/textcolor{red}{keep trying to assimilate LLNL comments here}
+
 
 \begin{figure*}[!ht]
 \centering
