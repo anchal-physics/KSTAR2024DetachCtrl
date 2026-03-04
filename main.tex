@@ -89,7 +89,7 @@ Abingdon OX14 3EB, United Kingdom}
 
 \begin{document}
 
-\title{Detachment control in KSTAR with tungsten divertor}
+\title{Divertor detachment and heat exhaust mitigation control in KSTAR with tungsten divertor}
 
 % IOPART
 \author{
@@ -118,10 +118,10 @@ Abingdon OX14 3EB, United Kingdom}
 KSTAR has recently undergone an upgrade to use a new tungsten divertor to run experiments in ITER-relevant scenarios.
 Even with a high melting point of tungsten, it is important to control the heat flux impinging on tungsten divertor targets to minimize sputtering and contamination of the core plasma.
 Heat flux on the divertor is often controlled by increasing the degree of detachment of \ac{SOL} plasma from the target plates.
-In this work, we have demonstrated successful detachment control experiments using two different methods.
+In this work, we have demonstrated successful divertor detachment and heat exhaust dissipation control experiments using two different methods.
 The first method uses attachment fraction as a control variable which is estimated using ion saturation current measurements from embedded Langmuir probes in the divertor.
 The second method uses a novel machine-learning-based surrogate model of 2D UEDGE simulation database, DivControlNN.
-We demonstrated running inference operation of DivControlNN in realtime to estimate heat flux at the divertor and use it to feedback impurity gas to control the detachment level.
+We demonstrated running inference operation of DivControlNN in realtime to estimate heat flux at the divertor and use it as the control variable in a feedback loop with impurity gas flow.
 We present interesting insights from these experiments including a systematic approach to tuning controllers and discuss future improvements in the control infrastructure and control variables for future burning plasma experiments.
 \end{abstract}
 
@@ -182,9 +182,9 @@ The level of quality needed for a proxy measurement to be useful for control is 
 Taken together with the potential for improvement of the DivControlNN tool, it paves the way for utilizing such models in future reactors that will have a very limited set of sensors available for control systems.
 
 This paper is organized as follows.
-In Sec.\ref{sec:control_variables}, we describe the experimental setup and the definition of different control variables used for detachment control.
+In Sec.\ref{sec:control_variables}, we describe the experimental setup and the definition of different control variables used for direct control of detachment/dissipation control.
 In Sec.\ref{sec:sysid}, we describe our experimental shots used for identifying the system and using the fitted plant model to tune a PI controller using frequency response for closed-loop stability analysis and optimization.
-In Sec.\ref{sec:results}, we show the results of our detachment control attempts.
+In Sec.\ref{sec:results}, we show the results of our control attempts.
 Finally, in Sec.\ref{sec:discussion}, we discuss our results, the possible control and technical improvements we can make in the future, and how these results can aid in designing further experiments on KSTAR and other tokamaks.
 
 %%%%%%%%%%%%%%%%%% Control variables
@@ -269,7 +269,7 @@ This is twice as fast as the DivControlNN computation time, so modeling the SOL 
 There could be issues with the part of the UEDGE model that is within the separatrix, and with properly accounting time between power being injected into the core and it flowing into the UEDGE mesh, and treatment of these should be refined as development progresses.
 
 DivControlNN is not expected to be able to properly describe the plasma state during an ELM or other fast transient event.
-This is of no great concern as controlling detachment with gas during ELMs is both impossible (they are much faster than the gas system can respond) and unnecessary (ELMs must be eliminated in reactor class device to allow adequate longevity of plasma facing components), so we must only find a reasonable way to ignore ELMs as has been done with other detachment controllers \cite{Eldon_2017_NF,Eldon_2021_NME}.
+This is of no great concern as controlling detachment with gas during ELMs is both impossible (they are much faster than the gas system can respond) and unnecessary (ELMs must be eliminated in reactor class device to allow adequate longevity of plasma facing components), so we must only find a reasonable way to ignore ELMs as has been done with other divertor dissipation controllers \cite{Eldon_2017_NF,Eldon_2021_NME}.
 As none of the inputs to DivControlNN---input power, plasma current, line-average density, assumed diffusion coefficients, and estimated impurity concentration*---are very sensitive to ELMs, the model effectively ignores ELMs and should function similarly to other control signals where more effort has been made to suppress perturbations due to ELMs.
 Particularly large ELMs could show as dips in average density and indeed produce a noticeable cycle of pedestal regrowth after each ELM crash, but this scenario did not produce very large ELMs and it was not necessary to treat a pedestal recovery cycle yet.
 
@@ -512,7 +512,7 @@ We understand that the system identification procedure is fitting a more complex
  \centering
  \includegraphics[width=\textwidth]{Fig9_DetCtrl_2D_36161.pdf}
  \caption{
-Detachment control shot \#36161 using DivControlNN heat flux at outer divertor.
+Control shot \#36161 using DivControlNN heat flux at outer divertor.
 (a) Shows the measured ion saturation current by realtime \ac{LP} array at locations marked by grey dashed lines.
 The data has been interpolated spatially using cubic spline interpolation.
 The black curve shows the post-shot calculated strike point position on outer divertor using EFIT.
@@ -540,7 +540,7 @@ KSTAR \ac{IRVB} measured radiated power density (a.u.) inverted into 2D cross-se
 \label{fig:prad_2d}
 \end{figure}
 
-Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment control experiments.
+Utilizing the controllers tuned in Sec.\ref{sec:sysid}, we attempted detachment/dissipation control experiments.
 First, we used \Afrac{} controller in KSTAR \#35857 with results shown in Fig.\ref{fig:detctrl_afrac}.
 As can be seen in Fig.\ref{fig:detctrl_afrac}a, the strike point remained within 12.5~mm of one of the probes of the real-time Langmuir probe array, thus the obtained \Afrac{} signal shown in Fig.\ref{fig:detctrl_afrac}b has error $\lesssim$13\%.
 Here, we can see that the controller was successful in closely following the target provided to it completing the pre-programmed shot length to the end.
